@@ -43,8 +43,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en-US" className={inter.variable} suppressHydrationWarning>
       <head>
-        {/* Marks JS as available before first paint so reveal animations never hide content without JS. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <JsonLd data={graph(organizationSchema(), websiteSchema())} />
       </head>
       <body className="flex min-h-dvh flex-col">

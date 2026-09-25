@@ -5,7 +5,8 @@ import { useEffect } from "react";
 
 /**
  * Gently fades sections in as they scroll into view. Content is fully visible
- * without JavaScript and when the visitor prefers reduced motion.
+ * without JavaScript, if the app fails to hydrate, and when the visitor prefers
+ * reduced motion.
  */
 export function RevealObserver() {
   const pathname = usePathname();
@@ -15,6 +16,16 @@ export function RevealObserver() {
       els.forEach((el) => el.classList.add("is-visible"));
       return;
     }
+    // Show anything already on screen straight away (no flicker), then enable the
+    // hide-until-scrolled effect. The "js" class is added HERE — only once this
+    // component is actually running — so if the app's JavaScript fails to load or
+    // hydrate, no content is ever left hidden.
+    const vh = window.innerHeight;
+    els.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < vh && r.bottom > 0) el.classList.add("is-visible");
+    });
+    document.documentElement.classList.add("js");
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
