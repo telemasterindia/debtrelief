@@ -22,24 +22,20 @@ const paths = [
 ];
 
 for (const path of paths) {
-  test(`${path}: accessible, one h1, unique SEO tags`, async ({ page }) => {
+  test(`${path}: accessible, one h1, not indexable`, async ({ page }) => {
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(e.message));
-    await page.goto(path);
+    const response = await page.goto(path);
     await page.evaluate(() => document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible")));
 
     await expect(page.locator("h1")).toHaveCount(1);
-    const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
-    expect(canonical).toMatch(new RegExp(`${path === "/" ? "/?$" : path}$`));
-    await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
-    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
-    expect((await page.title()).length).toBeGreaterThan(10);
-
-    // Every JSON-LD block must be valid JSON and must never contain ratings or reviews.
-    for (const block of await page.locator('script[type="application/ld+json"]').allTextContents()) {
-      const json = JSON.parse(block);
-      expect(JSON.stringify(json)).not.toMatch(/AggregateRating|"Review"/);
-    }
+    // Search indexing is intentionally disabled in this phase.
+    expect(response?.headers()["x-robots-tag"]).toContain("noindex");
+    expect(response?.headers()["x-robots-tag"]).toContain("nofollow");
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex.*nofollow/);
+    await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(0);
+    expect((await page.title()).length).toBeGreaterThan(5);
 
     // No horizontal scrolling.
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
@@ -97,15 +93,13 @@ test("proof placeholders never ship to production", async ({ page }) => {
   await expect(page.getByText("Development placeholder")).toHaveCount(0);
 });
 
-test("sitemap and robots are served", async ({ request }) => {
-  const sitemap = await (await request.get("/sitemap.xml")).text();
-  expect(sitemap).toContain("/debt-relief</loc>");
-  expect(sitemap).toContain("/debt-validation</loc>");
-  expect(sitemap).toContain("/resources/old-debts-and-time-limits</loc>");
+test("robots.txt disallows everything and no sitemap is exposed", async ({ request }) => {
   const robots = await (await request.get("/robots.txt")).text();
-  expect(robots).toContain("Sitemap:");
-  const og = await request.get("/og/faq");
-  expect(og.headers()["content-type"]).toContain("image/png");
+  expect(robots).toMatch(/User-Agent: \*\s+Disallow: \/\s*$/i);
+  expect(robots).not.toContain("Sitemap");
+  expect((await request.get("/sitemap.xml")).status()).toBe(404);
+  const api = await request.post("/api/contact", { data: {} });
+  expect(api.headers()["x-robots-tag"]).toContain("noindex");
 });
 
 test("unknown pages return 404", async ({ page }) => {

@@ -192,3 +192,78 @@ export function createShadowTexture() {
   ctx.fillRect(0, 0, 256, 256);
   return new THREE.CanvasTexture(canvas);
 }
+
+/** A generic credit card face (decorative — no real names or numbers). */
+export function createCardTexture(variant: "navy" | "green") {
+  const w = 1012;
+  const h = 638;
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d")!;
+  const g = ctx.createLinearGradient(0, 0, w, h);
+  if (variant === "navy") {
+    g.addColorStop(0, "#1b3a66");
+    g.addColorStop(1, "#081731");
+  } else {
+    g.addColorStop(0, "#1f9d52");
+    g.addColorStop(1, "#0b4f29");
+  }
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, w, h);
+
+  // Soft light sweep
+  const sweep = ctx.createLinearGradient(0, 0, w, 0);
+  sweep.addColorStop(0, "rgba(255,255,255,0)");
+  sweep.addColorStop(0.55, "rgba(255,255,255,0.10)");
+  sweep.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = sweep;
+  ctx.beginPath();
+  ctx.moveTo(w * 0.35, 0);
+  ctx.lineTo(w * 0.75, 0);
+  ctx.lineTo(w * 0.5, h);
+  ctx.lineTo(w * 0.1, h);
+  ctx.fill();
+
+  // EMV chip
+  const chip = ctx.createLinearGradient(90, 220, 230, 330);
+  chip.addColorStop(0, "#f4e3a1");
+  chip.addColorStop(1, "#c9a74a");
+  ctx.fillStyle = chip;
+  roundRect(ctx, 90, 220, 140, 108, 18);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(90,70,20,0.45)";
+  ctx.lineWidth = 3;
+  for (const y of [256, 292]) {
+    ctx.beginPath();
+    ctx.moveTo(90, y);
+    ctx.lineTo(230, y);
+    ctx.stroke();
+  }
+
+  // Number placeholder dots
+  ctx.fillStyle = "rgba(255,255,255,0.85)";
+  for (let group = 0; group < 4; group++) {
+    for (let i = 0; i < 4; i++) {
+      ctx.beginPath();
+      ctx.arc(100 + group * 205 + i * 36, 450, 11, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  ctx.fillStyle = "rgba(255,255,255,0.55)";
+  roundRect(ctx, 90, 520, 300, 24, 12);
+  ctx.fill();
+
+  // Network-style circles (generic)
+  ctx.globalAlpha = 0.85;
+  ctx.fillStyle = "rgba(255,255,255,0.55)";
+  ctx.beginPath();
+  ctx.arc(w - 190, 110, 52, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "rgba(255,255,255,0.3)";
+  ctx.beginPath();
+  ctx.arc(w - 125, 110, 52, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.globalAlpha = 1;
+  return finish(canvas);
+}

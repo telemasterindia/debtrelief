@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import * as THREE from "three";
 import type { Quality } from "./capabilities";
 import {
+  createCardTexture,
   createChipTexture,
   createDocumentTexture,
   createDotTexture,
@@ -18,6 +19,53 @@ type SceneProps = { quality: Quality; reducedMotion: boolean };
 const DOC_W = 2.5;
 const DOC_H = 3.28;
 const damp = THREE.MathUtils.damp;
+
+/** Entrance choreography: each element eases in after its own delay (seconds). */
+const easeOut = (x: number) => 1 - Math.pow(1 - Math.min(Math.max(x, 0), 1), 3);
+const intro = (t: number, delay: number, duration = 1.1) => easeOut((t - delay) / duration);
+
+/* ------------------------------------------------------------------ */
+/* Credit cards — the debt Greenlight helps with                       */
+/* ------------------------------------------------------------------ */
+
+function CreditCards({ reducedMotion }: { reducedMotion: boolean }) {
+  const navy = useMemo(() => createCardTexture("navy"), []);
+  const green = useMemo(() => createCardTexture("green"), []);
+  const back = useRef<THREE.Group>(null);
+  const front = useRef<THREE.Group>(null);
+  useEffect(() => () => { navy.dispose(); green.dispose(); }, [navy, green]);
+  useFrame(({ clock }) => {
+    if (!back.current || !front.current || reducedMotion) return;
+    const t = clock.elapsedTime;
+    const p = intro(t, 0.35, 1.3);
+    back.current.position.y = 1.15 + (1 - p) * 0.8 + Math.sin(t * 0.5) * 0.05;
+    front.current.position.y = 0.92 + (1 - p) * 1.0 + Math.sin(t * 0.5 + 0.8) * 0.06;
+    front.current.rotation.z = 0.2 + Math.sin(t * 0.4) * 0.03;
+  });
+  const W = 1.6;
+  const H = W / 1.586;
+  const card = (tex: THREE.Texture) => (
+    <>
+      <RoundedBox args={[W, H, 0.025]} radius={0.06} smoothness={4}>
+        <meshPhysicalMaterial color="#0e2445" metalness={0.4} roughness={0.35} clearcoat={1} clearcoatRoughness={0.15} />
+      </RoundedBox>
+      <mesh position={[0, 0, 0.0131]}>
+        <planeGeometry args={[W - 0.04, H - 0.04]} />
+        <meshPhysicalMaterial map={tex} roughness={0.32} clearcoat={1} clearcoatRoughness={0.1} />
+      </mesh>
+    </>
+  );
+  return (
+    <>
+      <group ref={back} position={[-1.55, 1.15, -0.9]} rotation={[0.1, 0.35, 0.28]}>
+        {card(navy)}
+      </group>
+      <group ref={front} position={[-1.35, 0.92, -0.55]} rotation={[0.05, 0.3, 0.2]}>
+        {card(green)}
+      </group>
+    </>
+  );
+}
 
 /* ------------------------------------------------------------------ */
 /* Document stack                                                      */
@@ -190,13 +238,16 @@ const CHIPS = [
   { label: "Online access", pos: [-1.75, -1.15, 0.65] as const, anchor: [-DOC_W / 2, -0.9, 0.02] as const, depth: 1.6 },
 ];
 
-function Chip({ label, position, depth, reducedMotion }: { label: string; position: readonly [number, number, number]; depth: number; reducedMotion: boolean }) {
+function Chip({ label, position, depth, delay, reducedMotion }: { label: string; position: readonly [number, number, number]; depth: number; delay: number; reducedMotion: boolean }) {
   const tex = useMemo(() => createChipTexture(label), [label]);
   const ref = useRef<THREE.Mesh>(null);
   const width = label.length > 10 ? 1.45 : 1.3;
   useEffect(() => () => tex.dispose(), [tex]);
   useFrame(({ pointer, clock }, delta) => {
     if (!ref.current || reducedMotion) return;
+    const s = 0.6 + 0.4 * intro(clock.elapsedTime, delay, 0.7);
+    ref.current.scale.setScalar(s);
+    (ref.current.material as THREE.MeshBasicMaterial).opacity = intro(clock.elapsedTime, delay, 0.6);
     // Parallax: nearer panels move a little more than the document.
     ref.current.position.x = damp(ref.current.position.x, position[0] + pointer.x * 0.06 * depth, 3, delta);
     ref.current.position.y = damp(
@@ -209,7 +260,7 @@ function Chip({ label, position, depth, reducedMotion }: { label: string; positi
   return (
     <mesh ref={ref} position={position as unknown as THREE.Vector3Tuple}>
       <planeGeometry args={[width, width * (150 / 560)]} />
-      <meshBasicMaterial map={tex} transparent toneMapped={false} depthWrite={false} />
+      <meshBasicMaterial map={tex} transparent opacity={reducedMotion ? 1 : 0} toneMapped={false} depthWrite={false} />
     </mesh>
   );
 }
@@ -373,14 +424,19 @@ function Rig({ quality, reducedMotion }: SceneProps) {
     root.current.rotation.y = damp(root.current.rotation.y, -0.16 + pointer.x * 0.16, 2.5, delta);
     root.current.rotation.x = damp(root.current.rotation.x, 0.05 - pointer.y * 0.1, 2.5, delta);
 
-    doc.current.position.y = Math.sin(t * 0.6) * 0.06;
+    const pDoc = intro(t, 0, 1.4);
+    doc.current.position.y = Math.sin(t * 0.6) * 0.06 - (1 - pDoc) * 0.6;
+    doc.current.scale.setScalar(0.9 + 0.1 * pDoc);
     doc.current.rotation.z = Math.sin(t * 0.4) * 0.012;
 
-    magnifier.current.position.x = -1.05 + Math.sin(t * 0.45) * 0.1 + pointer.x * 0.1;
+    const pMag = intro(t, 0.6, 1.2);
+    magnifier.current.position.x = -1.05 + Math.sin(t * 0.45) * 0.1 + pointer.x * 0.1 - (1 - pMag) * 1.2;
     magnifier.current.position.y = -0.2 + Math.cos(t * 0.55) * 0.08 + pointer.y * 0.08;
 
-    shield.current.position.y = -1.35 + Math.sin(t * 0.7 + 1) * 0.07;
-    shield.current.rotation.y = -0.35 + Math.sin(t * 0.5) * 0.12 + pointer.x * 0.2;
+    const pShield = intro(t, 0.8, 1.2);
+    shield.current.position.y = -1.35 + Math.sin(t * 0.7 + 1) * 0.07 - (1 - pShield) * 0.9;
+    shield.current.rotation.y = -0.35 + Math.sin(t * 0.5) * 0.12 + pointer.x * 0.2 + (1 - pShield) * 1.6;
+    shield.current.scale.setScalar(0.95 * (0.7 + 0.3 * pShield));
 
     if (keyLight.current) {
       keyLight.current.position.x = damp(keyLight.current.position.x, 1.5 + pointer.x * 3, 2, delta);
@@ -390,9 +446,11 @@ function Rig({ quality, reducedMotion }: SceneProps) {
 
   return (
     <>
-      <ambientLight intensity={0.55} />
-      <directionalLight position={[3, 4, 5]} intensity={1.4} color="#ffffff" />
-      <directionalLight position={[-5, -1, 2]} intensity={0.9} color="#4ade80" />
+      <hemisphereLight args={["#eef6ff", "#0b2a1c", 0.55]} />
+      <directionalLight position={[3, 4, 5]} intensity={1.85} color="#fff8ee" />
+      {/* Greenlight rim light from behind for depth and brand colour */}
+      <spotLight position={[-3.5, 2.5, -4]} angle={0.7} penumbra={1} intensity={28} distance={14} color="#4ade80" />
+      <directionalLight position={[-5, -1, 2]} intensity={0.6} color="#86efac" />
       <pointLight ref={keyLight} position={[1.5, 1.8, 3]} intensity={9} distance={12} color="#dbeafe" />
 
       <Environment resolution={quality === "high" ? 256 : 128} frames={1}>
@@ -403,6 +461,8 @@ function Rig({ quality, reducedMotion }: SceneProps) {
       </Environment>
 
       <group ref={root} scale={scale} rotation={[0.05, -0.16, 0]}>
+        <CreditCards reducedMotion={reducedMotion} />
+
         <group ref={doc} position={[0.15, 0.05, 0]}>
           <DocumentStack reducedMotion={reducedMotion} />
         </group>
@@ -416,8 +476,8 @@ function Rig({ quality, reducedMotion }: SceneProps) {
         </group>
 
         <Connections />
-        {CHIPS.map((c) => (
-          <Chip key={c.label} label={c.label} position={c.pos} depth={c.depth} reducedMotion={reducedMotion} />
+        {CHIPS.map((c, i) => (
+          <Chip key={c.label} label={c.label} position={c.pos} depth={c.depth} delay={1.0 + i * 0.22} reducedMotion={reducedMotion} />
         ))}
 
         <LightTrail

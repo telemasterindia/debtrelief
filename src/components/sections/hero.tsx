@@ -1,5 +1,6 @@
 import { siteConfig } from "@/lib/site-config";
 import { Icon } from "@/components/ui/icon";
+import Link from "next/link";
 import { CtaButton, TrackedLink } from "@/components/ui/tracked-link";
 import { HeroStage } from "./hero-stage";
 
@@ -42,7 +43,19 @@ export function Hero() {
               </TrackedLink>
             )}
           </div>
-          <ul className="mt-9 flex flex-col gap-3 text-[1.0625rem] text-on-dark sm:flex-row sm:flex-wrap sm:gap-x-7">
+          <div className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-lg">
+            <Link href="/how-it-works" className="inline-flex min-h-12 items-center gap-2 font-semibold text-white underline decoration-white/40 underline-offset-[6px] hover:decoration-white">
+              See how it works
+              <Icon name="arrowRight" className="size-5" />
+            </Link>
+            <a href="#video" className="inline-flex min-h-12 items-center gap-2.5 font-semibold text-white underline decoration-white/40 underline-offset-[6px] hover:decoration-white">
+              <span aria-hidden="true" className="flex size-7 items-center justify-center rounded-full bg-white text-brand-700">
+                <svg viewBox="0 0 24 24" className="ml-0.5 size-4"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" /></svg>
+              </span>
+              Watch our video
+            </a>
+          </div>
+          <ul className="mt-8 flex flex-col gap-3 text-[1.0625rem] text-on-dark sm:flex-row sm:flex-wrap sm:gap-x-7">
             {reassurances.map((r) => (
               <li key={r} className="flex items-center gap-2.5">
                 <Icon name="checkCircle" className="size-6 shrink-0 text-accent-300" />

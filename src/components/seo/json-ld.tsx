@@ -1,4 +1,8 @@
+import { indexingEnabled } from "@/lib/seo/indexing";
+
+/** Structured data is SEO-only and is not emitted while indexing is disabled. */
 export function JsonLd({ data }: { data: object }) {
+  if (!indexingEnabled) return null;
   return (
     <script
       type="application/ld+json"

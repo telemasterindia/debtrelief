@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { indexingEnabled, noIndexValue } from "./src/lib/seo/indexing";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -36,6 +37,9 @@ const nextConfig: NextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+          // Primary pre-launch indexing control: applies to every response, including
+          // images, PDFs and API routes that cannot carry a <meta> tag.
+          ...(indexingEnabled ? [] : [{ key: "X-Robots-Tag", value: noIndexValue }]),
           ...(isProd
             ? [{ key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" }]
             : []),

@@ -10,6 +10,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { graph, organizationSchema, websiteSchema } from "@/lib/seo/structured-data";
 import { siteConfig, siteUrl } from "@/lib/site-config";
 import { pages } from "@/lib/seo/pages";
+import { indexingEnabled } from "@/lib/seo/indexing";
 
 // Self-hosted Inter (latin subset, variable weight). next/font preloads it and generates a
 // size-adjusted fallback so text does not shift when the font arrives.
@@ -27,7 +28,9 @@ export const metadata: Metadata = {
   description: pages.home.description,
   applicationName: siteConfig.name,
   formatDetection: { telephone: false, email: false, address: false },
-  robots: { index: true, follow: true },
+  robots: indexingEnabled
+    ? { index: true, follow: true }
+    : { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false, noimageindex: true } },
 };
 
 export const viewport: Viewport = {

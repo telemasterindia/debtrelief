@@ -4,7 +4,7 @@ import { VideoPlayer } from "@/components/media/video-player";
 
 export function VideoSection() {
   return (
-    <section aria-labelledby="video-title" className="relative bg-white pb-20 pt-16 sm:pb-28 sm:pt-20">
+    <section id="video" aria-labelledby="video-title" className="relative scroll-mt-24 bg-white pb-20 pt-16 sm:pb-28 sm:pt-20">
       <div className="container-page">
         <SectionHeading
           id="video-title"

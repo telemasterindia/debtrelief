@@ -2,7 +2,36 @@
 
 A modernized, production-ready redesign of [greenlightdebtrelief.com](https://greenlightdebtrelief.com/):
 same company, same services, same contact details — with a premium, highly
-readable (60+ friendly), accessible and search-optimized experience.
+readable (60+ friendly) and accessible experience.
+
+## 🔒 Search visibility is intentionally DISABLED
+
+SEO, AEO and GEO are out of scope for this phase. While
+`NEXT_PUBLIC_ENABLE_INDEXING` is unset (the default):
+
+| Control | Behaviour (verified) |
+| --- | --- |
+| `X-Robots-Tag` header | `noindex, nofollow, noarchive, nosnippet, noimageindex` on **every** response (pages, images, API) — the primary control |
+| `<meta name="robots">` | `noindex, nofollow` on every page |
+| `robots.txt` | `User-Agent: *` / `Disallow: /`, no sitemap listed |
+| `/sitemap.xml` | 404 |
+| Canonical links | not emitted |
+| JSON-LD structured data | not emitted |
+
+`robots.txt` alone does not prevent indexing — the noindex header is what does.
+The strongest protection for a pre-launch deployment is a password: set
+`SITE_BASIC_AUTH="username:password"` (see `src/proxy.ts`), or use your host's
+deployment protection.
+
+> ⚠️ **Do not deploy this configuration on the live greenlightdebtrelief.com
+> domain.** A noindex site on the production domain will remove the existing
+> Greenlight pages from Google and Bing. Deploy it on a staging/preview URL
+> until launch, then enable indexing as part of going live.
+
+**To "Enable SEO" later:** set `NEXT_PUBLIC_ENABLE_INDEXING=true` and rebuild.
+That restores indexable robots.txt, the sitemap, canonical URLs and structured
+data — no code changes needed (verified). Keyword/metadata optimization,
+structured-data expansion and SEO/AEO/GEO content are deliberately not done yet.
 
 ## ⚠️ Assets and facts to supply before launch
 
@@ -49,6 +78,7 @@ TCPA consent language, and state debt-relief licensing for the states you serve.
 **Environment** — see `.env.example`
 
 - [ ] `NEXT_PUBLIC_SITE_URL` (defaults to `https://greenlightdebtrelief.com`).
+- [ ] Keep `NEXT_PUBLIC_ENABLE_INDEXING` unset during this phase; consider `SITE_BASIC_AUTH` on staging.
 - [ ] `LEAD_WEBHOOK_URL` (+ optional `LEAD_WEBHOOK_SECRET`) — consultation requests and contact messages are POSTed here as JSON. In production, forms refuse submissions with a friendly message until this is set, so no lead is silently lost.
 
 ## What changed in the redesign
@@ -60,8 +90,8 @@ TCPA consent language, and state debt-relief licensing for the states you serve.
   creditor negotiation, dedicated account manager, live online access,
   financial freedom. Debt-validation content kept as free educational guides.
 - **Video:** the official video `92CTw_kb6x8` directly below the hero in a
-  large framed card. Nothing loads from YouTube until Play is pressed; the
-  player uses youtube-nocookie.com. `VideoObject` structured data included.
+  large framed card, also linked from the hero ("Watch our video"). Nothing
+  loads from YouTube until Play is pressed; the player uses youtube-nocookie.com.
 - **Proof:** "Still not convinced? See the results for yourself." with Proof
   1–4 slots, plus an always-visible "individual results, not typical or
   guaranteed" disclaimer.
@@ -70,6 +100,12 @@ TCPA consent language, and state debt-relief licensing for the states you serve.
   each linked to the CFPB, FTC or IRS.
 - **Form:** "Request your free consultation" in four short steps (old
   `/request-review` URL permanently redirects to `/free-consultation`).
+- **Conversion paths:** Free Consultation (primary), Call Greenlight, See how it
+  works, and Watch our video are all in the hero; call + consultation stay
+  reachable via the top bar, header and a sticky mobile bar.
+- **3D hero:** plan document, magnifier, verification shield, floating credit
+  cards and metadata panels with an entrance sequence, pointer parallax,
+  Greenlight-green rim lighting and a matching static illustration on phones.
 
 ## Pages
 
@@ -108,17 +144,19 @@ npx playwright test  # E2E + accessibility (run `npm run build` first)
   rate limiting (`FORM_RATE_LIMIT`).
 - **Privacy-safe analytics:** `track()` pushes allow-listed, PII-stripped events
   to `window.dataLayer`; no vendor is loaded.
-- **SEO:** unique titles/descriptions/canonicals, per-page OG images, sitemap,
-  robots, breadcrumbs, JSON-LD (Organization, WebSite, WebPage, Service,
-  VideoObject, BreadcrumbList, FAQPage, Article). No review/rating markup.
+- **SEO architecture (dormant):** page registry, metadata helpers, sitemap and
+  JSON-LD builders remain in `src/lib/seo/` but are switched off by
+  `src/lib/seo/indexing.ts`. Only basic titles and social-share images are active.
 
 ## QA status
 
 - Lint, typecheck, unit tests and production build pass.
 - 66 Playwright tests pass on desktop and mobile, including axe WCAG 2.2 AA
-  scans of all 17 pages (0 violations), the consultation flow, redirect, video
+  scans of all 17 pages (0 violations), noindex header + meta on every page,
+  robots.txt `Disallow: /`, sitemap 404, the consultation flow, redirect, video
   click-to-play, real contact details, keyboard access, mobile menu, reduced
   motion, and a check that proof placeholders never reach production.
-- Lighthouse (local production build): Performance 98–100, Accessibility 100,
-  SEO 100 on mobile and desktop for `/`, `/free-consultation` and `/debt-relief`, CLS 0.
+- Lighthouse (local production build): Performance 98–100 and Accessibility 100
+  on mobile and desktop for `/`, `/free-consultation` and `/debt-relief`, CLS 0.
+  (Lighthouse's SEO score is now expected to fail because of noindex.)
   The test machine has no GPU, so desktop scores reflect the static hero illustration.

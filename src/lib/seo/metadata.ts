@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
+import { indexingEnabled } from "./indexing";
 
 type MetaInput = {
   title: string;
@@ -28,7 +29,8 @@ export function buildMetadata({
   return {
     title: absoluteTitle ? { absolute: fullTitle } : title,
     description,
-    alternates: { canonical: path },
+    // Canonicals are only meaningful once the site may be indexed.
+    ...(indexingEnabled ? { alternates: { canonical: path } } : {}),
     openGraph: {
       type,
       url: path,
