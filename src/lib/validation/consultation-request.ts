@@ -5,12 +5,11 @@ import { STATE_CODES } from "./us-states";
 z.config({ jitless: true });
 
 export const DEBT_TYPES = [
-  { value: "credit_card", label: "Credit card" },
-  { value: "medical", label: "Medical bill" },
-  { value: "personal_loan", label: "Personal loan" },
-  { value: "collection_account", label: "Collection account" },
+  { value: "credit_card", label: "Credit card debt" },
+  { value: "unsecured_loan", label: "Unsecured loan" },
+  { value: "other_unsecured", label: "Other unsecured debt" },
   { value: "multiple", label: "Several types of debt" },
-  { value: "other", label: "Other or not sure" },
+  { value: "unsure", label: "I'm not sure" },
 ] as const;
 
 export const DEBT_AMOUNTS = [

@@ -24,7 +24,7 @@ export function buildMetadata({
   modifiedTime,
   absoluteTitle,
 }: MetaInput): Metadata {
-  const fullTitle = `${title} | ${siteConfig.name}`;
+  const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.name}`;
   const image = { url: ogImagePath, width: 1200, height: 630, alt: title };
   return {
     title: absoluteTitle ? { absolute: fullTitle } : title,

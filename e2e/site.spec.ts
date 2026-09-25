@@ -3,23 +3,17 @@ import { expect, test } from "@playwright/test";
 
 const paths = [
   "/",
-  "/debt-relief",
-  "/debt-validation",
+  "/about",
   "/how-it-works",
   "/faq",
-  "/about",
   "/contact",
   "/free-consultation",
-  "/resources",
-  "/resources/debt-relief-what-to-know",
-  "/resources/debt-validation-letter",
-  "/resources/debt-collector-contacted-you",
-  "/resources/old-debts-and-time-limits",
-  "/resources/spot-debt-collection-scams",
   "/privacy",
   "/terms",
   "/disclaimer",
 ];
+
+const marketingPaths = ["/", "/about", "/how-it-works", "/faq", "/contact", "/free-consultation"];
 
 for (const path of paths) {
   test(`${path}: accessible, one h1, not indexable`, async ({ page }) => {
@@ -66,11 +60,11 @@ test("skip link moves focus to main content", async ({ page }) => {
 
 test("FAQ accordion opens with the keyboard", async ({ page }) => {
   await page.goto("/faq");
-  const summary = page.locator("#guaranteed-result summary");
+  const summary = page.locator("#which-debts summary");
   await summary.focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator("#guaranteed-result")).toHaveAttribute("open", "");
-  await expect(page.getByText("Creditors are not required to negotiate or settle, and results vary")).toBeVisible();
+  await expect(page.locator("#which-debts")).toHaveAttribute("open", "");
+  await expect(page.getByText("Credit card debt, unsecured loans and other qualifying unsecured debt.")).toBeVisible();
 });
 
 test("brand, contact details and video are present", async ({ page }) => {
@@ -89,6 +83,41 @@ test("contact page shows the real email and phone", async ({ page }) => {
   await expect(page.locator('main a[href="mailto:info@greenlightdebtrelief.com"]')).toBeVisible();
   await expect(page.locator('main a[href="tel:+18778700717"]')).toBeVisible();
 });
+
+test("real logo and navigation are present", async ({ page, isMobile }) => {
+  await page.goto("/");
+  const logo = page.locator('header img[alt^="Greenlight Debt Relief"]');
+  await expect(logo).toBeVisible();
+  const ratio = await logo.evaluate((img: HTMLImageElement) => img.getBoundingClientRect().width / img.getBoundingClientRect().height);
+  expect(Math.abs(ratio - 382 / 235)).toBeLessThan(0.03); // never distorted
+  if (!isMobile) {
+    for (const label of ["Home", "About", "How It Works", "FAQs", "Contact"]) {
+      await expect(page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: label, exact: true })).toBeVisible();
+    }
+    await expect(page.getByRole("link", { name: "Get Free Consultation" }).first()).toBeVisible();
+  }
+});
+
+for (const old of ["/debt-relief", "/debt-validation", "/resources", "/resources/debt-validation-letter"]) {
+  test(`removed page ${old} redirects home`, async ({ page }) => {
+    await page.goto(old);
+    await expect(page).toHaveURL(/\/$/);
+  });
+}
+
+for (const path of marketingPaths) {
+  test(`${path}: no educational/legal content in the marketing experience`, async ({ page }) => {
+    await page.goto(path);
+    const text = (await page.locator("main").innerText()).toLowerCase();
+    for (const term of ["irs", "ftc", "cfpb", "telemarketing sales rule", "bankruptcy", "credit counsel", "taxable", "forgiven debt", "consumer protection", "alternatives to consider"]) {
+      expect(text, `"${term}" found on ${path}`).not.toMatch(new RegExp(`\\b${term}\\b`));
+    }
+    // Every consultation CTA points to a working route.
+    for (const href of await page.locator('a[href="/free-consultation"]').evaluateAll((els) => els.map((e) => e.getAttribute("href")))) {
+      expect(href).toBe("/free-consultation");
+    }
+  });
+}
 
 test("proof placeholders never ship to production", async ({ page }) => {
   await page.goto("/");

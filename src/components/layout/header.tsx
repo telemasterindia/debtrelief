@@ -141,12 +141,6 @@ export function Header() {
       >
         <nav aria-label="Main" className="container-page py-4">
           <ul className="divide-y divide-line">
-            <li>
-              <Link href="/" aria-current={pathname === "/" ? "page" : undefined} className="flex min-h-15 items-center justify-between py-3 text-xl font-semibold text-ink">
-                Home
-                <Icon name="chevronRight" className="size-6 text-muted" />
-              </Link>
-            </li>
             {primaryNav.map((item) => (
               <li key={item.href}>
                 <Link

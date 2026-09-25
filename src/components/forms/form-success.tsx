@@ -40,11 +40,11 @@ export function FormSuccess() {
           },
           {
             title: "Have your information nearby",
-            text: "A list of your debts, your monthly budget, and any recent letters from creditors or collectors will help us give you a clearer picture.",
+            text: "A rough list of your debts and your monthly budget will help us talk through your options.",
           },
           {
-            title: "You'll get honest answers",
-            text: "We'll explain whether our program may fit, how a customized plan would work, and every fee in writing. You decide what to do next.",
+            title: "You decide what's next",
+            text: "We'll explain the options that may be available to you. Whether to move forward is always your choice.",
           },
         ].map((s, i) => (
           <li key={s.title} className="flex gap-4">
@@ -59,28 +59,24 @@ export function FormSuccess() {
 
       <div className="mt-8 space-y-4 rounded-[var(--radius-card)] bg-canvas p-5 text-[1.0625rem] leading-relaxed sm:p-6 sm:text-lg">
         <p>
-          <strong className="font-semibold text-ink">No guaranteed result.</strong> Submitting a request does not create
-          any obligation or guarantee any outcome. Results vary from person to person.
+          <strong className="font-semibold text-ink">No obligation.</strong> Submitting a request doesn&apos;t commit you
+          to anything. Results vary from person to person.
         </p>
         <p>
-          <strong className="font-semibold text-ink">How your information is used.</strong> We use it only to respond to
-          your request, as described in our{" "}
+          <strong className="font-semibold text-ink">How your information is used.</strong> We use it to respond to your
+          request
+          {siteConfig.sharesInformationWithPartners ? " and may share it with our debt-relief partners so they can present options to you" : ""}
+          , as described in our{" "}
           <Link href="/privacy" className="link">
             Privacy Policy
           </Link>
-          . We do not sell your personal information.
-        </p>
-        <p>
-          <strong className="font-semibold text-ink">Don&apos;t miss deadlines.</strong> Keep making decisions about your
-          accounts as you normally would until you&apos;ve spoken with us. If you have received court papers, don&apos;t wait
-          — those deadlines still apply.
-          {siteConfig.isLawFirm ? "" : " If you have been sued, please contact a licensed attorney."}
+          .
         </p>
       </div>
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-        <Link href="/resources" className="link inline-flex min-h-12 items-center gap-2 text-lg">
-          Read our free guides
+        <Link href="/how-it-works" className="link inline-flex min-h-12 items-center gap-2 text-lg">
+          See how it works
           <Icon name="arrowRight" className="size-5" />
         </Link>
       </div>

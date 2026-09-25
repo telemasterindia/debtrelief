@@ -310,7 +310,7 @@ export function ConsultationForm() {
                 id="details"
                 label="Anything else you'd like us to know?"
                 optional
-                hint="For example, the number of creditors or your main concern. Please do not include your Social Security number or full account numbers."
+                hint="For example, your main concern. Please do not include your Social Security number or full account numbers."
                 maxLength={1000}
                 error={errors.details?.message}
                 {...register("details")}
@@ -383,10 +383,10 @@ export function ConsultationForm() {
                   {...register("consentContact")}
                   label={
                     <>
-                      <strong className="font-semibold text-ink">Required.</strong> I agree that {siteConfig.name} may
-                      contact me by phone call or email, using the details I provided, about my request for a debt relief
-                      consultation. I understand this consent is not a condition of buying anything, and I can
-                      withdraw it at any time.
+                      <strong className="font-semibold text-ink">Required.</strong> I agree that {siteConfig.name}
+                      {siteConfig.sharesInformationWithPartners ? " and its debt-relief partners" : ""} may contact me by
+                      phone call or email, using the details I provided, about my consultation and debt-relief options. I
+                      understand this consent is not a condition of buying anything, and I can withdraw it at any time.
                     </>
                   }
                 />
@@ -404,8 +404,10 @@ export function ConsultationForm() {
                       <Link href="/terms" target="_blank" className="link">
                         Terms &amp; Conditions<span className="sr-only"> (opens in a new tab)</span>
                       </Link>
-                      . I understand that results vary and are not guaranteed
-                      {siteConfig.isLawFirm ? "" : ` and that ${siteConfig.name} does not provide legal advice`}.
+                      .{siteConfig.sharesInformationWithPartners
+                        ? " I understand my information may be shared with Greenlight's debt-relief partners so they can present options to me."
+                        : ""}{" "}
+                      Results vary, and any decision to move forward is mine.
                     </>
                   }
                 />

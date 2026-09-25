@@ -2,12 +2,10 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { pages } from "@/lib/seo/pages";
-import { resources } from "@/lib/content/resources";
 import { siteConfig } from "@/lib/site-config";
 
 const headlines: Record<string, string> = {
   ...Object.fromEntries(Object.entries(pages).map(([key, p]) => [key === "home" ? "home" : p.path.slice(1), p.ogHeadline])),
-  ...Object.fromEntries(resources.map((r) => [`resource-${r.slug}`, r.title])),
 };
 
 export function generateStaticParams() {

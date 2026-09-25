@@ -21,7 +21,7 @@ export default function ContactPage() {
         crumbs={[{ name: "Contact", path: page.path }]}
         eyebrow="Contact us"
         title="We're Here to Help."
-        intro="Call us, email us, or send a message. We're happy to answer your questions about debt relief."
+        intro="Call us, email us, or send a message. We're happy to help."
       />
       <div className="bg-canvas py-14 sm:py-20">
         <div className="container-page grid gap-10 lg:grid-cols-[1fr_24rem] lg:gap-14">
@@ -62,14 +62,6 @@ export default function ContactPage() {
                 </ul>
               </div>
             )}
-            <div className="rounded-[var(--radius-card)] border border-line bg-white p-6">
-              <h2 className="text-xl">Problems with a debt collector?</h2>
-              <p className="mt-2 text-[1.0625rem] leading-relaxed text-muted">You can also contact these government agencies directly.</p>
-              <ul className="mt-4 space-y-2 text-[1.0625rem]">
-                <li><a className="link" href="https://www.consumerfinance.gov/complaint/" target="_blank" rel="noopener noreferrer">Submit a complaint to the CFPB<span className="sr-only"> (opens in a new tab)</span></a></li>
-                <li><a className="link" href="https://reportfraud.ftc.gov/" target="_blank" rel="noopener noreferrer">Report fraud to the FTC<span className="sr-only"> (opens in a new tab)</span></a></li>
-              </ul>
-            </div>
           </aside>
         </div>
       </div>

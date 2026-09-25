@@ -14,63 +14,42 @@ export type PageEntry = {
 export const pages = {
   home: {
     path: "/",
-    title: "Greenlight Debt Relief — Credit Card & Unsecured Debt Relief",
+    title: "Greenlight Debt Relief",
     description:
-      "Greenlight Debt Relief offers a free consultation, customized debt relief plans, creditor negotiation, a dedicated account manager and live online access.",
+      "Get help exploring your options for credit card and unsecured debt. Start with a free, no-obligation consultation.",
     ogHeadline: "Get help with your credit card debt.",
     priority: 1,
     changeFrequency: "monthly",
   },
-  debtRelief: {
-    path: "/debt-relief",
-    title: "Credit Card & Unsecured Debt Relief Services",
-    description:
-      "How Greenlight Debt Relief helps with credit card and other unsecured debt: customized plans, creditor negotiation, a dedicated account manager and live online access.",
-    ogHeadline: "Credit card & unsecured debt relief.",
-    priority: 0.95,
-    changeFrequency: "monthly",
-  },
   howItWorks: {
     path: "/how-it-works",
-    title: "How Our Debt Relief Process Works — Step by Step",
-    description:
-      "From your free consultation to a customized plan and creditor negotiation: every step of the Greenlight Debt Relief process, explained in plain English.",
-    ogHeadline: "How our debt relief process works.",
+    title: "How It Works",
+    description: "Four simple steps, starting with a free consultation. The final decision is always yours.",
+    ogHeadline: "How it works.",
     priority: 0.9,
     changeFrequency: "monthly",
   },
   freeConsultation: {
     path: "/free-consultation",
-    title: "Request Your Free Debt Relief Consultation",
+    title: "Get Your Free Consultation",
     description:
       "Request a free, no-obligation debt relief consultation with Greenlight Debt Relief in four short steps. No Social Security number needed.",
     ogHeadline: "Request your free consultation.",
     priority: 0.9,
     changeFrequency: "yearly",
   },
-  debtValidation: {
-    path: "/debt-validation",
-    title: "What Is Debt Validation? Your Rights With Debt Collectors",
-    description:
-      "What debt validation means under federal rules, what a validation notice must include, your 30-day window to dispute, and what validation does not do.",
-    ogHeadline: "Debt validation: know your rights with collectors.",
-    priority: 0.8,
-    changeFrequency: "monthly",
-  },
   faq: {
     path: "/faq",
-    title: "Debt Relief FAQ — Common Questions Answered",
-    description:
-      "Straight answers about debt relief with Greenlight: which debts qualify, fees, credit impact, taxes on forgiven debt, timing, your account manager and more.",
-    ogHeadline: "Debt relief questions, answered honestly.",
+    title: "FAQs",
+    description: "Quick answers to common questions about Greenlight Debt Relief.",
+    ogHeadline: "Frequently asked questions.",
     priority: 0.8,
     changeFrequency: "monthly",
   },
   about: {
     path: "/about",
     title: "About Greenlight Debt Relief",
-    description:
-      "Who we are and how we work: customized plans, dedicated account managers, live online access and honest answers about debt relief.",
+    description: "Who we are and how we help people explore options for credit card and unsecured debt.",
     ogHeadline: "About Greenlight Debt Relief.",
     priority: 0.6,
     changeFrequency: "yearly",
@@ -78,19 +57,10 @@ export const pages = {
   contact: {
     path: "/contact",
     title: "Contact Greenlight Debt Relief",
-    description: "Call Greenlight Debt Relief, email us, or send a message. We're here to answer your questions about debt relief.",
+    description: "Call Greenlight Debt Relief, email us, or send a message.",
     ogHeadline: "Talk to Greenlight Debt Relief.",
     priority: 0.7,
     changeFrequency: "yearly",
-  },
-  resources: {
-    path: "/resources",
-    title: "Debt Relief & Debt Collection Guides",
-    description:
-      "Plain-English guides about debt relief, debt collectors, validation letters, old debts and how to avoid debt relief and collection scams.",
-    ogHeadline: "Plain-English guides to debt and your rights.",
-    priority: 0.7,
-    changeFrequency: "monthly",
   },
   privacy: {
     path: "/privacy",
@@ -110,10 +80,9 @@ export const pages = {
   },
   disclaimer: {
     path: "/disclaimer",
-    title: "Disclaimer & Important Disclosures",
-    description:
-      "Important disclosures about debt relief: results vary, credit impact, taxes on forgiven debt, fees, and the limits of the information on this website.",
-    ogHeadline: "Disclaimer & important disclosures",
+    title: "Disclaimer & Disclosures",
+    description: "Important disclosures about Greenlight Debt Relief and this website.",
+    ogHeadline: "Disclaimer & disclosures",
     priority: 0.3,
     changeFrequency: "yearly",
   },

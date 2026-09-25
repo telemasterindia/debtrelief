@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
-import { VideoSection } from "@/components/sections/video-section";
-import { TrustStrip } from "@/components/sections/trust-strip";
-import { ProblemSection } from "@/components/sections/problem-section";
-import { ServicesSection } from "@/components/sections/services-section";
+import { BenefitsStrip } from "@/components/sections/benefits-strip";
+import { HelpWith } from "@/components/sections/help-with";
 import { ProcessSteps } from "@/components/sections/process-steps";
+import { VideoSection } from "@/components/sections/video-section";
+import { WhyGreenlight } from "@/components/sections/why-greenlight";
 import { ProofSection } from "@/components/sections/proof-section";
-import { ImportantToKnow } from "@/components/sections/important-to-know";
-import { Expectations } from "@/components/sections/expectations";
-import { KnowYourRights } from "@/components/sections/know-your-rights";
 import { FaqPreview } from "@/components/sections/faq-preview";
 import { FinalCta } from "@/components/sections/final-cta";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -25,15 +22,12 @@ export default function HomePage() {
     <>
       <JsonLd data={graph(webPageSchema({ path: page.path, name: page.title, description: page.description }), videoSchema())} />
       <Hero />
-      <VideoSection />
-      <TrustStrip />
-      <ProblemSection />
-      <ServicesSection />
+      <BenefitsStrip />
+      <HelpWith />
       <ProcessSteps />
+      <VideoSection />
+      <WhyGreenlight />
       <ProofSection />
-      <ImportantToKnow />
-      <Expectations />
-      <KnowYourRights />
       <FaqPreview />
       <FinalCta />
     </>

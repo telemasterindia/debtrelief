@@ -18,7 +18,7 @@ for (const w of widths) {
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   if (overflow > 0) problems.push(`${w}: horizontal overflow ${overflow}px`);
   await page.evaluate(() => document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible")));
-  for (const [name, sel] of [["video", "#video"], ["services", "section[aria-labelledby=services-title]"], ["process", "section[aria-labelledby=process-title]"], ["footer", "footer"]]) {
+  for (const [name, sel] of [["video", "#video"], ["help", "section[aria-labelledby=help-title]"], ["why", "section[aria-labelledby=why-title]"], ["process", "section[aria-labelledby=process-title]"], ["footer", "footer"]]) {
     const el = page.locator(sel).first();
     await el.scrollIntoViewIfNeeded();
     await page.waitForTimeout(400);

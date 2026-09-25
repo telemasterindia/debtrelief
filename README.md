@@ -46,7 +46,7 @@ Nothing was invented in their place.
 | Proof 1–4 ("Still not convinced? See the results for yourself.") | **Missing** — labelled placeholders in dev; section hidden in production | `public/proof/README.md` |
 | Brand colours | ✅ **Measured from the logo** — green #378108, deep green #1D5505, charcoal #222222, orange #E14002 (logo only) | `src/app/globals.css` |
 | YouTube video `92CTw_kb6x8` | **Embedded** (click-to-play, privacy-enhanced). Thumbnail/title not verified from here. | `src/lib/site-config.ts` |
-| Live site copy | Not readable from here — written from the brief and marked `CONTENT_REQUIRES_VERIFICATION` | `docs/content-verification.md` |
+| Live site copy | Written from the brief and marked `CONTENT_REQUIRES_VERIFICATION`; "Top Rated" and "since 1998" need substantiation | `docs/content-verification.md` |
 
 Note: an S3-hosted page titled "Greenlight Debt Validation" (for
 `greenlightsdebtrelief.com`, with an "s") was reachable, but it lists a
@@ -72,18 +72,18 @@ It was treated as **not** your site and nothing from it was used.
 - [ ] `foundingYear` — add only if verifiable (enables "serving clients since …" on About).
 - [ ] `isLawFirm: false`, `consultationIsFree: true` — must reflect reality.
 
-**Confirm these descriptions of the program are accurate** (edit copy if not)
+**Confirm these descriptions are accurate** (edit copy if not)
 
-- [ ] Eligible debts: credit cards, medical bills, personal loans, other unsecured debt; secured debts usually not eligible.
-- [ ] Process: free consultation → customized plan around an affordable monthly amount → creditor negotiation → track progress online.
-- [ ] Clients agree to each settlement before it is final; fees and timeframe are given in writing before enrollment.
-- [ ] Fee timing complies with the FTC Telemarketing Sales Rule (the site states the rule, and that fees are explained in writing).
+- [ ] Qualifying debts: credit card debt, unsecured loans, other qualifying unsecured debt.
+- [ ] Process: free consultation → review your situation → explore your options → you decide.
+- [ ] Referral model: information may be shared with Greenlight's debt-relief partners (`sharesInformationWithPartners`).
+- [ ] "Top Rated" and "since 1998" can be substantiated.
 - [ ] You never ask for SSNs, full account numbers or bank passwords through the website.
-- [ ] You do not sell personal information or share it for other companies' marketing (Privacy Policy).
 - [ ] Your text-message practice matches the optional SMS consent wording.
 
-**Legal review** — have counsel review the disclosures, Privacy Policy, Terms,
-TCPA consent language, and state debt-relief licensing for the states you serve.
+**Legal review** — have counsel review the Disclaimer & Disclosures, Privacy
+Policy, Terms, the form consent language (TCPA and partner sharing), and state
+debt-relief licensing for the states you serve.
 
 **Environment** — see `.env.example`
 
@@ -91,41 +91,29 @@ TCPA consent language, and state debt-relief licensing for the states you serve.
 - [ ] Keep `NEXT_PUBLIC_ENABLE_INDEXING` unset during this phase; consider `SITE_BASIC_AUTH` on staging.
 - [ ] `LEAD_WEBHOOK_URL` (+ optional `LEAD_WEBHOOK_SECRET`) — consultation requests and contact messages are POSTed here as JSON. In production, forms refuse submissions with a friendly message until this is set, so no lead is silently lost.
 
-## What changed in the redesign
+## Site purpose and structure
 
-- **Brand:** Greenlight Debt Relief throughout; real phone and email in the top
-  bar, header, footer, contact page, consultation page and structured data.
-  Click-to-call everywhere (including a sticky Call / Free Consultation bar on phones).
-- **Positioning:** debt relief first — free consultation, customized plans,
-  creditor negotiation, dedicated account manager, live online access,
-  financial freedom. Debt-validation content kept as free educational guides.
-- **Video:** the official video `92CTw_kb6x8` directly below the hero in a
-  large framed card, also linked from the hero ("Watch our video"). Nothing
-  loads from YouTube until Play is pressed; the player uses youtube-nocookie.com.
-- **Proof:** "Still not convinced? See the results for yourself." with Proof
-  1–4 slots, plus an always-visible "individual results, not typical or
-  guaranteed" disclaimer.
-- **Honest disclosures:** an always-visible "Important things to know" section
-  (results vary, credit impact, taxes on forgiven debt, fee rules, alternatives),
-  each linked to the CFPB, FTC or IRS.
-- **Form:** "Request your free consultation" in four short steps (old
-  `/request-review` URL permanently redirects to `/free-consultation`).
-- **Conversion paths:** Free Consultation (primary), Call Greenlight, See how it
-  works, and Watch our video are all in the hero; call + consultation stay
-  reachable via the top bar, header and a sticky mobile bar.
-- **3D hero:** every object has a job — credit cards (the unsecured debt we
-  help with), "Your Custom Plan" document (the personalized plan), magnifier
-  (reviewing your situation), shield (protection/trust), three service panels,
-  one green light trail (clarity and progress). Staged entrance, gentle
-  pointer parallax, atmospheric depth, Greenlight-green rim light; static
-  illustration on phones, low-end devices and software WebGL; static under
-  reduced motion.
+A **customer-facing referral / consultation website** for Greenlight Debt
+Relief — focused on trust, a simple explanation of what Greenlight can help
+with, and getting the visitor to request a free consultation or call. It is not
+an educational resource: debt-relief education, legal/tax explanations and
+government-resource content have been removed.
 
-## Pages
+**Navigation:** Home · About · How It Works · FAQs · Contact · **Get Free Consultation**
 
-`/` · `/debt-relief` · `/how-it-works` · `/free-consultation` · `/faq` · `/about`
-· `/contact` · `/resources` (+ 5 guides) · `/debt-validation` · `/privacy` ·
-`/terms` · `/disclaimer`
+**Homepage:** hero → benefits (More Savings, Dedicated Account Managers, Live
+Online Access, Top Rated) → what we can help with → how it works (4 steps) →
+official video → why Greenlight + about → proof (hidden until real assets) →
+6 short FAQs → contact CTA.
+
+**Pages:** `/` · `/about` · `/how-it-works` · `/faq` · `/contact` ·
+`/free-consultation` · `/privacy` · `/terms` · `/disclaimer`. Removed pages
+(`/debt-relief`, `/debt-validation`, `/resources/*`) redirect to `/`.
+
+**Copy rules:** no guarantees of settlement, savings, lower payments or
+becoming debt-free; the customer always decides whether to move forward.
+Unverified claims ("Top Rated", "since 1998") are listed in
+`docs/content-verification.md`.
 
 ## Tech stack & commands
 
@@ -165,11 +153,12 @@ npx playwright test  # E2E + accessibility (run `npm run build` first)
 ## QA status
 
 - Lint, typecheck, unit tests and production build pass.
-- 66 Playwright tests pass on desktop and mobile, including axe WCAG 2.2 AA
-  scans of all 17 pages (0 violations), noindex header + meta on every page,
+- 72 Playwright tests pass on desktop and mobile, including axe WCAG 2.2 AA
+  scans of all 9 pages (0 violations), noindex header + meta on every page,
   robots.txt `Disallow: /`, sitemap 404, the consultation flow, redirect, video
   click-to-play, real contact details, keyboard access, mobile menu, reduced
-  motion, and a check that proof placeholders never reach production.
+  motion, redirects for removed pages, a check that no educational/legal terms
+  appear on marketing pages, and that proof placeholders never reach production.
 - Lighthouse (local production build): Performance 98–100 and Accessibility 100
   on mobile and desktop for `/`, `/free-consultation` and `/debt-relief`, CLS 0.
   (Lighthouse's SEO score is now expected to fail because of noindex.)

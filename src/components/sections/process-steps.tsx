@@ -14,8 +14,8 @@ export function ProcessSteps({ headingLevel = "h2", showCta = true }: { headingL
           dark
           align="center"
           eyebrow="How it works"
-          title="How It Works, in Four Simple Steps."
-          intro="Here is what happens, step by step."
+          title="How It Works."
+          intro="Four simple steps. The final decision is always yours."
           className="reveal"
         />
 
@@ -39,14 +39,6 @@ export function ProcessSteps({ headingLevel = "h2", showCta = true }: { headingL
               </div>
               <h3 className="mt-6 text-2xl text-white">{step.title}</h3>
               <p className="mt-3 text-lg leading-relaxed text-on-dark">{step.summary}</p>
-              <ul className="mt-5 space-y-2.5 border-t border-white/12 pt-5">
-                {step.details.map((d) => (
-                  <li key={d} className="flex gap-3 text-[1.0625rem] leading-snug text-on-dark-muted">
-                    <Icon name="check" className="mt-0.5 size-5 shrink-0 text-accent-300" />
-                    {d}
-                  </li>
-                ))}
-              </ul>
             </li>
           ))}
         </ol>
@@ -57,9 +49,7 @@ export function ProcessSteps({ headingLevel = "h2", showCta = true }: { headingL
             <CtaButton href="/free-consultation" location="after_process" variant="primaryOnDark" arrow>
               Get My Free Consultation
             </CtaButton>
-            <p className="max-w-xl text-[1.0625rem] text-on-dark-muted">
-              A consultation does not create any obligation. Results vary and are not guaranteed.
-            </p>
+            <p className="max-w-xl text-[1.0625rem] text-on-dark-muted">No cost. No obligation.</p>
           </div>
         )}
       </div>

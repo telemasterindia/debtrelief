@@ -234,7 +234,7 @@ function Magnifier({ quality }: { quality: Quality }) {
 
 const CHIPS = [
   { label: "Custom plan", pos: [1.8, 1.3, 0.55] as const, anchor: [DOC_W / 2, 1.1, 0.02] as const, depth: 1.4 },
-  { label: "Negotiation", pos: [1.9, -0.3, 0.8] as const, anchor: [DOC_W / 2, -0.45, 0.02] as const, depth: 1.8 },
+  { label: "Your options", pos: [1.9, -0.3, 0.8] as const, anchor: [DOC_W / 2, -0.45, 0.02] as const, depth: 1.8 },
   { label: "Online access", pos: [-1.7, -1.7, 0.65] as const, anchor: [-DOC_W / 2, -1.25, 0.02] as const, depth: 1.6 },
 ];
 

@@ -32,16 +32,17 @@ export default function TermsPage() {
         contract for services, it does not create any obligation for you, and it does not guarantee any result.
       </p>
       <p>
-        If you choose to enroll in a debt relief program, the program — including its estimated timeframe and all fees —
-        will be described in a separate written agreement before you agree to anything. You are never required to
-        enroll.
+        Any debt-relief option or offer that becomes available to you
+        {siteConfig.sharesInformationWithPartners ? ", including options from our debt-relief partners," : ""} is for you
+        to consider. Its terms — including any fees and estimated timeframe — will be provided in writing before you agree
+        to anything. You are never required to move forward.
       </p>
 
       <h2>3. No guaranteed results</h2>
       <p>
-        Creditors are not required to negotiate or settle, and results vary. We do not promise that any debt will be
-        settled, reduced or eliminated, or that you will save any particular amount. Debt relief may affect your credit,
-        and forgiven debt may be taxable.
+        Results vary. We do not promise that you will receive any offer, that any debt will be settled, reduced or
+        eliminated, or that you will save any particular amount. See our <Link href="/disclaimer">Disclaimer &amp;
+        Disclosures</Link>.
       </p>
 
       <h2>4. Your responsibilities</h2>

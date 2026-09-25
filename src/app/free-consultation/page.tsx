@@ -61,22 +61,9 @@ export default function FreeConsultationPage() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-[var(--radius-card)] border border-line bg-white p-6">
-              <h2 className="text-xl">Please keep in mind</h2>
-              <p className="mt-3 text-[1.0625rem] leading-relaxed text-body">
-                Results vary and are not guaranteed. Debt relief can affect your credit, and forgiven debt may be taxable.
-                We&apos;ll explain everything before you decide.
-              </p>
-            </div>
-            <div className="rounded-[var(--radius-card)] border-2 border-[#f1dca6] bg-notice-50 p-6">
-              <h2 className="flex items-center gap-2 text-xl">
-                <Icon name="alert" className="size-6 text-notice-800" />
-                Received court papers?
-              </h2>
-              <p className="mt-3 text-[1.0625rem] leading-relaxed text-body">
-                Don&apos;t ignore them. Respond by the deadline and contact a licensed attorney right away.
-              </p>
-            </div>
+            <p className="px-1 text-base leading-relaxed text-muted">
+              Results vary and not all debts qualify. Whether to move forward is always your decision.
+            </p>
           </aside>
         </div>
       </div>

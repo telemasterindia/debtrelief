@@ -1,5 +1,4 @@
 import { pages } from "@/lib/seo/pages";
-import { resources } from "@/lib/content/resources";
 import { absoluteUrl, siteConfig } from "@/lib/site-config";
 
 export type SitemapEntry = { url: string; lastModified?: string; changeFrequency?: string; priority?: number };
@@ -13,12 +12,6 @@ export function sitemapEntries(): SitemapEntry[] {
       changeFrequency: p.changeFrequency,
       priority: p.priority,
       ...(legal.has(p.path) ? { lastModified: siteConfig.legalLastUpdated } : {}),
-    })),
-    ...resources.map((r) => ({
-      url: absoluteUrl(`/resources/${r.slug}`),
-      lastModified: r.dateModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
     })),
   ];
 }

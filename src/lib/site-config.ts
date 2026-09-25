@@ -28,6 +28,13 @@ export type SiteConfig = {
   /** Official Greenlight Debt Relief YouTube video. */
   youtubeVideoId: string;
   isLawFirm: boolean;
+  /**
+   * Greenlight operates as a referral/consultation service: consumers may be
+   * connected with debt-relief partners who may make offers. When true, the
+   * consent language and Privacy Policy disclose that information may be shared
+   * with those partners. Must match the actual business practice (LEGAL REVIEW).
+   */
+  sharesInformationWithPartners: boolean;
   /** Whether the initial consultation is free. Controls all "free consultation" copy. */
   consultationIsFree: boolean;
   legalLastUpdated: string;
@@ -42,11 +49,12 @@ export const siteConfig: SiteConfig = {
   phoneDisplay: "+1 (877) 870-0717", // VERIFY
   email: "info@greenlightdebtrelief.com", // VERIFY
   hours: null,
-  foundingYear: null,
+  foundingYear: 1998, // VERIFY — "since 1998" per owner brief / existing site
   // Official logo supplied by Greenlight (trimmed of empty transparent margin only).
   logo: { src: "/brand/greenlight-logo.png", width: 382, height: 235, alt: "Greenlight Debt Relief" },
   youtubeVideoId: "92CTw_kb6x8",
   isLawFirm: false,
+  sharesInformationWithPartners: true, // VERIFY with counsel
   consultationIsFree: true,
   legalLastUpdated: "2026-09-25",
 };

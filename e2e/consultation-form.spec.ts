@@ -21,7 +21,7 @@ test.describe("free consultation form", () => {
     await expect(page.getByRole("heading", { name: "Your debt" })).toBeFocused();
     await page.getByRole("button", { name: "Continue to step 3" }).click();
     await expect(page.locator("form [role=alert]")).toContainText("Please choose the type of debt.");
-    await page.getByLabel("Credit card").check();
+    await page.getByLabel("Credit card debt").check();
     await page.getByLabel("$10,000 – $25,000").check();
     await page.getByRole("group", { name: /debt collector contacted you/ }).getByLabel("Yes").check();
     await page.getByLabel("Which state do you live in?").selectOption("OH");
@@ -51,7 +51,7 @@ test.describe("free consultation form", () => {
     await page.getByRole("button", { name: "Request My Free Consultation" }).click();
 
     await expect(page.getByRole("heading", { name: "Your Request Has Been Received." })).toBeFocused();
-    await expect(page.getByText("No guaranteed result.")).toBeVisible();
+    await expect(page.getByText("No obligation.", { exact: true })).toBeVisible();
   });
 
   test("Back keeps previous answers", async ({ page }) => {

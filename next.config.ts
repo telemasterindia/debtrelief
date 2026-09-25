@@ -25,7 +25,15 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   async redirects() {
-    return [{ source: "/request-review", destination: "/free-consultation", permanent: true }];
+    return [
+      { source: "/request-review", destination: "/free-consultation", permanent: true },
+      // Educational pages removed from the site; send any old links to the homepage.
+      ...["/debt-relief", "/debt-validation", "/resources", "/resources/:slug*"].map((source) => ({
+        source,
+        destination: "/",
+        permanent: false,
+      })),
+    ];
   },
   async headers() {
     return [

@@ -20,7 +20,11 @@ export default function PrivacyPage() {
       <h2>The short version</h2>
       <ul>
         <li>We collect only what we need to respond to your request or message.</li>
-        <li>We do not sell your personal information.</li>
+        {siteConfig.sharesInformationWithPartners ? (
+          <li>We may share your information with our debt-relief partners so they can present options to you.</li>
+        ) : (
+          <li>We do not sell your personal information.</li>
+        )}
         <li>We never ask for your Social Security number, full account numbers or bank passwords through this website.</li>
         <li>You can ask us to stop contacting you, or to access or delete your information.</li>
       </ul>
@@ -53,6 +57,7 @@ export default function PrivacyPage() {
       <h2>How we use your information</h2>
       <ul>
         <li>To respond to your request for a consultation, and to contact you about it</li>
+        {siteConfig.sharesInformationWithPartners && <li>To connect you with debt-relief partners who may present options to you</li>}
         <li>To answer your questions</li>
         <li>To keep records of your consent and our communications</li>
         <li>To protect the website and our users from fraud and abuse</li>
@@ -62,16 +67,25 @@ export default function PrivacyPage() {
       <h2>How we share information</h2>
       <p>We share personal information only:</p>
       <ul>
+        {siteConfig.sharesInformationWithPartners && (
+          <li>
+            With our debt-relief partners, so they can contact you and present debt-relief options. Any partner you choose
+            to work with will provide its own terms and privacy notice.
+          </li>
+        )}
         <li>With service providers who help us operate our business (for example, website hosting and customer-communication tools), who may use it only to provide services to us</li>
         <li>When required by law, or to protect rights, safety and property</li>
         <li>As part of a merger, acquisition or sale of assets, subject to this policy</li>
         <li>With your permission</li>
       </ul>
-      <p>We do not sell your personal information, and we do not share it with other companies for their own marketing.</p>
+      {!siteConfig.sharesInformationWithPartners && (
+        <p>We do not sell your personal information, and we do not share it with other companies for their own marketing.</p>
+      )}
 
       <h2>Phone calls, emails and text messages</h2>
       <p>
-        If you agree, we may contact you by phone or email about your request. We send text messages only if you choose
+        If you agree, we{siteConfig.sharesInformationWithPartners ? " and our debt-relief partners" : ""} may contact you by
+        phone or email about your request. We send text messages only if you choose
         that option. You can withdraw your consent at any time by telling us — for example, by replying to a message or
         using our <Link href="/contact">contact page</Link>. Consent is never a condition of buying anything.
       </p>
