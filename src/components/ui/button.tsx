@@ -3,7 +3,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils/cn";
 import { Icon } from "./icon";
 
-type Variant = "primary" | "secondary" | "onDark" | "ghostDark";
+type Variant = "primary" | "primaryOnDark" | "secondary" | "onDark" | "ghostDark";
 type Size = "md" | "lg";
 
 const base =
@@ -11,9 +11,12 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-brand-600 text-white shadow-[0_1px_0_rgb(255_255_255/0.2)_inset,0_8px_20px_-8px_rgb(19_122_61/0.7)] hover:bg-brand-700",
+    "bg-brand-600 text-white shadow-[0_1px_0_rgb(255_255_255/0.2)_inset,0_8px_20px_-8px_rgb(55_129_8/0.7)] hover:bg-brand-700",
+  /** Primary action on the deep charcoal sections: brand green with a light ring so it separates from the dark background. */
+  primaryOnDark:
+    "bg-brand-600 text-white ring-1 ring-inset ring-white/25 shadow-[0_14px_36px_-12px_rgb(55_129_8/0.8)] hover:bg-brand-700 hover:ring-white/60",
   secondary: "bg-white text-ink ring-2 ring-inset ring-line-strong hover:ring-ink hover:bg-canvas",
-  onDark: "bg-white text-navy-900 hover:bg-brand-50 shadow-[0_8px_24px_-10px_rgb(0_0_0/0.6)]",
+  onDark: "bg-white text-deep-900 hover:bg-brand-50 shadow-[0_8px_24px_-10px_rgb(0_0_0/0.6)]",
   ghostDark: "bg-white/5 text-white ring-2 ring-inset ring-white/35 hover:bg-white/12 hover:ring-white/70",
 };
 

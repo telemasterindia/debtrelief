@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { pages } from "@/lib/seo/pages";
 import { resources } from "@/lib/content/resources";
@@ -16,6 +18,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ slug: s
   const { slug } = await params;
   const headline = headlines[slug];
   if (!headline) return new Response("Not found", { status: 404 });
+  const logo = `data:image/png;base64,${readFileSync(join(process.cwd(), "public/brand/greenlight-logo.png")).toString("base64")}`;
   return new ImageResponse(
     (
       <div
@@ -25,24 +28,22 @@ export async function GET(_req: Request, { params }: { params: Promise<{ slug: s
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: 72,
-          background: "linear-gradient(135deg, #040d1f 0%, #0e2445 60%, #0f4a3a 100%)",
-          color: "#ffffff",
+          padding: 64,
+          background: "#ffffff",
+          borderTop: "14px solid #378108",
+          color: "#222222",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 40, fontWeight: 700, display: "flex" }}>
-            Greenlight<span style={{ color: "#86efac", marginLeft: 12 }}>Debt Relief</span>
-          </div>
-          <div style={{ fontSize: 24, color: "#b9c6da", marginTop: 6 }}>{siteConfig.descriptor}</div>
-        </div>
-        <div style={{ fontSize: headline.length > 48 ? 60 : 72, fontWeight: 700, lineHeight: 1.1, maxWidth: 980, letterSpacing: -1.5 }}>
+        {/* Official logo at its intrinsic 382 × 235 aspect ratio */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logo} width={229} height={141} alt="Greenlight Debt Relief" />
+        <div style={{ fontSize: headline.length > 48 ? 58 : 68, fontWeight: 700, lineHeight: 1.1, maxWidth: 1000, letterSpacing: -1.5 }}>
           {headline}
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 26, color: "#86efac" }}>
-          <div style={{ width: 40, height: 3, background: "#86efac" }} />
-          Free consultation · Customized plans · greenlightdebtrelief.com
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 28, color: "#2e6e06" }}>
+          <div style={{ width: 44, height: 4, background: "#378108" }} />
+          {siteConfig.consultationIsFree ? "Free consultation" : "Consultation"} · {siteConfig.phoneDisplay ?? "greenlightdebtrelief.com"}
         </div>
       </div>
     ),

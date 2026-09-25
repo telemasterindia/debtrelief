@@ -171,7 +171,7 @@ export function ConsultationForm() {
                 <span
                   aria-hidden="true"
                   className={`relative z-10 flex size-10 items-center justify-center rounded-full text-lg font-bold ring-4 ring-white ${
-                    done ? "bg-brand-600 text-white" : current ? "bg-navy-900 text-white" : "bg-white text-muted ring-line! border-2 border-line-strong"
+                    done ? "bg-brand-600 text-white" : current ? "bg-deep-900 text-white" : "bg-white text-muted ring-line! border-2 border-line-strong"
                   }`}
                 >
                   {done ? <Icon name="check" className="size-6" /> : i + 1}

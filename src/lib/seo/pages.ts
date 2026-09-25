@@ -17,7 +17,7 @@ export const pages = {
     title: "Greenlight Debt Relief — Credit Card & Unsecured Debt Relief",
     description:
       "Greenlight Debt Relief offers a free consultation, customized debt relief plans, creditor negotiation, a dedicated account manager and live online access.",
-    ogHeadline: "A clear, customized plan for your credit card debt.",
+    ogHeadline: "Get help with your credit card debt.",
     priority: 1,
     changeFrequency: "monthly",
   },

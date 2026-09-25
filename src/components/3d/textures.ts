@@ -34,7 +34,7 @@ export function createDocumentTexture() {
   ctx.fillRect(0, 0, w, h);
 
   // Header
-  ctx.fillStyle = "#137a3d";
+  ctx.fillStyle = "#378108";
   roundRect(ctx, 72, 76, 64, 64, 14);
   ctx.fill();
   ctx.strokeStyle = "#ffffff";
@@ -47,7 +47,7 @@ export function createDocumentTexture() {
   ctx.lineTo(120, 97);
   ctx.stroke();
 
-  ctx.fillStyle = "#0b1a33";
+  ctx.fillStyle = "#222222";
   ctx.font = `700 64px ${FONT}`;
   ctx.textBaseline = "middle";
   ctx.fillText("Your Custom Plan", 164, 100);
@@ -77,16 +77,16 @@ export function createDocumentTexture() {
 
   // Highlighted row: the affordable monthly amount
   const hy = y + 10;
-  ctx.fillStyle = "rgba(74, 222, 128, 0.20)";
+  ctx.fillStyle = "rgba(55, 129, 8, 0.12)";
   roundRect(ctx, 52, hy - 64, w - 104, 128, 24);
   ctx.fill();
-  ctx.strokeStyle = "rgba(19, 122, 61, 0.9)";
+  ctx.strokeStyle = "rgba(55, 129, 8, 0.85)";
   ctx.lineWidth = 4;
   ctx.stroke();
-  ctx.fillStyle = "#0b1a33";
+  ctx.fillStyle = "#222222";
   ctx.font = `700 54px ${FONT}`;
   ctx.fillText("Monthly amount", 88, hy);
-  ctx.fillStyle = "#137a3d";
+  ctx.fillStyle = "#378108";
   roundRect(ctx, w - 88 - 200, hy - 16, 200, 32, 16);
   ctx.fill();
 
@@ -99,8 +99,8 @@ export function createDocumentTexture() {
   roundRect(ctx, 72, py + 50, w - 144, 32, 16);
   ctx.fill();
   const bar = ctx.createLinearGradient(72, 0, w - 72, 0);
-  bar.addColorStop(0, "#137a3d");
-  bar.addColorStop(1, "#4ade80");
+  bar.addColorStop(0, "#1d5505");
+  bar.addColorStop(1, "#4a9a1a");
   ctx.fillStyle = bar;
   roundRect(ctx, 72, py + 50, (w - 144) * 0.45, 32, 16);
   ctx.fill();
@@ -144,20 +144,20 @@ export function createChipTexture(label: string) {
   ctx.clearRect(0, 0, w, h);
 
   const g = ctx.createLinearGradient(0, 0, w, h);
-  g.addColorStop(0, "rgba(18, 60, 70, 0.92)");
-  g.addColorStop(1, "rgba(8, 23, 49, 0.92)");
+  g.addColorStop(0, "rgba(44, 53, 46, 0.94)");
+  g.addColorStop(1, "rgba(20, 25, 21, 0.94)");
   ctx.fillStyle = g;
   roundRect(ctx, 4, 4, w - 8, h - 8, 30);
   ctx.fill();
-  ctx.strokeStyle = "rgba(134, 239, 172, 0.55)";
+  ctx.strokeStyle = "rgba(140, 200, 97, 0.5)";
   ctx.lineWidth = 3;
   ctx.stroke();
 
-  ctx.fillStyle = "#4ade80";
+  ctx.fillStyle = "#8cc861";
   ctx.beginPath();
   ctx.arc(76, h / 2, 28, 0, Math.PI * 2);
   ctx.fill();
-  ctx.strokeStyle = "#081731";
+  ctx.strokeStyle = "#151a16";
   ctx.lineWidth = 7;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
@@ -189,7 +189,7 @@ export function createShadowTexture() {
 }
 
 /** A generic credit card face (decorative — no real names or numbers). */
-export function createCardTexture(variant: "navy" | "green") {
+export function createCardTexture(variant: "charcoal" | "green") {
   const w = 1012;
   const h = 638;
   const canvas = document.createElement("canvas");
@@ -197,12 +197,12 @@ export function createCardTexture(variant: "navy" | "green") {
   canvas.height = h;
   const ctx = canvas.getContext("2d")!;
   const g = ctx.createLinearGradient(0, 0, w, h);
-  if (variant === "navy") {
-    g.addColorStop(0, "#1b3a66");
-    g.addColorStop(1, "#081731");
+  if (variant === "charcoal") {
+    g.addColorStop(0, "#3a433c");
+    g.addColorStop(1, "#151a16");
   } else {
-    g.addColorStop(0, "#1f9d52");
-    g.addColorStop(1, "#0b4f29");
+    g.addColorStop(0, "#4a9a1a");
+    g.addColorStop(1, "#1d5505");
   }
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, w, h);

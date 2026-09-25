@@ -41,10 +41,10 @@ Nothing was invented in their place.
 
 | Item | Status | Where it goes |
 | --- | --- | --- |
-| Official Greenlight logo | **Missing** — company name shown as text | `public/brand/README.md` |
-| Favicon from the logo | **Missing** — transparent placeholder | `public/brand/README.md` |
+| Official Greenlight logo | ✅ **Integrated** (supplied PNG, 382 × 235, transparent) — header, footer, social images | `public/brand/README.md` |
+| Favicon from the logo | ✅ **Integrated** — lightbulb mark isolated from the logo | `src/app/icon.png`, `src/app/apple-icon.png` |
 | Proof 1–4 ("Still not convinced? See the results for yourself.") | **Missing** — labelled placeholders in dev; section hidden in production | `public/proof/README.md` |
-| Exact brand colors | Approximated with an accessible green | `src/app/globals.css` (`--color-brand-*`) |
+| Brand colours | ✅ **Measured from the logo** — green #378108, deep green #1D5505, charcoal #222222, orange #E14002 (logo only) | `src/app/globals.css` |
 | YouTube video `92CTw_kb6x8` | **Embedded** (click-to-play, privacy-enhanced). Thumbnail/title not verified from here. | `src/lib/site-config.ts` |
 | Live site copy | Not readable from here — written from the brief and marked `CONTENT_REQUIRES_VERIFICATION` | `docs/content-verification.md` |
 
@@ -57,13 +57,11 @@ It was treated as **not** your site and nothing from it was used.
 
 | Asset | Save as | Then |
 | --- | --- | --- |
-| Official logo (SVG preferred, else PNG ≥ 480px wide) | `public/brand/greenlight-logo.svg` (or `.png`) | Set `logo` in `src/lib/site-config.ts` |
-| Favicon cut from the logo | `src/app/icon.png` (512×512) + `src/app/apple-icon.png` (180×180) | Delete the placeholder `src/app/icon.svg` |
+| Optional: SVG or larger PNG of the logo, and a reversed (light-on-dark) version | `public/brand/greenlight-logo.svg` | Update `logo` in `src/lib/site-config.ts` |
 | Proof 1 | `public/proof/proof-1.jpg` | Set `image` in `src/lib/content/proof.ts` |
 | Proof 2 | `public/proof/proof-2.jpg` | 〃 |
 | Proof 3 | `public/proof/proof-3.jpg` | 〃 |
 | Proof 4 | `public/proof/proof-4.jpg` | 〃 |
-| Brand colours (hex values from the logo/brand guide) | — | Update `--color-brand-*` in `src/app/globals.css` |
 
 ## Owner checklist
 

@@ -31,7 +31,7 @@ export default function FreeConsultationPage() {
           </div>
           <aside className="space-y-6" aria-label="About this form">
             {phone && phoneDisplay && (
-              <div className="on-dark rounded-[var(--radius-card)] bg-navy-900 p-6 text-on-dark">
+              <div className="on-dark rounded-[var(--radius-card)] bg-deep-900 p-6 text-on-dark">
                 <h2 className="text-xl text-white">Prefer to talk now?</h2>
                 <p className="mt-2 text-[1.0625rem] leading-relaxed">Call us and speak with a consultant.</p>
                 <TrackedLink

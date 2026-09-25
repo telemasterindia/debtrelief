@@ -37,7 +37,7 @@ export function ProblemSection() {
         <ul className="reveal space-y-4">
           {situations.map((item) => (
             <li key={item.q} className="flex gap-5 rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-[var(--shadow-card)] sm:p-7">
-              <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-navy-900 text-accent-300">
+              <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-deep-900 text-accent-300">
                 <Icon name={item.icon} className="size-7" />
               </span>
               <span>

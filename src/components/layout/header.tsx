@@ -57,7 +57,7 @@ export function Header() {
   return (
     <>
     {phone && phoneDisplay && (
-      <div className="on-dark bg-navy-950 text-on-dark">
+      <div className="on-dark bg-deep-950 text-on-dark">
         <div className="container-page flex min-h-11 items-center justify-center gap-6 text-base lg:justify-between">
           <p className="hidden lg:block">
             {siteConfig.consultationIsFree ? "Free, no-obligation consultation" : "No-obligation consultation"} · Credit card &amp; unsecured debt
@@ -79,10 +79,10 @@ export function Header() {
     <header
       className={cn(
         "sticky top-0 z-50 border-b bg-white/95 backdrop-blur-md transition-shadow duration-300 supports-[backdrop-filter]:bg-white/88",
-        scrolled || open ? "border-line shadow-[0_6px_24px_-16px_rgb(11_26_51/0.35)]" : "border-transparent",
+        scrolled || open ? "border-line shadow-[0_6px_24px_-16px_rgb(22_27_23/0.3)]" : "border-transparent",
       )}
     >
-      <div className="container-page flex h-[4.5rem] items-center justify-between gap-6 lg:h-[5rem]">
+      <div className="container-page flex h-[5rem] items-center justify-between gap-6 sm:h-[5.75rem]">
         <Logo />
 
         <nav aria-label="Main" className="hidden xl:block">
@@ -137,7 +137,7 @@ export function Header() {
       <div
         id={menuId}
         hidden={!open}
-        className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-line bg-white xl:hidden"
+        className="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-line bg-white xl:hidden"
       >
         <nav aria-label="Main" className="container-page py-4">
           <ul className="divide-y divide-line">

@@ -43,7 +43,8 @@ export const siteConfig: SiteConfig = {
   email: "info@greenlightdebtrelief.com", // VERIFY
   hours: null,
   foundingYear: null,
-  logo: null,
+  // Official logo supplied by Greenlight (trimmed of empty transparent margin only).
+  logo: { src: "/brand/greenlight-logo.png", width: 382, height: 235, alt: "Greenlight Debt Relief" },
   youtubeVideoId: "92CTw_kb6x8",
   isLawFirm: false,
   consultationIsFree: true,

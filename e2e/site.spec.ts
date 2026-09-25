@@ -27,6 +27,8 @@ for (const path of paths) {
     page.on("pageerror", (e) => errors.push(e.message));
     const response = await page.goto(path);
     await page.evaluate(() => document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible")));
+    // Let the 700ms reveal transition finish so contrast is measured at full opacity.
+    await page.waitForTimeout(900);
 
     await expect(page.locator("h1")).toHaveCount(1);
     // Search indexing is intentionally disabled in this phase.

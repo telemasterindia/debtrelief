@@ -1,23 +1,30 @@
-# Official Greenlight Debt Relief logo — REQUIRED ASSET
+# Greenlight Debt Relief brand assets
 
-The official logo could not be retrieved automatically (the build environment
-could not reach greenlightdebtrelief.com). Until it is added, the site shows the
-company name as plain text. No substitute logo is used.
+| File | What it is | Used for |
+| --- | --- | --- |
+| `greenlight-logo.png` | Official logo supplied by Greenlight (382 × 235, transparent). Only the empty transparent margin was trimmed; artwork, colours and proportions are untouched. | Header, footer, social-share images |
+| `greenlight-mark.png` | The lightbulb mark isolated from the official logo (letters masked out, nothing redrawn), 256 × 256 transparent | Reference / favicon source |
+| `src/app/icon.png` | Favicon (256 × 256) from the mark | Browser tab |
+| `src/app/apple-icon.png` | 180 × 180 on white | iOS home screen |
 
-To add it:
+## Logo usage rules
 
-1. Export the logo from the current website or brand files — preferably SVG,
-   otherwise a PNG at least 2× the display size (e.g. 480 × 120).
-2. Save it here, e.g. `public/brand/greenlight-logo.svg`.
-3. In `src/lib/site-config.ts` set:
+- The logo exists only in full colour for **light backgrounds** (its "DEBT RELIEF"
+  wordmark is charcoal `#222222`). Do not place it on the dark sections, and do
+  not recolour, filter, stretch or crop it. A reversed (light-on-dark) version
+  would need to come from Greenlight's designer.
+- Keep clear space around it at least equal to the height of the "D" in "DEBT".
+- An SVG version from the original design files would render even more crisply
+  on high-density screens; if one exists, save it here as `greenlight-logo.svg`
+  and update `logo.src` in `src/lib/site-config.ts`.
 
-   ```ts
-   logo: { src: "/brand/greenlight-logo.svg", width: 240, height: 60, alt: "Greenlight Debt Relief" },
-   ```
+## Colours (measured from the logo)
 
-   (use the file's real width/height ratio).
-4. Favicon: delete the transparent placeholder `src/app/icon.svg` and add `src/app/icon.png` (square, 512 × 512) and
-   `src/app/apple-icon.png` (180 × 180) cut from the official logo. Next.js
-   picks them up automatically.
-5. Update the brand colors in `src/app/globals.css` (`--color-brand-*`) to the
-   logo's exact greens, keeping white-on-`brand-600` contrast at 4.5:1 or more.
+| Colour | Hex | Role |
+| --- | --- | --- |
+| Greenlight green ("GREEN LIGHT") | `#378108` | Primary brand colour, primary buttons |
+| Deep green (lightbulb) | `#1D5505` | Deep accents, gradients |
+| Charcoal ("DEBT RELIEF") | `#222222` | Headings, dark neutrals |
+| Signal orange (lightbulb arc) | `#E14002` | Logo only — too low-contrast for UI text |
+
+Design tokens live in `src/app/globals.css`.

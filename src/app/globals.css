@@ -3,33 +3,45 @@
 @theme {
   --font-sans: var(--font-inter), Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
 
-  /* Text — every text color meets WCAG AA (most exceed AAA) on white and canvas. */
-  --color-ink: #0b1a33;
-  --color-body: #22304a;
-  --color-muted: #3f4d64;
-  --color-line: #d3dae5;
-  --color-line-strong: #aeb9c9;
-  --color-canvas: #f4f6f9;
+  /* ------------------------------------------------------------------
+   Greenlight Debt Relief brand system — derived from the official logo
+   (public/brand/greenlight-logo.png):
+     #378108  "GREEN LIGHT" wordmark green  -> primary brand green
+     #1D5505  dark end of the lightbulb gradient -> deep green
+     #222222  "DEBT RELIEF" wordmark charcoal -> ink / dark neutrals
+     #E14002  lightbulb arc orange -> logo-only signal colour (not used for UI
+              text: 4.25:1 on white fails WCAG AA for body text)
+   ------------------------------------------------------------------ */
+
+  /* Text — every text colour meets WCAG AA (most AAA) on white and canvas. */
+  --color-ink: #222222;
+  --color-body: #2d312e;
+  --color-muted: #4a514c;
+  --color-line: #d8ddd8;
+  --color-line-strong: #a9b1ab;
+  --color-canvas: #f4f6f3;
   --color-surface: #ffffff;
 
-  /* Deep navy family (hero, footer, feature panels). */
-  --color-navy-950: #040d1f;
-  --color-navy-900: #081731;
-  --color-navy-800: #0e2445;
-  --color-navy-700: #173460;
-  --color-on-dark: #e6edf7;
-  --color-on-dark-muted: #b9c6da;
+  /* Deep charcoal family (hero, process, CTA panels) — from the logo charcoal. */
+  --color-deep-950: #0f130f;
+  --color-deep-900: #161b17;
+  --color-deep-800: #1f2620;
+  --color-deep-700: #2c352e;
+  --color-on-dark: #eef2ec;
+  --color-on-dark-muted: #c3ccc4;
 
-  /* Greenlight green. brand-600/700 carry white text at WCAG AA or better.
-     Replace with the exact values from the official logo when it is added. */
-  --color-brand-50: #ebf7ef;
-  --color-brand-100: #d2eedb;
-  --color-brand-500: #1f9d52;
-  --color-brand-600: #137a3d;
-  --color-brand-700: #0d5f2f;
-  /* Light accents used only on the dark navy backgrounds. */
-  --color-accent-300: #86efac;
-  --color-accent-400: #4ade80;
+  /* Greenlight green. White text on brand-600 = 4.88:1, on brand-700 = 6.27:1. */
+  --color-brand-50: #eef6e7;
+  --color-brand-100: #d9ecc8;
+  --color-brand-500: #4a9a1a;
+  --color-brand-600: #378108;
+  --color-brand-700: #2e6e06;
+  --color-brand-800: #1d5505;
+  /* Light tints of the brand green, for text/accents on the deep charcoal. */
+  --color-accent-300: #b5dd93;
+  --color-accent-400: #8cc861;
+  /* Logo-only signal orange — decorative use only. */
+  --color-signal: #e14002;
 
   --color-success-50: #ecf8f0;
   --color-success-700: #0f6b36;
@@ -41,8 +53,8 @@
   --radius-card: 1rem;
   --radius-control: 0.75rem;
 
-  --shadow-card: 0 1px 2px rgb(11 26 51 / 0.06), 0 8px 24px -12px rgb(11 26 51 / 0.14);
-  --shadow-raised: 0 2px 4px rgb(11 26 51 / 0.06), 0 24px 48px -24px rgb(11 26 51 / 0.28);
+  --shadow-card: 0 1px 2px rgb(34 34 34 / 0.06), 0 8px 24px -12px rgb(34 34 34 / 0.14);
+  --shadow-raised: 0 2px 4px rgb(34 34 34 / 0.06), 0 24px 48px -24px rgb(34 34 34 / 0.28);
 
   --text-body: 1.125rem;
   --text-body--line-height: 1.65;
@@ -90,7 +102,7 @@
   }
   .on-dark :focus-visible {
     outline-color: var(--color-accent-300);
-    box-shadow: 0 0 0 3px var(--color-navy-950);
+    box-shadow: 0 0 0 3px var(--color-deep-950);
   }
 
   ::selection { background: var(--color-brand-100); color: var(--color-ink); }
@@ -137,8 +149,8 @@
 
   .grid-backdrop {
     background-image:
-      linear-gradient(to right, rgb(134 239 172 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(134 239 172 / 0.06) 1px, transparent 1px);
+      linear-gradient(to right, rgb(140 200 97 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(140 200 97 / 0.05) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse at 70% 40%, black 20%, transparent 75%);
   }

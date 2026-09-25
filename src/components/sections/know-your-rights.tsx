@@ -9,7 +9,7 @@ export function KnowYourRights() {
     { href: "/resources/spot-debt-collection-scams", title: "Avoid scams", text: "Warning signs of fake collectors and debt relief scams." },
   ];
   return (
-    <section aria-labelledby="rights-title" className="on-dark bg-navy-900 py-16 sm:py-20">
+    <section aria-labelledby="rights-title" className="on-dark bg-deep-900 py-16 sm:py-20">
       <div className="container-page grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div className="reveal">
           <p className="text-base font-semibold text-accent-300">Free guides</p>

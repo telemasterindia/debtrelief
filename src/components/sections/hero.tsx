@@ -23,7 +23,9 @@ export function Hero() {
     <HeroStage>
       <div className="container-page relative grid items-center gap-10 py-12 sm:py-20 lg:grid-cols-[1.2fr_1fr] lg:gap-8 lg:py-24">
         <div className="relative z-10 max-w-2xl">
-          <p className="text-lg font-semibold text-accent-300">{siteConfig.name}</p>
+          {/* The official logo sits directly above in the white header. It has no reversed
+              (light-on-dark) version, so it is not repeated on this dark background. */}
+          <p className="text-lg font-semibold text-accent-300">Credit card &amp; unsecured debt relief</p>
           <h1 id="hero-title" className="mt-3 text-[2.5rem] leading-[1.08] text-white sm:text-[3.25rem] lg:text-[4rem]">
             Get Help With Your Credit Card Debt.
           </h1>
@@ -37,8 +39,8 @@ export function Hero() {
             <CtaButton
               href="/free-consultation"
               location="hero"
-              variant="onDark"
-              className="min-h-16! px-8! text-xl! shadow-[0_12px_32px_-10px_rgb(74_222_128/0.55)]"
+              variant="primaryOnDark"
+              className="min-h-16! px-8! text-xl!"
               arrow
             >
               Get My Free Consultation

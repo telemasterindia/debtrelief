@@ -8,8 +8,8 @@ export function FinalCta({ title = "Take the First Step Toward Financial Freedom
   return (
     <section aria-labelledby="final-cta-title" className="py-20 sm:py-24">
       <div className="container-page">
-        <div className="on-dark reveal relative isolate overflow-hidden rounded-[1.5rem] bg-navy-900 px-6 py-14 text-center sm:px-12 sm:py-20">
-          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_80%_at_50%_120%,#15603a_0%,rgba(8,23,49,0)_70%)]" />
+        <div className="on-dark reveal relative isolate overflow-hidden rounded-[1.5rem] bg-deep-900 px-6 py-14 text-center sm:px-12 sm:py-20">
+          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_80%_at_50%_120%,rgb(55_129_8/0.45)_0%,rgb(22_27_23/0)_70%)]" />
           <h2 id="final-cta-title" className="mx-auto max-w-3xl text-[2rem] text-white sm:text-5xl">
             {title}
           </h2>
@@ -18,7 +18,7 @@ export function FinalCta({ title = "Take the First Step Toward Financial Freedom
             if our program may fit, how a customized plan would work.
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <CtaButton href="/free-consultation" location={location} variant="onDark" arrow>
+            <CtaButton href="/free-consultation" location={location} variant="primaryOnDark" arrow>
               Get My Free Consultation
             </CtaButton>
             {phone && phoneDisplay && (

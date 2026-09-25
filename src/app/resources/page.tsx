@@ -28,7 +28,7 @@ export default function ResourcesPage() {
           <li className="reveal md:col-span-2">
             <Link
               href="/resources/debt-relief-what-to-know"
-              className="group flex flex-col gap-6 rounded-[var(--radius-card)] bg-navy-900 p-8 text-on-dark shadow-[var(--shadow-raised)] sm:flex-row sm:items-center sm:p-10"
+              className="group flex flex-col gap-6 rounded-[var(--radius-card)] bg-deep-900 p-8 text-on-dark shadow-[var(--shadow-raised)] sm:flex-row sm:items-center sm:p-10"
             >
               <span className="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-accent-300">
                 <Icon name="document" className="size-9" />

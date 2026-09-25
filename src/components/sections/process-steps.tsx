@@ -5,8 +5,8 @@ import { CtaButton } from "@/components/ui/tracked-link";
 
 export function ProcessSteps({ headingLevel = "h2", showCta = true }: { headingLevel?: "h1" | "h2"; showCta?: boolean }) {
   return (
-    <section aria-labelledby="process-title" className="on-dark relative isolate overflow-hidden bg-navy-900 py-20 sm:py-28">
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,#124536_0%,rgba(8,23,49,0)_70%)]" />
+    <section aria-labelledby="process-title" className="on-dark relative isolate overflow-hidden bg-deep-900 py-20 sm:py-28">
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgb(55_129_8/0.28)_0%,rgb(22_27_23/0)_70%)]" />
       <div className="container-page">
         <SectionHeading
           as={headingLevel}
@@ -28,11 +28,11 @@ export function ProcessSteps({ headingLevel = "h2", showCta = true }: { headingL
           {processSteps.map((step, i) => (
             <li
               key={step.title}
-              className="reveal group relative flex flex-col rounded-[var(--radius-card)] border border-white/12 bg-gradient-to-b from-navy-800 to-navy-900 p-7 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.8)] transition-transform duration-500 motion-safe:hover:[transform:rotateX(4deg)_translateY(-4px)]"
+              className="reveal group relative flex flex-col rounded-[var(--radius-card)] border border-white/12 bg-gradient-to-b from-deep-800 to-deep-900 p-7 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.8)] transition-transform duration-500 motion-safe:hover:[transform:rotateX(4deg)_translateY(-4px)]"
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               <div className="flex items-center gap-4">
-                <span className="relative flex size-14 shrink-0 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_30%,#22a35a,#0d5f2f)] text-white shadow-[0_0_0_6px_rgb(8_23_49),0_0_24px_rgb(74_222_128/0.4)]">
+                <span className="relative flex size-14 shrink-0 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_30%,#4a9a1a,#1d5505)] text-white shadow-[0_0_0_6px_rgb(22_27_23),0_0_24px_rgb(140_200_97/0.35)]">
                   <Icon name={step.icon} className="size-7" />
                 </span>
                 <span className="text-lg font-semibold text-accent-300">Step {i + 1}</span>
@@ -54,7 +54,7 @@ export function ProcessSteps({ headingLevel = "h2", showCta = true }: { headingL
 
         {showCta && (
           <div className="reveal mt-14 flex flex-col items-center gap-4 text-center">
-            <CtaButton href="/free-consultation" location="after_process" variant="onDark" arrow>
+            <CtaButton href="/free-consultation" location="after_process" variant="primaryOnDark" arrow>
               Get My Free Consultation
             </CtaButton>
             <p className="max-w-xl text-[1.0625rem] text-on-dark-muted">

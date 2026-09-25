@@ -4,15 +4,17 @@ import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils/cn";
 
 /**
- * Greenlight Debt Relief brand lock-up.
+ * The official Greenlight Debt Relief logo.
  *
- * Uses the official logo from `siteConfig.logo` when it is provided. Until then
- * the company name is shown as plain text — no substitute logo is drawn.
+ * The logo exists only as a full-colour version for light backgrounds (its
+ * "DEBT RELIEF" wordmark is charcoal), so it is only ever placed on white or
+ * light surfaces. It is never recoloured, filtered, stretched or cropped; its
+ * height is set and the width follows the intrinsic 382 × 235 aspect ratio.
  */
-export function Logo({ dark, className }: { dark?: boolean; className?: string }) {
+export function Logo({ className, heightClass = "h-[3.75rem] sm:h-[4.5rem]" }: { className?: string; heightClass?: string }) {
   const { logo } = siteConfig;
   return (
-    <Link href="/" className={cn("inline-flex min-h-12 items-center rounded-lg", className)}>
+    <Link href="/" className={cn("inline-flex shrink-0 items-center rounded-lg py-1.5", className)}>
       {logo ? (
         <Image
           src={logo.src}
@@ -20,13 +22,12 @@ export function Logo({ dark, className }: { dark?: boolean; className?: string }
           height={logo.height}
           alt={`${logo.alt} — home`}
           priority
-          className={cn("h-11 w-auto", dark && "rounded-md bg-white px-2 py-1")}
+          sizes="(min-width: 640px) 118px, 98px"
+          className={cn("w-auto", heightClass)}
         />
       ) : (
-        <span className="flex flex-col leading-none">
-          <span className={cn("whitespace-nowrap text-[1.1875rem] font-bold tracking-[-0.02em] sm:text-[1.375rem]", dark ? "text-white" : "text-ink")}>
-            Greenlight<span className={dark ? "text-accent-300" : "text-brand-600"}> Debt Relief</span>
-          </span>
+        <span className="whitespace-nowrap text-[1.1875rem] font-bold text-ink sm:text-[1.375rem]">
+          {siteConfig.name}
           <span className="sr-only"> — home</span>
         </span>
       )}

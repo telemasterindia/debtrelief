@@ -45,7 +45,7 @@ export default function DebtReliefPage() {
         intro={`${siteConfig.name} helps people who are struggling with credit card and other unsecured debt — with a customized plan, creditor negotiation and a real person to guide you.`}
       >
         <div className="mt-8">
-          <CtaButton href="/free-consultation" location="debt_relief_header" variant="onDark" arrow>
+          <CtaButton href="/free-consultation" location="debt_relief_header" variant="primaryOnDark" arrow>
             Get My Free Consultation
           </CtaButton>
         </div>

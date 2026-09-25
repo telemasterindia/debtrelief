@@ -28,11 +28,11 @@ const intro = (t: number, delay: number, duration = 1.1) => easeOut((t - delay) 
 /* ------------------------------------------------------------------ */
 
 function CreditCards({ reducedMotion }: { reducedMotion: boolean }) {
-  const navy = useMemo(() => createCardTexture("navy"), []);
+  const charcoal = useMemo(() => createCardTexture("charcoal"), []);
   const green = useMemo(() => createCardTexture("green"), []);
   const back = useRef<THREE.Group>(null);
   const front = useRef<THREE.Group>(null);
-  useEffect(() => () => { navy.dispose(); green.dispose(); }, [navy, green]);
+  useEffect(() => () => { charcoal.dispose(); green.dispose(); }, [charcoal, green]);
   useFrame(({ clock }) => {
     if (!back.current || !front.current || reducedMotion) return;
     const t = clock.elapsedTime;
@@ -46,7 +46,7 @@ function CreditCards({ reducedMotion }: { reducedMotion: boolean }) {
   const card = (tex: THREE.Texture) => (
     <>
       <RoundedBox args={[W, H, 0.025]} radius={0.06} smoothness={4}>
-        <meshPhysicalMaterial color="#0e2445" metalness={0.4} roughness={0.35} clearcoat={1} clearcoatRoughness={0.15} />
+        <meshPhysicalMaterial color="#1f2620" metalness={0.4} roughness={0.35} clearcoat={1} clearcoatRoughness={0.15} />
       </RoundedBox>
       <mesh position={[0, 0, 0.0131]}>
         <planeGeometry args={[W - 0.04, H - 0.04]} />
@@ -57,7 +57,7 @@ function CreditCards({ reducedMotion }: { reducedMotion: boolean }) {
   return (
     <>
       <group ref={back} position={[-1.55, 1.15, -0.9]} rotation={[0.1, 0.35, 0.28]}>
-        {card(navy)}
+        {card(charcoal)}
       </group>
       <group ref={front} position={[-1.35, 0.92, -0.55]} rotation={[0.05, 0.3, 0.2]}>
         {card(green)}
@@ -104,7 +104,7 @@ function DocumentStack({ reducedMotion }: { reducedMotion: boolean }) {
       {/* back sheets */}
       <group position={[0.55, 0.28, -0.5]} rotation={[0, 0, 0.13]}>
         <RoundedBox args={[DOC_W, DOC_H, 0.03]} radius={0.05} smoothness={4}>
-          <meshStandardMaterial color="#6e87b3" roughness={0.55} metalness={0.1} transparent opacity={0.55} />
+          <meshStandardMaterial color="#7c8a80" roughness={0.55} metalness={0.1} transparent opacity={0.55} />
         </RoundedBox>
         <mesh position={[0, 0, 0.016]}>
           <planeGeometry args={[DOC_W - 0.08, DOC_H - 0.08]} />
@@ -113,7 +113,7 @@ function DocumentStack({ reducedMotion }: { reducedMotion: boolean }) {
       </group>
       <group position={[0.28, 0.14, -0.26]} rotation={[0, 0, 0.065]}>
         <RoundedBox args={[DOC_W, DOC_H, 0.03]} radius={0.05} smoothness={4}>
-          <meshStandardMaterial color="#aebfda" roughness={0.5} metalness={0.05} transparent opacity={0.8} />
+          <meshStandardMaterial color="#b7c2ba" roughness={0.5} metalness={0.05} transparent opacity={0.8} />
         </RoundedBox>
         <mesh position={[0, 0, 0.016]}>
           <planeGeometry args={[DOC_W - 0.08, DOC_H - 0.08]} />
@@ -134,7 +134,7 @@ function DocumentStack({ reducedMotion }: { reducedMotion: boolean }) {
         {/* scanning highlight */}
         <mesh ref={scan} position={[0, 0, 0.03]}>
           <planeGeometry args={[DOC_W - 0.12, 0.05]} />
-          <meshBasicMaterial color="#4ade80" transparent opacity={0} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
+          <meshBasicMaterial color="#8cc861" transparent opacity={0} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
         </mesh>
       </group>
     </group>
@@ -179,10 +179,10 @@ function Shield({ quality }: { quality: Quality }) {
   return (
     <group>
       <mesh geometry={geometry}>
-        <meshPhysicalMaterial color="#16863f" metalness={0.55} roughness={0.22} clearcoat={1} clearcoatRoughness={0.12} />
+        <meshPhysicalMaterial color="#378108" metalness={0.55} roughness={0.22} clearcoat={1} clearcoatRoughness={0.12} />
       </mesh>
       <mesh geometry={check} position={[0, 0, 0.13]}>
-        <meshStandardMaterial color="#ffffff" emissive="#d1fae5" emissiveIntensity={0.6} roughness={0.3} />
+        <meshStandardMaterial color="#ffffff" emissive="#eef6e7" emissiveIntensity={0.6} roughness={0.3} />
       </mesh>
     </group>
   );
@@ -218,7 +218,7 @@ function Magnifier({ quality }: { quality: Quality }) {
       </mesh>
       <mesh position={[0, -0.93, 0]}>
         <cylinderGeometry args={[0.065, 0.075, 0.78, 24]} />
-        <meshStandardMaterial color="#173460" metalness={0.4} roughness={0.35} />
+        <meshStandardMaterial color="#2c352e" metalness={0.4} roughness={0.35} />
       </mesh>
       <mesh position={[0, -0.53, 0]}>
         <cylinderGeometry args={[0.085, 0.085, 0.08, 24]} />
@@ -274,7 +274,7 @@ function Connections() {
         const mid = start.clone().lerp(end, 0.5).add(new THREE.Vector3(0, 0.15, 0.2));
         const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
         const geom = new THREE.BufferGeometry().setFromPoints(curve.getPoints(32));
-        const mat = new THREE.LineBasicMaterial({ color: "#86efac", transparent: true, opacity: 0.45 });
+        const mat = new THREE.LineBasicMaterial({ color: "#a6d67f", transparent: true, opacity: 0.45 });
         return new THREE.Line(geom, mat);
       }),
     [],
@@ -295,7 +295,7 @@ function Connections() {
       {CHIPS.map((c) => (
         <mesh key={c.label} position={c.anchor as unknown as THREE.Vector3Tuple}>
           <sphereGeometry args={[0.035, 16, 16]} />
-          <meshBasicMaterial color="#86efac" toneMapped={false} />
+          <meshBasicMaterial color="#a6d67f" toneMapped={false} />
         </mesh>
       ))}
     </group>
@@ -338,7 +338,7 @@ function LightTrail({ points, offset, reducedMotion }: { points: [number, number
       new THREE.ShaderMaterial({
         vertexShader: trailVertex,
         fragmentShader: trailFragment,
-        uniforms: { uTime: { value: reducedMotion ? 4 : 0 }, uOffset: { value: offset }, uColor: { value: new THREE.Color("#86efac") } },
+        uniforms: { uTime: { value: reducedMotion ? 4 : 0 }, uOffset: { value: offset }, uColor: { value: new THREE.Color("#a6d67f") } },
         transparent: true,
         depthWrite: false,
         blending: THREE.AdditiveBlending,
@@ -402,18 +402,18 @@ function Rig({ quality, reducedMotion }: SceneProps) {
   return (
     <>
       {/* Atmospheric depth: objects further back fade gently into the background. */}
-      <fog attach="fog" args={["#0a1d30", 10.2, 16]} />
-      <hemisphereLight args={["#eef6ff", "#0b2a1c", 0.55]} />
+      <fog attach="fog" args={["#141a16", 10.2, 16]} />
+      <hemisphereLight args={["#f6f8f2", "#1d2a17", 0.55]} />
       <directionalLight position={[3, 4, 5]} intensity={1.85} color="#fff8ee" />
       {/* Greenlight rim light from behind for depth and brand colour */}
-      <spotLight position={[-3.5, 2.5, -4]} angle={0.7} penumbra={1} intensity={28} distance={14} color="#4ade80" />
-      <directionalLight position={[-5, -1, 2]} intensity={0.6} color="#86efac" />
-      <pointLight ref={keyLight} position={[1.5, 1.8, 3]} intensity={9} distance={12} color="#dbeafe" />
+      <spotLight position={[-3.5, 2.5, -4]} angle={0.7} penumbra={1} intensity={24} distance={14} color="#6fae3c" />
+      <directionalLight position={[-5, -1, 2]} intensity={0.6} color="#a6d67f" />
+      <pointLight ref={keyLight} position={[1.5, 1.8, 3]} intensity={9} distance={12} color="#fff6e8" />
 
       <Environment resolution={quality === "high" ? 256 : 128} frames={1}>
         <Lightformer form="rect" intensity={2.2} position={[0, 4, 3]} scale={[10, 3, 1]} color="#ffffff" />
-        <Lightformer form="rect" intensity={1.4} position={[-5, 0, 2]} rotation-y={Math.PI / 2} scale={[6, 8, 1]} color="#86efac" />
-        <Lightformer form="rect" intensity={1} position={[5, -1, 1]} rotation-y={-Math.PI / 2} scale={[6, 8, 1]} color="#bbf7d0" />
+        <Lightformer form="rect" intensity={1.4} position={[-5, 0, 2]} rotation-y={Math.PI / 2} scale={[6, 8, 1]} color="#a6d67f" />
+        <Lightformer form="rect" intensity={1} position={[5, -1, 1]} rotation-y={-Math.PI / 2} scale={[6, 8, 1]} color="#d9ecc8" />
         <Lightformer form="circle" intensity={0.8} position={[0, -4, 2]} scale={4} color="#1e3a8a" />
       </Environment>
 

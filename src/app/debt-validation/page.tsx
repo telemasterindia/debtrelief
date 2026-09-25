@@ -107,7 +107,7 @@ export default function DebtValidationPage() {
             ].map((s, i, arr) => (
               <li key={s.when} className="relative flex gap-5 pb-8 last:pb-0">
                 {i < arr.length - 1 && <span aria-hidden="true" className="absolute left-[1.1rem] top-10 h-[calc(100%-2.5rem)] w-0.5 bg-line" />}
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-base font-bold text-accent-300">{i + 1}</span>
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-deep-900 text-base font-bold text-accent-300">{i + 1}</span>
                 <div>
                   <p className="text-xl font-semibold text-ink">{s.when}</p>
                   <p className="mt-1 text-lg leading-relaxed">{s.what}</p>

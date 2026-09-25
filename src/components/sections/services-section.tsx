@@ -18,7 +18,7 @@ export function ServicesSection({ headingLevel = "h2" }: { headingLevel?: "h2" }
         />
 
         <ul className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          <li className="reveal flex flex-col justify-between rounded-[var(--radius-card)] bg-navy-900 p-8 text-on-dark shadow-[var(--shadow-raised)] md:col-span-2 xl:col-span-1 xl:row-span-2">
+          <li className="reveal flex flex-col justify-between rounded-[var(--radius-card)] bg-deep-900 p-8 text-on-dark shadow-[var(--shadow-raised)] md:col-span-2 xl:col-span-1 xl:row-span-2">
             <span className="flex size-14 items-center justify-center rounded-2xl bg-white/10 text-accent-300">
               <Icon name={featured.icon} className="size-8" />
             </span>

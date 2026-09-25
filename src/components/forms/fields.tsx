@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils/cn";
 import { Icon } from "@/components/ui/icon";
 
 const control =
-  "block w-full rounded-[var(--radius-control)] border-2 bg-white px-4 text-lg text-ink placeholder:text-[#6b7789] transition-[border-color,box-shadow] focus:border-brand-600 focus:shadow-[0_0_0_4px_rgb(19_122_61/0.18)] focus:outline-none";
+  "block w-full rounded-[var(--radius-control)] border-2 bg-white px-4 text-lg text-ink placeholder:text-[#6a716c] transition-[border-color,box-shadow] focus:border-brand-600 focus:shadow-[0_0_0_4px_rgb(55_129_8/0.18)] focus:outline-none";
 
 function describedBy(id: string, hint?: ReactNode, error?: string) {
   return [hint ? `${id}-hint` : null, error ? `${id}-error` : null].filter(Boolean).join(" ") || undefined;
@@ -142,7 +142,7 @@ export function RadioGroup({
               key={o.value}
               htmlFor={optionId}
               className={cn(
-                "flex min-h-14 cursor-pointer items-center gap-3.5 rounded-[var(--radius-control)] border-2 bg-white px-4 py-3 text-lg text-ink transition-colors hover:border-ink has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 has-[:focus-visible]:shadow-[0_0_0_4px_rgb(19_122_61/0.25)]",
+                "flex min-h-14 cursor-pointer items-center gap-3.5 rounded-[var(--radius-control)] border-2 bg-white px-4 py-3 text-lg text-ink transition-colors hover:border-ink has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 has-[:focus-visible]:shadow-[0_0_0_4px_rgb(55_129_8/0.25)]",
                 error ? "border-danger-700" : "border-line-strong",
               )}
             >
