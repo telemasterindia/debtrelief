@@ -34,7 +34,7 @@ export default function ResourcesPage() {
                 <Icon name="document" className="size-9" />
               </span>
               <span className="flex-1">
-                <span className="text-base font-semibold uppercase tracking-[0.08em] text-accent-300">Start here</span>
+                <span className="text-lg font-semibold text-accent-300">Start here</span>
                 <span className="mt-1 block text-2xl font-bold text-white sm:text-3xl">Debt Relief: What to Know Before You Enroll</span>
                 <span className="mt-2 block text-lg text-on-dark">How it works, the trade-offs, the fee rules and the alternatives — explained honestly.</span>
               </span>

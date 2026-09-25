@@ -17,12 +17,12 @@ export function ServicesSection({ headingLevel = "h2" }: { headingLevel?: "h2" }
           className="reveal"
         />
 
-        <ul className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          <li className="reveal flex flex-col justify-between rounded-[var(--radius-card)] bg-navy-900 p-8 text-on-dark shadow-[var(--shadow-raised)] lg:row-span-2">
+        <ul className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <li className="reveal flex flex-col justify-between rounded-[var(--radius-card)] bg-navy-900 p-8 text-on-dark shadow-[var(--shadow-raised)] md:col-span-2 xl:col-span-1 xl:row-span-2">
             <span className="flex size-14 items-center justify-center rounded-2xl bg-white/10 text-accent-300">
               <Icon name={featured.icon} className="size-8" />
             </span>
-            <span className="mt-10 block">
+            <span className="mt-6 block xl:mt-10">
               <span className="block text-2xl font-bold text-white sm:text-3xl">{featured.title}</span>
               <span className="mt-3 block text-lg leading-relaxed text-on-dark">{featured.text}</span>
             </span>
@@ -46,7 +46,7 @@ export function ServicesSection({ headingLevel = "h2" }: { headingLevel?: "h2" }
             We focus on unsecured debt. Secured debts such as mortgages and auto loans usually aren&apos;t eligible for
             debt relief programs.
           </p>
-          <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {debtTypes.map((d) => (
               <li key={d.title} className="flex gap-4">
                 <Icon name={d.icon} className="mt-0.5 size-7 shrink-0 text-brand-700" />

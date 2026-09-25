@@ -50,7 +50,7 @@ export function Footer() {
 
         <nav aria-label="Footer" className="grid gap-10 sm:grid-cols-3 lg:col-span-8">
           <div>
-            <h3 className="text-base font-semibold uppercase tracking-[0.08em] text-white">Company</h3>
+            <h3 className="text-lg font-semibold text-white">Company</h3>
             <ul className="mt-4 space-y-1">
               {primaryNav.map((item) => (
                 <li key={item.href}>
@@ -67,7 +67,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="text-base font-semibold uppercase tracking-[0.08em] text-white">Guides</h3>
+            <h3 className="text-lg font-semibold text-white">Guides</h3>
             <ul className="mt-4 space-y-1">
               {resources.map((r) => (
                 <li key={r.slug}>
@@ -79,7 +79,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="text-base font-semibold uppercase tracking-[0.08em] text-white">Legal</h3>
+            <h3 className="text-lg font-semibold text-white">Legal</h3>
             <ul className="mt-4 space-y-1">
               {legalNav.map((item) => (
                 <li key={item.href}>
@@ -89,7 +89,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <h3 className="mt-8 text-base font-semibold uppercase tracking-[0.08em] text-white">Official help</h3>
+            <h3 className="mt-8 text-lg font-semibold text-white">Official help</h3>
             <ul className="mt-4 space-y-1">
               <li>
                 <a href="https://www.consumerfinance.gov/complaint/" rel="noopener noreferrer" target="_blank" className="inline-flex min-h-11 items-center text-[1.0625rem] text-on-dark-muted hover:text-white hover:underline">

@@ -117,6 +117,12 @@ const paths = {
     </>
   ),
   external: <path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" />,
+  play: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M10 8.5v7l5.5-3.5z" fill="currentColor" stroke="none" />
+    </>
+  ),
   book: (
     <>
       <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" />

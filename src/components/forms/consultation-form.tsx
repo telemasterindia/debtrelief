@@ -156,17 +156,36 @@ export function ConsultationForm() {
         <p className="text-lg font-semibold text-ink" aria-live="polite">
           Step {step + 1} of {consultationSteps.length}: <span className="text-brand-700">{stepInfo.title}</span>
         </p>
-        <ol className="mt-4 grid grid-cols-4 gap-2" aria-label="Form progress">
-          {consultationSteps.map((s, i) => (
-            <li key={s.id} aria-current={i === step ? "step" : undefined}>
-              <span className={`block h-2 rounded-full ${i <= step ? "bg-brand-600" : "bg-line"}`} aria-hidden="true" />
-              <span className={`mt-2 hidden text-base sm:block ${i === step ? "font-semibold text-ink" : "text-muted"}`}>
-                {i < step && <span className="sr-only">Completed: </span>}
-                {s.title}
-              </span>
-              <span className="sr-only sm:hidden">{s.title}{i < step ? " (completed)" : ""}</span>
-            </li>
-          ))}
+        <ol className="mt-5 grid grid-cols-4" aria-label="Form progress">
+          {consultationSteps.map((st, i) => {
+            const done = i < step;
+            const current = i === step;
+            return (
+              <li key={st.id} aria-current={current ? "step" : undefined} className="relative flex flex-col items-center text-center">
+                {i > 0 && (
+                  <span
+                    aria-hidden="true"
+                    className={`absolute right-1/2 top-5 h-1 w-full -translate-y-1/2 ${i <= step ? "bg-brand-600" : "bg-line"}`}
+                  />
+                )}
+                <span
+                  aria-hidden="true"
+                  className={`relative z-10 flex size-10 items-center justify-center rounded-full text-lg font-bold ring-4 ring-white ${
+                    done ? "bg-brand-600 text-white" : current ? "bg-navy-900 text-white" : "bg-white text-muted ring-line! border-2 border-line-strong"
+                  }`}
+                >
+                  {done ? <Icon name="check" className="size-6" /> : i + 1}
+                </span>
+                <span aria-hidden="true" className={`mt-2 hidden text-base leading-tight sm:block ${current ? "font-semibold text-ink" : "text-muted"}`}>
+                  {st.title}
+                </span>
+                <span className="sr-only">
+                  {st.title}
+                  {done ? " (completed)" : current ? " (current step)" : ""}
+                </span>
+              </li>
+            );
+          })}
         </ol>
       </div>
 
@@ -265,7 +284,7 @@ export function ConsultationForm() {
                 legend="About how much do you owe in total?"
                 hint="Your total unsecured debt. An estimate is fine."
                 options={DEBT_AMOUNTS}
-                columns={3}
+                columns={2}
                 error={errors.debtAmount?.message}
                 inputProps={() => register("debtAmount")}
               />

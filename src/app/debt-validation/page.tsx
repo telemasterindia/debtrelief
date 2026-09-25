@@ -44,7 +44,7 @@ export default function DebtValidationPage() {
 
       <div className="container-page grid gap-12 py-14 sm:py-20 lg:grid-cols-[16rem_1fr] lg:gap-16">
         <nav aria-label="On this page" className="lg:sticky lg:top-28 lg:self-start">
-          <p className="text-base font-semibold uppercase tracking-[0.08em] text-muted">On this page</p>
+          <p className="text-lg font-semibold text-ink">On this page</p>
           <ol className="mt-4 space-y-1 border-l-2 border-line">
             {toc.map((t) => (
               <li key={t.id}>

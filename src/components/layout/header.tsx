@@ -58,14 +58,14 @@ export function Header() {
     <>
     {phone && phoneDisplay && (
       <div className="on-dark bg-navy-950 text-on-dark">
-        <div className="container-page flex min-h-11 items-center justify-center gap-6 text-base sm:justify-between">
-          <p className="hidden sm:block">
+        <div className="container-page flex min-h-11 items-center justify-center gap-6 text-base lg:justify-between">
+          <p className="hidden lg:block">
             {siteConfig.consultationIsFree ? "Free, no-obligation consultation" : "No-obligation consultation"} · Credit card &amp; unsecured debt
           </p>
           <a
             href={`tel:${phone}`}
             onClick={() => track("phone_click", { location: "top_bar" })}
-            className="inline-flex min-h-11 items-center gap-2 font-semibold text-white hover:text-accent-300"
+            className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap font-semibold text-white hover:text-accent-300"
           >
             <Icon name="phone" className="size-5 text-accent-300" />
             <span>

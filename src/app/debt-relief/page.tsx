@@ -1,3 +1,10 @@
+/*
+ * CONTENT_REQUIRES_VERIFICATION
+ * This copy was written from the owner's brief because greenlightdebtrelief.com
+ * could not be reached during development. It is NOT verified Greenlight copy.
+ * Compare with the live site and replace with the exact Greenlight wording.
+ * See docs/content-verification.md.
+ */
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
 import { ServicesSection } from "@/components/sections/services-section";

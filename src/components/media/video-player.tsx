@@ -28,7 +28,7 @@ export function VideoPlayer({ videoId, title }: { videoId: string; title: string
 
   return (
     <figure className="[perspective:1600px]">
-      <div className="group relative motion-safe:transition-transform motion-safe:duration-700 motion-safe:[transform:rotateX(4deg)] motion-safe:hover:[transform:rotateX(0deg)] motion-safe:focus-within:[transform:rotateX(0deg)]">
+      <div className="group relative motion-safe:transition-transform motion-safe:duration-700 motion-safe:[transform:rotateX(2deg)] motion-safe:hover:[transform:rotateX(0deg)] motion-safe:focus-within:[transform:rotateX(0deg)]">
         {/* Layered frame for depth */}
         <div aria-hidden="true" className="absolute -inset-3 rounded-[1.75rem] bg-gradient-to-br from-brand-500/25 via-navy-700/20 to-accent-400/20 blur-2xl" />
         <div aria-hidden="true" className="absolute inset-x-10 -bottom-3 h-full rounded-[1.5rem] bg-navy-700/25" />
@@ -57,7 +57,6 @@ export function VideoPlayer({ videoId, title }: { videoId: string; title: string
               >
                 {/* Branded poster: always shown; the YouTube thumbnail layers on top when it loads. */}
                 <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_70%_70%_at_70%_30%,#15603a_0%,#0e2445_55%,#040d1f_100%)]" />
-                <span aria-hidden="true" className="grid-backdrop absolute inset-0" />
                 {thumbOk && (
                   // eslint-disable-next-line @next/next/no-img-element -- remote YouTube thumbnail, loaded lazily
                   <img
@@ -73,17 +72,18 @@ export function VideoPlayer({ videoId, title }: { videoId: string; title: string
                 )}
                 <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/20 to-transparent" />
 
-                <span className="relative flex flex-col items-center gap-3 sm:gap-4">
-                  <span className="flex size-16 items-center justify-center rounded-full bg-white text-brand-700 shadow-[0_0_0_10px_rgb(255_255_255/0.15),0_20px_40px_-10px_rgb(0_0_0/0.6)] transition-transform duration-300 group-hover:scale-105 sm:size-24">
-                    <svg viewBox="0 0 24 24" className="ml-1 size-8 sm:size-10" aria-hidden="true" focusable="false">
+                <span className="relative flex flex-col items-center gap-3">
+                  <span className="relative flex size-20 items-center justify-center rounded-full bg-brand-600 text-white shadow-[0_0_0_8px_rgb(255_255_255/0.18),0_24px_48px_-12px_rgb(0_0_0/0.7)] transition-transform duration-300 group-hover:scale-105 sm:size-28">
+                    <svg viewBox="0 0 24 24" className="ml-1 size-9 sm:size-12" aria-hidden="true" focusable="false">
                       <path d="M8 5.5v13l10.5-6.5z" fill="currentColor" />
                     </svg>
                   </span>
-                  <span className="rounded-full bg-navy-950/70 px-4 py-1.5 text-lg font-semibold text-white sm:px-5 sm:py-2">Play video</span>
+                  <span className="text-lg font-semibold text-white sm:text-xl">Play video</span>
                 </span>
 
-                <span className="absolute bottom-6 left-7 right-7 hidden items-center justify-between gap-4 text-white sm:flex">
-                  <span className="text-lg font-bold sm:text-xl">
+                <span className="absolute inset-x-0 bottom-0 hidden items-end justify-between gap-6 p-7 sm:flex">
+                  <span className="max-w-md text-2xl font-bold leading-tight text-white">{title}</span>
+                  <span className="shrink-0 text-lg font-bold text-white">
                     Greenlight<span className="text-accent-300"> Debt Relief</span>
                   </span>
                 </span>

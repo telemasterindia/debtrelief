@@ -10,7 +10,6 @@ export function FinalCta({ title = "Take the First Step Toward Financial Freedom
       <div className="container-page">
         <div className="on-dark reveal relative isolate overflow-hidden rounded-[1.5rem] bg-navy-900 px-6 py-14 text-center sm:px-12 sm:py-20">
           <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_80%_at_50%_120%,#15603a_0%,rgba(8,23,49,0)_70%)]" />
-          <div aria-hidden="true" className="grid-backdrop absolute inset-0 -z-10 opacity-60" />
           <h2 id="final-cta-title" className="mx-auto max-w-3xl text-[2rem] text-white sm:text-5xl">
             {title}
           </h2>

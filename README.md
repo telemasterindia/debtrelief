@@ -46,12 +46,24 @@ Nothing was invented in their place.
 | Proof 1–4 ("Still not convinced? See the results for yourself.") | **Missing** — labelled placeholders in dev; section hidden in production | `public/proof/README.md` |
 | Exact brand colors | Approximated with an accessible green | `src/app/globals.css` (`--color-brand-*`) |
 | YouTube video `92CTw_kb6x8` | **Embedded** (click-to-play, privacy-enhanced). Thumbnail/title not verified from here. | `src/lib/site-config.ts` |
-| Live site copy | Not readable from here — copy was written from the services listed in the brief | pages under `src/app` |
+| Live site copy | Not readable from here — written from the brief and marked `CONTENT_REQUIRES_VERIFICATION` | `docs/content-verification.md` |
 
 Note: an S3-hosted page titled "Greenlight Debt Validation" (for
 `greenlightsdebtrelief.com`, with an "s") was reachable, but it lists a
 different address and a "cancels debts in 6 months or less guaranteed" claim.
 It was treated as **not** your site and nothing from it was used.
+
+### Exact files to supply
+
+| Asset | Save as | Then |
+| --- | --- | --- |
+| Official logo (SVG preferred, else PNG ≥ 480px wide) | `public/brand/greenlight-logo.svg` (or `.png`) | Set `logo` in `src/lib/site-config.ts` |
+| Favicon cut from the logo | `src/app/icon.png` (512×512) + `src/app/apple-icon.png` (180×180) | Delete the placeholder `src/app/icon.svg` |
+| Proof 1 | `public/proof/proof-1.jpg` | Set `image` in `src/lib/content/proof.ts` |
+| Proof 2 | `public/proof/proof-2.jpg` | 〃 |
+| Proof 3 | `public/proof/proof-3.jpg` | 〃 |
+| Proof 4 | `public/proof/proof-4.jpg` | 〃 |
+| Brand colours (hex values from the logo/brand guide) | — | Update `--color-brand-*` in `src/app/globals.css` |
 
 ## Owner checklist
 
@@ -103,9 +115,13 @@ TCPA consent language, and state debt-relief licensing for the states you serve.
 - **Conversion paths:** Free Consultation (primary), Call Greenlight, See how it
   works, and Watch our video are all in the hero; call + consultation stay
   reachable via the top bar, header and a sticky mobile bar.
-- **3D hero:** plan document, magnifier, verification shield, floating credit
-  cards and metadata panels with an entrance sequence, pointer parallax,
-  Greenlight-green rim lighting and a matching static illustration on phones.
+- **3D hero:** every object has a job — credit cards (the unsecured debt we
+  help with), "Your Custom Plan" document (the personalized plan), magnifier
+  (reviewing your situation), shield (protection/trust), three service panels,
+  one green light trail (clarity and progress). Staged entrance, gentle
+  pointer parallax, atmospheric depth, Greenlight-green rim light; static
+  illustration on phones, low-end devices and software WebGL; static under
+  reduced motion.
 
 ## Pages
 

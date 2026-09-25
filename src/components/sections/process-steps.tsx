@@ -7,7 +7,6 @@ export function ProcessSteps({ headingLevel = "h2", showCta = true }: { headingL
   return (
     <section aria-labelledby="process-title" className="on-dark relative isolate overflow-hidden bg-navy-900 py-20 sm:py-28">
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,#124536_0%,rgba(8,23,49,0)_70%)]" />
-      <div aria-hidden="true" className="grid-backdrop absolute inset-0 -z-10 opacity-70" />
       <div className="container-page">
         <SectionHeading
           as={headingLevel}
@@ -15,8 +14,8 @@ export function ProcessSteps({ headingLevel = "h2", showCta = true }: { headingL
           dark
           align="center"
           eyebrow="How it works"
-          title="Four Clear Steps to a Debt Relief Plan."
-          intro="Here is exactly what happens, from your free consultation to resolving your debts."
+          title="How It Works, in Four Simple Steps."
+          intro="Here is what happens, step by step."
           className="reveal"
         />
 
@@ -36,7 +35,7 @@ export function ProcessSteps({ headingLevel = "h2", showCta = true }: { headingL
                 <span className="relative flex size-14 shrink-0 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_30%,#22a35a,#0d5f2f)] text-white shadow-[0_0_0_6px_rgb(8_23_49),0_0_24px_rgb(74_222_128/0.4)]">
                   <Icon name={step.icon} className="size-7" />
                 </span>
-                <span className="text-base font-semibold uppercase tracking-[0.1em] text-accent-300">Step {i + 1}</span>
+                <span className="text-lg font-semibold text-accent-300">Step {i + 1}</span>
               </div>
               <h3 className="mt-6 text-2xl text-white">{step.title}</h3>
               <p className="mt-3 text-lg leading-relaxed text-on-dark">{step.summary}</p>

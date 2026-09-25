@@ -19,7 +19,7 @@ export function HeroStage({ children }: { children: ReactNode }) {
       <div aria-hidden="true" className="grid-backdrop absolute inset-0 -z-10" />
       {children}
       <div className="container-page pointer-events-none relative -mt-6 pb-10 lg:absolute lg:inset-0 lg:mt-0 lg:flex lg:items-center lg:justify-end lg:pb-0">
-        <div className="mx-auto w-full max-w-[26rem] sm:max-w-[30rem] lg:mx-0 lg:w-[48%] lg:max-w-[40rem]">
+        <div className="mx-auto w-full max-w-[24rem] sm:max-w-[26rem] lg:mx-0 lg:w-[48%] lg:max-w-[40rem]">
           <HeroVisual eventSource={ref} />
         </div>
       </div>

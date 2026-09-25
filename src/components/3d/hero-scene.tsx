@@ -9,7 +9,6 @@ import {
   createCardTexture,
   createChipTexture,
   createDocumentTexture,
-  createDotTexture,
   createShadowTexture,
   createSheetTexture,
 } from "./textures";
@@ -38,9 +37,9 @@ function CreditCards({ reducedMotion }: { reducedMotion: boolean }) {
     if (!back.current || !front.current || reducedMotion) return;
     const t = clock.elapsedTime;
     const p = intro(t, 0.35, 1.3);
-    back.current.position.y = 1.15 + (1 - p) * 0.8 + Math.sin(t * 0.5) * 0.05;
-    front.current.position.y = 0.92 + (1 - p) * 1.0 + Math.sin(t * 0.5 + 0.8) * 0.06;
-    front.current.rotation.z = 0.2 + Math.sin(t * 0.4) * 0.03;
+    back.current.position.y = 1.15 + (1 - p) * 0.8 + Math.sin(t * 0.45) * 0.03;
+    front.current.position.y = 0.92 + (1 - p) * 1.0 + Math.sin(t * 0.45 + 0.8) * 0.035;
+    front.current.rotation.z = 0.2 + Math.sin(t * 0.35) * 0.015;
   });
   const W = 1.6;
   const H = W / 1.586;
@@ -129,7 +128,8 @@ function DocumentStack({ reducedMotion }: { reducedMotion: boolean }) {
         </RoundedBox>
         <mesh position={[0, 0, 0.0235]}>
           <planeGeometry args={[DOC_W - 0.06, DOC_H - 0.06]} />
-          <meshStandardMaterial map={docTex} roughness={0.55} metalness={0} />
+          {/* A little self-illumination keeps the plan crisp and readable under any light angle. */}
+          <meshStandardMaterial map={docTex} emissiveMap={docTex} emissive="#ffffff" emissiveIntensity={0.32} roughness={0.55} metalness={0} />
         </mesh>
         {/* scanning highlight */}
         <mesh ref={scan} position={[0, 0, 0.03]}>
@@ -235,7 +235,7 @@ function Magnifier({ quality }: { quality: Quality }) {
 const CHIPS = [
   { label: "Custom plan", pos: [1.8, 1.3, 0.55] as const, anchor: [DOC_W / 2, 1.1, 0.02] as const, depth: 1.4 },
   { label: "Negotiation", pos: [1.9, -0.3, 0.8] as const, anchor: [DOC_W / 2, -0.45, 0.02] as const, depth: 1.8 },
-  { label: "Online access", pos: [-1.75, -1.15, 0.65] as const, anchor: [-DOC_W / 2, -0.9, 0.02] as const, depth: 1.6 },
+  { label: "Online access", pos: [-1.7, -1.7, 0.65] as const, anchor: [-DOC_W / 2, -1.25, 0.02] as const, depth: 1.6 },
 ];
 
 function Chip({ label, position, depth, delay, reducedMotion }: { label: string; position: readonly [number, number, number]; depth: number; delay: number; reducedMotion: boolean }) {
@@ -249,10 +249,10 @@ function Chip({ label, position, depth, delay, reducedMotion }: { label: string;
     ref.current.scale.setScalar(s);
     (ref.current.material as THREE.MeshBasicMaterial).opacity = intro(clock.elapsedTime, delay, 0.6);
     // Parallax: nearer panels move a little more than the document.
-    ref.current.position.x = damp(ref.current.position.x, position[0] + pointer.x * 0.06 * depth, 3, delta);
+    ref.current.position.x = damp(ref.current.position.x, position[0] + pointer.x * 0.035 * depth, 3, delta);
     ref.current.position.y = damp(
       ref.current.position.y,
-      position[1] + pointer.y * 0.08 * depth + Math.sin(clock.elapsedTime * 0.8 + depth * 3) * 0.04,
+      position[1] + pointer.y * 0.03 * depth + Math.sin(clock.elapsedTime * 0.6 + depth * 3) * 0.025,
       3,
       delta,
     );
@@ -355,51 +355,6 @@ function LightTrail({ points, offset, reducedMotion }: { points: [number, number
 }
 
 /* ------------------------------------------------------------------ */
-/* Data points                                                         */
-/* ------------------------------------------------------------------ */
-
-function DataPoints({ count, reducedMotion }: { count: number; reducedMotion: boolean }) {
-  const ref = useRef<THREE.Points>(null);
-  const dot = useMemo(() => createDotTexture(), []);
-  const geometry = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-    // Deterministic pseudo-random distribution so server/client and reloads look identical.
-    let seed = 7;
-    const rand = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
-    for (let i = 0; i < count; i++) {
-      positions[i * 3] = (rand() - 0.5) * 7.5;
-      positions[i * 3 + 1] = (rand() - 0.5) * 5.5;
-      positions[i * 3 + 2] = (rand() - 0.5) * 3 - 0.8;
-    }
-    const g = new THREE.BufferGeometry();
-    g.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    return g;
-  }, [count]);
-  useEffect(() => () => { geometry.dispose(); dot.dispose(); }, [geometry, dot]);
-  useFrame(({ pointer, clock }, delta) => {
-    if (!ref.current || reducedMotion) return;
-    ref.current.rotation.y = clock.elapsedTime * 0.012;
-    ref.current.position.x = damp(ref.current.position.x, pointer.x * 0.08, 2, delta);
-    ref.current.position.y = damp(ref.current.position.y, pointer.y * 0.06, 2, delta);
-  });
-  return (
-    <points ref={ref} geometry={geometry}>
-      <pointsMaterial
-        size={0.05}
-        map={dot}
-        color="#86efac"
-        transparent
-        opacity={0.75}
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-        sizeAttenuation
-        toneMapped={false}
-      />
-    </points>
-  );
-}
-
-/* ------------------------------------------------------------------ */
 /* Scene composition                                                   */
 /* ------------------------------------------------------------------ */
 
@@ -421,31 +376,33 @@ function Rig({ quality, reducedMotion }: SceneProps) {
     if (!root.current || !doc.current || !magnifier.current || !shield.current) return;
     if (reducedMotion) return;
 
-    root.current.rotation.y = damp(root.current.rotation.y, -0.16 + pointer.x * 0.16, 2.5, delta);
-    root.current.rotation.x = damp(root.current.rotation.x, 0.05 - pointer.y * 0.1, 2.5, delta);
+    root.current.rotation.y = damp(root.current.rotation.y, -0.14 + pointer.x * 0.09, 1.8, delta);
+    root.current.rotation.x = damp(root.current.rotation.x, 0.05 - pointer.y * 0.05, 1.8, delta);
 
     const pDoc = intro(t, 0, 1.4);
-    doc.current.position.y = Math.sin(t * 0.6) * 0.06 - (1 - pDoc) * 0.6;
+    doc.current.position.y = Math.sin(t * 0.5) * 0.035 - (1 - pDoc) * 0.6;
     doc.current.scale.setScalar(0.9 + 0.1 * pDoc);
-    doc.current.rotation.z = Math.sin(t * 0.4) * 0.012;
+    doc.current.rotation.z = Math.sin(t * 0.35) * 0.006;
 
     const pMag = intro(t, 0.6, 1.2);
-    magnifier.current.position.x = -1.05 + Math.sin(t * 0.45) * 0.1 + pointer.x * 0.1 - (1 - pMag) * 1.2;
-    magnifier.current.position.y = -0.2 + Math.cos(t * 0.55) * 0.08 + pointer.y * 0.08;
+    magnifier.current.position.x = -1.05 + Math.sin(t * 0.4) * 0.06 + pointer.x * 0.05 - (1 - pMag) * 1.2;
+    magnifier.current.position.y = -0.2 + Math.cos(t * 0.45) * 0.05 + pointer.y * 0.04;
 
     const pShield = intro(t, 0.8, 1.2);
-    shield.current.position.y = -1.35 + Math.sin(t * 0.7 + 1) * 0.07 - (1 - pShield) * 0.9;
-    shield.current.rotation.y = -0.35 + Math.sin(t * 0.5) * 0.12 + pointer.x * 0.2 + (1 - pShield) * 1.6;
+    shield.current.position.y = -1.35 + Math.sin(t * 0.55 + 1) * 0.04 - (1 - pShield) * 0.9;
+    shield.current.rotation.y = -0.35 + Math.sin(t * 0.4) * 0.05 + pointer.x * 0.08 + (1 - pShield) * 0.8;
     shield.current.scale.setScalar(0.95 * (0.7 + 0.3 * pShield));
 
     if (keyLight.current) {
-      keyLight.current.position.x = damp(keyLight.current.position.x, 1.5 + pointer.x * 3, 2, delta);
-      keyLight.current.position.y = damp(keyLight.current.position.y, 1.8 + pointer.y * 2.2, 2, delta);
+      keyLight.current.position.x = damp(keyLight.current.position.x, 1.5 + pointer.x * 1.8, 1.5, delta);
+      keyLight.current.position.y = damp(keyLight.current.position.y, 1.8 + pointer.y * 1.2, 1.5, delta);
     }
   });
 
   return (
     <>
+      {/* Atmospheric depth: objects further back fade gently into the background. */}
+      <fog attach="fog" args={["#0a1d30", 10.2, 16]} />
       <hemisphereLight args={["#eef6ff", "#0b2a1c", 0.55]} />
       <directionalLight position={[3, 4, 5]} intensity={1.85} color="#fff8ee" />
       {/* Greenlight rim light from behind for depth and brand colour */}
@@ -485,16 +442,6 @@ function Rig({ quality, reducedMotion }: SceneProps) {
           offset={0}
           points={[[-3.4, 1.9, -0.6], [-1.6, 2.2, 0.3], [0.6, 1.95, 0.9], [2.4, 1.1, 0.2], [3.4, 0.2, -0.8]]}
         />
-        {quality === "high" && (
-          <LightTrail
-            reducedMotion={reducedMotion}
-            offset={0.5}
-            points={[[3.3, -2.2, -0.4], [1.4, -2.05, 0.8], [-0.9, -2.2, 0.6], [-2.6, -1.7, -0.2], [-3.5, -0.8, -1]]}
-          />
-        )}
-
-        <DataPoints count={quality === "high" ? 260 : 110} reducedMotion={reducedMotion} />
-
         <mesh position={[0.1, -2.25, -0.4]} rotation={[-Math.PI / 2, 0, 0]}>
           <planeGeometry args={[4.6, 1.4]} />
           <meshBasicMaterial map={shadowTex} transparent depthWrite={false} opacity={0.8} />

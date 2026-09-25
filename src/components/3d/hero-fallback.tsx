@@ -18,6 +18,10 @@ export function HeroFallback({ className }: { className?: string }) {
           <stop offset="0" stopColor="#22a35a" />
           <stop offset="1" stopColor="#0d5f2f" />
         </linearGradient>
+        <linearGradient id="hf-card" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#1f9d52" />
+          <stop offset="1" stopColor="#0b4f29" />
+        </linearGradient>
         <radialGradient id="hf-glow" cx="0.5" cy="0.5" r="0.5">
           <stop offset="0" stopColor="#4ade80" stopOpacity="0.35" />
           <stop offset="1" stopColor="#4ade80" stopOpacity="0" />
@@ -39,6 +43,20 @@ export function HeroFallback({ className }: { className?: string }) {
         <path d="M388 150 C 430 130, 450 110, 480 96" />
         <path d="M392 250 C 440 250, 460 262, 492 270" />
         <path d="M190 330 C 140 350, 110 360, 76 372" />
+      </g>
+
+      {/* credit cards — the debt Greenlight helps with */}
+      <g transform="translate(70 70) rotate(14)">
+        <rect width="170" height="107" rx="12" fill="#1b3a66" />
+        <rect x="18" y="38" width="26" height="20" rx="4" fill="#e6cf7e" />
+      </g>
+      <g transform="translate(88 96) rotate(10)">
+        <rect width="170" height="107" rx="12" fill="url(#hf-card)" />
+        <rect x="18" y="38" width="26" height="20" rx="4" fill="#f0dc92" />
+        <g fill="#ffffff" fillOpacity="0.85">
+          <circle cx="24" cy="80" r="3" /><circle cx="33" cy="80" r="3" /><circle cx="42" cy="80" r="3" />
+          <circle cx="64" cy="80" r="3" /><circle cx="73" cy="80" r="3" /><circle cx="82" cy="80" r="3" />
+        </g>
       </g>
 
       {/* layered documents */}
@@ -100,16 +118,6 @@ export function HeroFallback({ className }: { className?: string }) {
         <path d="m28 54 12 12 22-24" stroke="#ffffff" strokeWidth="7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       </g>
 
-      {/* data points */}
-      <g fill="#86efac">
-        <circle cx="120" cy="80" r="2" opacity="0.7" />
-        <circle cx="500" cy="180" r="2.5" opacity="0.6" />
-        <circle cx="90" cy="250" r="1.8" opacity="0.5" />
-        <circle cx="520" cy="360" r="2" opacity="0.6" />
-        <circle cx="240" cy="440" r="2" opacity="0.5" />
-        <circle cx="430" cy="440" r="1.6" opacity="0.5" />
-        <circle cx="60" cy="140" r="1.5" opacity="0.4" />
-      </g>
     </svg>
   );
 }

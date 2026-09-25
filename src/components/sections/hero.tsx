@@ -1,3 +1,10 @@
+/*
+ * CONTENT_REQUIRES_VERIFICATION
+ * This copy was written from the owner's brief because greenlightdebtrelief.com
+ * could not be reached during development. It is NOT verified Greenlight copy.
+ * Compare with the live site and replace with the exact Greenlight wording.
+ * See docs/content-verification.md.
+ */
 import { siteConfig } from "@/lib/site-config";
 import { Icon } from "@/components/ui/icon";
 import Link from "next/link";
@@ -6,59 +13,70 @@ import { HeroStage } from "./hero-stage";
 
 export function Hero() {
   const reassurances = [
-    siteConfig.consultationIsFree ? "Free, no-obligation consultation" : "No-obligation consultation",
+    ...(siteConfig.consultationIsFree ? ["Free consultation"] : []),
+    "No obligation",
     "Dedicated account manager",
-    "Live online access",
   ];
   const { phone, phoneDisplay } = siteConfig;
 
   return (
     <HeroStage>
-      <div className="container-page relative grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-[1.2fr_1fr] lg:gap-8 lg:py-24">
+      <div className="container-page relative grid items-center gap-10 py-12 sm:py-20 lg:grid-cols-[1.2fr_1fr] lg:gap-8 lg:py-24">
         <div className="relative z-10 max-w-2xl">
-          <p className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/[0.06] px-4 py-2 text-base font-medium text-on-dark">
-            <span aria-hidden="true" className="size-2 rounded-full bg-accent-400 motion-safe:animate-[pulse-dot_2.4s_ease-in-out_infinite]" />
-            Credit card &amp; unsecured debt relief
-          </p>
-          <h1 id="hero-title" className="mt-6 text-[2.5rem] leading-[1.08] text-white sm:text-5xl lg:text-[3.75rem]">
-            A Clear, Customized Plan for Your Credit Card Debt.
+          <p className="text-lg font-semibold text-accent-300">{siteConfig.name}</p>
+          <h1 id="hero-title" className="mt-3 text-[2.5rem] leading-[1.08] text-white sm:text-[3.25rem] lg:text-[4rem]">
+            Get Help With Your Credit Card Debt.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-on-dark sm:text-xl">
-            {siteConfig.name} builds a plan around a monthly amount you can afford and negotiates directly with your
-            creditors. You&apos;ll have a dedicated account manager and live online access every step of the way.
+            We build a plan you can afford and negotiate with your creditors for you. Start with a{" "}
+            {siteConfig.consultationIsFree ? "free, " : ""}no-obligation consultation.
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <CtaButton href="/free-consultation" location="hero" variant="onDark" className="px-6!" arrow>
+
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-stretch">
+            {/* Primary action: largest, solid, highest contrast */}
+            <CtaButton
+              href="/free-consultation"
+              location="hero"
+              variant="onDark"
+              className="min-h-16! px-8! text-xl! shadow-[0_12px_32px_-10px_rgb(74_222_128/0.55)]"
+              arrow
+            >
               Get My Free Consultation
             </CtaButton>
+            {/* Secondary action: outlined, quieter */}
             {phone && phoneDisplay && (
               <TrackedLink
                 href={`tel:${phone}`}
                 event="phone_click"
                 params={{ location: "hero" }}
-                className="inline-flex min-h-14 items-center justify-center gap-2.5 whitespace-nowrap rounded-[var(--radius-control)] bg-white/5 px-6 text-lg font-semibold text-white ring-2 ring-inset ring-white/35 transition-colors hover:bg-white/12 hover:ring-white/70"
+                aria-label={`Call Greenlight at ${phoneDisplay}`}
+                className="inline-flex min-h-16 items-center justify-center gap-3 rounded-[var(--radius-control)] px-6 text-white ring-2 ring-inset ring-white/40 transition-colors hover:bg-white/10 hover:ring-white/80"
               >
-                <Icon name="phone" className="size-5 text-accent-300" />
-                Call {phoneDisplay}
+                <Icon name="phone" className="size-6 shrink-0 text-accent-300" />
+                <span className="flex flex-col items-start leading-tight">
+                  <span className="text-lg font-semibold">Call Greenlight</span>
+                  <span className="text-base text-on-dark">{phoneDisplay}</span>
+                </span>
               </TrackedLink>
             )}
           </div>
-          <div className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-lg">
-            <Link href="/how-it-works" className="inline-flex min-h-12 items-center gap-2 font-semibold text-white underline decoration-white/40 underline-offset-[6px] hover:decoration-white">
+
+          {/* Supporting actions: text links */}
+          <div className="mt-5 flex flex-wrap gap-x-8 gap-y-1 text-lg">
+            <Link href="/how-it-works" className="inline-flex min-h-12 items-center gap-2 font-medium text-on-dark underline decoration-white/40 underline-offset-[6px] hover:text-white hover:decoration-white">
               See how it works
               <Icon name="arrowRight" className="size-5" />
             </Link>
-            <a href="#video" className="inline-flex min-h-12 items-center gap-2.5 font-semibold text-white underline decoration-white/40 underline-offset-[6px] hover:decoration-white">
-              <span aria-hidden="true" className="flex size-7 items-center justify-center rounded-full bg-white text-brand-700">
-                <svg viewBox="0 0 24 24" className="ml-0.5 size-4"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" /></svg>
-              </span>
+            <a href="#video" className="inline-flex min-h-12 items-center gap-2.5 font-medium text-on-dark underline decoration-white/40 underline-offset-[6px] hover:text-white hover:decoration-white">
+              <Icon name="play" className="size-6 text-accent-300" />
               Watch our video
             </a>
           </div>
-          <ul className="mt-8 flex flex-col gap-3 text-[1.0625rem] text-on-dark sm:flex-row sm:flex-wrap sm:gap-x-7">
+
+          <ul className="mt-7 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/12 pt-6 text-[1.0625rem] text-on-dark">
             {reassurances.map((r) => (
-              <li key={r} className="flex items-center gap-2.5">
-                <Icon name="checkCircle" className="size-6 shrink-0 text-accent-300" />
+              <li key={r} className="flex items-center gap-2">
+                <Icon name="check" className="size-5 shrink-0 text-accent-300" />
                 {r}
               </li>
             ))}

@@ -48,62 +48,71 @@ export function createDocumentTexture() {
   ctx.stroke();
 
   ctx.fillStyle = "#0b1a33";
-  ctx.font = `700 46px ${FONT}`;
+  ctx.font = `700 64px ${FONT}`;
   ctx.textBaseline = "middle";
-  ctx.fillText("Your Custom Plan", 164, 96);
-  ctx.fillStyle = "#56657d";
-  ctx.font = `500 28px ${FONT}`;
-  ctx.fillText("Debt relief program", 164, 136);
+  ctx.fillText("Your Custom Plan", 164, 100);
+  ctx.fillStyle = "#3f4d64";
+  ctx.font = `500 36px ${FONT}`;
+  ctx.fillText("Greenlight Debt Relief", 164, 150);
 
   ctx.fillStyle = "#d5dde9";
-  ctx.fillRect(72, 196, w - 144, 3);
+  ctx.fillRect(72, 206, w - 144, 3);
 
+  // Debts in the plan (values are abstract bars — never real data)
   const rows: [string, number][] = [
-    ["Credit card", 250],
-    ["Credit card", 210],
-    ["Medical bill", 170],
-    ["Personal loan", 190],
-    ["Monthly program amount", 140],
-    ["Account manager", 150],
-    ["Online access", 120],
+    ["Credit card", 230],
+    ["Credit card", 190],
+    ["Medical bill", 160],
   ];
-  let y = 262;
+  let y = 300;
   for (const [label, barW] of rows) {
-    ctx.fillStyle = "#3f4d64";
-    ctx.font = `500 30px ${FONT}`;
+    ctx.fillStyle = "#22304a";
+    ctx.font = `500 52px ${FONT}`;
     ctx.fillText(label, 72, y);
     ctx.fillStyle = "#c3cedd";
-    roundRect(ctx, w - 72 - barW, y - 11, barW, 22, 11);
+    roundRect(ctx, w - 72 - barW, y - 15, barW, 30, 15);
     ctx.fill();
-    y += 78;
+    y += 120;
   }
 
-  // Highlighted row
-  const hy = y - 10;
-  ctx.fillStyle = "rgba(74, 222, 128, 0.18)";
-  roundRect(ctx, 52, hy - 44, w - 104, 92, 18);
+  // Highlighted row: the affordable monthly amount
+  const hy = y + 10;
+  ctx.fillStyle = "rgba(74, 222, 128, 0.20)";
+  roundRect(ctx, 52, hy - 64, w - 104, 128, 24);
   ctx.fill();
-  ctx.strokeStyle = "rgba(22, 163, 74, 0.9)";
-  ctx.lineWidth = 3;
+  ctx.strokeStyle = "rgba(19, 122, 61, 0.9)";
+  ctx.lineWidth = 4;
   ctx.stroke();
   ctx.fillStyle = "#0b1a33";
-  ctx.font = `700 32px ${FONT}`;
-  ctx.fillText("Creditor negotiation", 84, hy);
-  ctx.fillStyle = "#0e2445";
-  roundRect(ctx, w - 84 - 190, hy - 14, 190, 28, 14);
+  ctx.font = `700 54px ${FONT}`;
+  ctx.fillText("Monthly amount", 88, hy);
+  ctx.fillStyle = "#137a3d";
+  roundRect(ctx, w - 88 - 200, hy - 16, 200, 32, 16);
   ctx.fill();
 
-  // Footer paragraph lines
-  ctx.fillStyle = "#d0d9e6";
-  let fy = hy + 120;
-  for (const lw of [860, 820, 880, 640]) {
-    roundRect(ctx, 72, fy, lw, 16, 8);
-    ctx.fill();
-    fy += 40;
-  }
-  ctx.fillStyle = "#137a3d";
-  roundRect(ctx, 72, fy + 30, 220, 20, 10);
+  // Progress bar
+  const py = hy + 170;
+  ctx.fillStyle = "#3f4d64";
+  ctx.font = `600 46px ${FONT}`;
+  ctx.fillText("Plan progress", 72, py);
+  ctx.fillStyle = "#dfe6ef";
+  roundRect(ctx, 72, py + 50, w - 144, 32, 16);
   ctx.fill();
+  const bar = ctx.createLinearGradient(72, 0, w - 72, 0);
+  bar.addColorStop(0, "#137a3d");
+  bar.addColorStop(1, "#4ade80");
+  ctx.fillStyle = bar;
+  roundRect(ctx, 72, py + 50, (w - 144) * 0.45, 32, 16);
+  ctx.fill();
+
+  // Fine-print lines
+  ctx.fillStyle = "#d6dee9";
+  let fy = py + 170;
+  for (const lw of [860, 800, 870, 560]) {
+    roundRect(ctx, 72, fy, lw, 18, 9);
+    ctx.fill();
+    fy += 46;
+  }
 
   return finish(canvas);
 }
@@ -163,20 +172,6 @@ export function createChipTexture(label: string) {
   ctx.textBaseline = "middle";
   ctx.fillText(label, 128, h / 2 + 2);
   return finish(canvas);
-}
-
-export function createDotTexture() {
-  const canvas = document.createElement("canvas");
-  canvas.width = 64;
-  canvas.height = 64;
-  const ctx = canvas.getContext("2d")!;
-  const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-  g.addColorStop(0, "rgba(255,255,255,1)");
-  g.addColorStop(0.35, "rgba(255,255,255,0.8)");
-  g.addColorStop(1, "rgba(255,255,255,0)");
-  ctx.fillStyle = g;
-  ctx.fillRect(0, 0, 64, 64);
-  return new THREE.CanvasTexture(canvas);
 }
 
 export function createShadowTexture() {
