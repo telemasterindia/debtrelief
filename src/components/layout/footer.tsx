@@ -41,6 +41,18 @@ export function Footer() {
                 </TrackedLink>
               </li>
             )}
+            <li className="flex items-center gap-3">
+              <Icon name="play" className="size-5 shrink-0 text-brand-700" />
+              <a
+                href={siteConfig.youtubeChannelUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center font-semibold text-brand-700 underline underline-offset-4 hover:text-ink"
+              >
+                Watch Us on YouTube
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </li>
             {address && (
               <li>
                 <address className="not-italic text-muted">
