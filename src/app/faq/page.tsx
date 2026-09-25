@@ -14,8 +14,8 @@ const page = pages.faq;
 export const metadata: Metadata = pageMetadata(page, "faq");
 
 const groups = [
-  { id: "basics", title: "Debt validation basics" },
-  { id: "process", title: "The review process" },
+  { id: "basics", title: "Debt relief basics" },
+  { id: "process", title: "Our process" },
   { id: "costs-privacy", title: "Costs, privacy and legal advice" },
 ] as const;
 
@@ -31,13 +31,13 @@ export default function FaqPage() {
       <PageHeader
         crumbs={[{ name: "FAQ", path: page.path }]}
         eyebrow="Frequently asked questions"
-        title="Debt Validation Questions, Answered"
+        title="Debt Relief Questions, Answered Honestly"
         intro="Clear answers to the questions people ask most. Select a question to read the answer."
       />
       <div className="container-page py-14 sm:py-20">
         <Notice tone="info" title="The most important things to know" className="max-w-4xl">
-          Debt validation helps you get accurate information about a debt. It does not erase a debt you owe, and no result
-          is guaranteed.{" "}
+          Results vary and are not guaranteed. Debt relief can affect your credit, creditors may continue collection
+          efforts, and forgiven debt may be taxable.{" "}
           {siteConfig.isLawFirm ? "This information is general, not legal advice." : `${siteConfig.name} is not a law firm and does not give legal advice.`}{" "}
           If you have been sued, respond by the court&apos;s deadline and contact a licensed attorney.
         </Notice>

@@ -14,7 +14,7 @@ export default function NotFound() {
         <ButtonLink href="/faq" variant="secondary">Read the FAQ</ButtonLink>
       </div>
       <p className="mt-8 text-lg">
-        Or <Link href="/request-review" className="link">request a validation review</Link>.
+        Or <Link href="/free-consultation" className="link">request your free consultation</Link>.
       </p>
     </section>
   );

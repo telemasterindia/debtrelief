@@ -87,8 +87,8 @@ export default function Article() {
           verifies the debt, it may continue its collection efforts.
         </p>
         <p>
-          If you would like help understanding the information connected to your account, you can{" "}
-          <Link href="/request-review">request a validation review</Link>.
+          If you are struggling with credit card or other unsecured debt, you can{" "}
+          <Link href="/free-consultation">request a free consultation</Link> to talk through your options.
         </p>
       </div>
 

@@ -1,33 +1,35 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils/cn";
 
-export function LogoMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false" className={className}>
-      <rect width="40" height="40" rx="10" fill="#0b57d0" />
-      <path d="M13 9.5h9.5l5.5 5.5v14a2 2 0 0 1-2 2H13a2 2 0 0 1-2-2v-17.5a2 2 0 0 1 2-2z" fill="#fff" />
-      <path d="M22.5 9.5V15H28" fill="none" stroke="#9cc0ff" strokeWidth="1.6" strokeLinejoin="round" />
-      <path d="M15 18.5h7M15 22h5" stroke="#9fb3d1" strokeWidth="1.6" strokeLinecap="round" />
-      <circle cx="26" cy="26.5" r="6" fill="#081731" />
-      <path d="m23.4 26.6 1.8 1.8 3.4-3.6" fill="none" stroke="#7dd3fc" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
+/**
+ * Greenlight Debt Relief brand lock-up.
+ *
+ * Uses the official logo from `siteConfig.logo` when it is provided. Until then
+ * the company name is shown as plain text — no substitute logo is drawn.
+ */
 export function Logo({ dark, className }: { dark?: boolean; className?: string }) {
+  const { logo } = siteConfig;
   return (
-    <Link href="/" className={cn("group inline-flex items-center gap-3 rounded-lg", className)}>
-      <LogoMark className="size-10 shrink-0" />
-      <span className="flex flex-col leading-none">
-        <span className={cn("text-[1.3125rem] font-bold tracking-[-0.02em]", dark ? "text-white" : "text-ink")}>
-          {siteConfig.name}
+    <Link href="/" className={cn("inline-flex min-h-12 items-center rounded-lg", className)}>
+      {logo ? (
+        <Image
+          src={logo.src}
+          width={logo.width}
+          height={logo.height}
+          alt={`${logo.alt} — home`}
+          priority
+          className={cn("h-11 w-auto", dark && "rounded-md bg-white px-2 py-1")}
+        />
+      ) : (
+        <span className="flex flex-col leading-none">
+          <span className={cn("whitespace-nowrap text-[1.1875rem] font-bold tracking-[-0.02em] sm:text-[1.375rem]", dark ? "text-white" : "text-ink")}>
+            Greenlight<span className={dark ? "text-accent-300" : "text-brand-600"}> Debt Relief</span>
+          </span>
+          <span className="sr-only"> — home</span>
         </span>
-        <span className={cn("mt-1 text-[0.875rem] font-medium", dark ? "text-on-dark-muted" : "text-muted")}>
-          {siteConfig.descriptor}
-        </span>
-      </span>
-      <span className="sr-only">— home</span>
+      )}
     </Link>
   );
 }

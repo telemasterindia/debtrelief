@@ -18,8 +18,8 @@ export function Footer() {
         <div className="lg:col-span-4">
           <Logo dark />
           <p className="mt-6 max-w-sm text-[1.0625rem] leading-relaxed text-on-dark-muted">
-            Plain-English information and initial reviews for U.S. consumers who have questions about a debt in
-            collection.
+            Credit card and unsecured debt relief with customized plans, creditor negotiation, a dedicated account manager
+            and live online access.
           </p>
           <div className="mt-6 space-y-2 text-[1.0625rem] text-on-dark-muted">
             {siteConfig.legalName && <p>Operated by {siteConfig.legalName}</p>}
@@ -50,7 +50,7 @@ export function Footer() {
 
         <nav aria-label="Footer" className="grid gap-10 sm:grid-cols-3 lg:col-span-8">
           <div>
-            <h3 className="text-base font-semibold uppercase tracking-[0.08em] text-white">Learn</h3>
+            <h3 className="text-base font-semibold uppercase tracking-[0.08em] text-white">Company</h3>
             <ul className="mt-4 space-y-1">
               {primaryNav.map((item) => (
                 <li key={item.href}>
@@ -60,8 +60,8 @@ export function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/request-review" className="inline-flex min-h-11 items-center text-[1.0625rem] font-semibold text-cyan-300 hover:text-white hover:underline">
-                  Request a Review
+                <Link href="/free-consultation" className="inline-flex min-h-11 items-center text-[1.0625rem] font-semibold text-accent-300 hover:text-white hover:underline">
+                  Free Consultation
                 </Link>
               </li>
             </ul>
@@ -112,9 +112,9 @@ export function Footer() {
             <strong className="font-semibold text-white">Important:</strong> The information on this website is general
             and educational.{" "}
             {siteConfig.isLawFirm ? "It is not legal advice for your specific situation." : `${siteConfig.name} is not a law firm and does not provide legal advice.`}{" "}
-            Debt validation does not eliminate debts that are legitimately owed, and no particular result is guaranteed.
-            Results depend on the facts of each account and the laws that apply. If you have been sued, please contact a
-            licensed attorney.
+            Results vary and are not guaranteed; creditors are not required to settle. Debt relief may hurt your credit,
+            creditors may continue collection efforts, and forgiven debt may be taxable. Not all debts are eligible. If you
+            have been sued, please contact a licensed attorney.
           </p>
           <p>
             {siteConfig.name} is not affiliated with the Consumer Financial Protection Bureau, the Federal Trade Commission

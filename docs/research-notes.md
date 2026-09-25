@@ -7,30 +7,34 @@ information was treated. They follow a strict separation between **facts**,
 ## Access limitations (be aware)
 
 During the build, the network policy of the build environment blocked direct
-access to `greenlightdebtrelief.com`, `youtube.com`, `consumerfinance.gov` and
+access to `greenlightdebtrelief.com`, `youtube.com`, `web.archive.org`, `consumerfinance.gov` and
 `ecfr.gov`. Research was therefore done through web-search result summaries of
 those pages, not by reading them directly.
 
-- **The YouTube reference video was not viewed.** The visual design is an
-  original interpretation of the brief ("premium enterprise fintech, restrained
-  3D, document + validation + security"), not of the video. If the video has
-  specific qualities you want reflected, describe them and they can be applied.
+- **The YouTube video (92CTw_kb6x8) could not be viewed.** It is embedded as
+  the official Greenlight video; its title, length and thumbnail were not verified.
 - Regulatory statements were cross-checked across multiple summaries of primary
   sources (CFPB Regulation F pages, eCFR, the U.S. Code via govinfo, FTC
   consumer pages). Before launch, a qualified reviewer should confirm them
   against the primary sources linked in `src/lib/content/sources.ts`.
 
-## Greenlight Debt Relief (competitive research only)
+## Greenlight Debt Relief (our company — source of truth)
 
-Nothing from Greenlight (text, testimonials, statistics, results, stories,
-branding or images) is used on this site.
+The project is a redesign of greenlightdebtrelief.com. Its content, logo, video,
+contact details and proof are the company's own. Because the live site could not
+be read from the build environment, the redesign uses:
 
-| Category | Notes |
-| --- | --- |
-| **Fact** (what their site/listings state) | Presents itself as a debt negotiation/settlement company for unsecured debts (credit cards, medical bills). Offers a free consultation. Listed phone and California address. BBB profile states it is not BBB accredited. |
-| **Claim** (Greenlight's claims, unverified) | "Since 1998", "helped thousands", "lower monthly payments", "protect your credit", 5/5 stars from 359+ reviews. These are Greenlight's own claims and were **not** adopted or paraphrased. |
-| **Structural takeaways** | Consumer debt sites lead with a consultation CTA, a short numbered process, debt-type categories, FAQs and trust elements. We kept the structure (process, FAQ, clear CTA) but replaced social proof with transparent commitments, because we have no verified proof of our own. |
-| **Positioning difference** | Greenlight sells *settlement*. This site is about *validation* — getting accurate information — and repeatedly states that validation does not eliminate legitimately owed debts. |
+- **From the owner's brief:** email info@greenlightdebtrelief.com, phone
+  +1 (877) 870-0717, video 92CTw_kb6x8, services (credit card and unsecured debt
+  relief, customized plans, dedicated account managers, live online access, free
+  consultation, creditor negotiation, debt relief process, financial freedom),
+  and the "Still not convinced? See the results for yourself." Proof 1–4 section.
+- **Found in search listings but NOT used until verified by the owner:** a
+  Laguna Beach, CA address, "since 1998", "helped thousands" and a "5/5 from
+  359+ reviews" rating. These are left out; add them in `site-config.ts` or the
+  copy if they are accurate and substantiated.
+- **Not used:** a lookalike S3 page for `greenlightsdebtrelief.com` (different
+  domain and address, "guaranteed in 6 months" claim).
 
 ## General information (authoritative sources)
 
@@ -38,6 +42,11 @@ Every rights-related statement on the site maps to one of these:
 
 | Statement on site | Source |
 | --- | --- |
+| Creditors are not required to settle; savings/time can't be guaranteed | FTC "How To Get Out of Debt"; CFPB Ask CFPB #1457 |
+| Debt relief can hurt credit; late fees/interest; collection and lawsuits may continue | CFPB Ask CFPB #1457 |
+| Forgiven debt may be taxable; insolvency and other exceptions | IRS Topic 431 |
+| Telemarketed debt relief fees only after settlement, agreement and a payment; required disclosures (time, savings needed, consequences) | FTC TSR business guide; FTC "How To Get Out of Debt" |
+| Alternatives: creditors directly, nonprofit credit counseling, bankruptcy | CFPB Ask CFPB #1449, #1457; FTC |
 | Collector must provide validation information in the initial communication or within 5 days | CFPB Ask CFPB #331; 12 CFR 1006.34(a); 15 U.S.C. 1692g(a) |
 | Validation notice contents (collector name/address, itemization date, creditor on itemization date, account number, current creditor, itemization of interest/fees/payments/credits, current amount, validation period end date, how to dispute, original-creditor request) | 12 CFR 1006.34(c) |
 | Itemization date is one of a fixed set of reference dates (e.g. last statement, charge-off) | 12 CFR 1006.34(b)(3) |

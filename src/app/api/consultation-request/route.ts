@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { normalizeUsPhone, reviewRequestSchema } from "@/lib/validation/review-request";
+import { normalizeUsPhone, consultationRequestSchema } from "@/lib/validation/consultation-request";
 import { clientKey, rateLimit } from "@/lib/server/rate-limit";
 import { deliverSubmission } from "@/lib/server/deliver";
 
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const parsed = reviewRequestSchema.safeParse(body);
+  const parsed = consultationRequestSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
       {
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
   }
 
   const data = { ...parsed.data, phone: normalizeUsPhone(parsed.data.phone) };
-  const result = await deliverSubmission("review_request", data);
+  const result = await deliverSubmission("consultation_request", data);
   if (!result.ok) {
     return NextResponse.json(
       { ok: false, message: "We could not send your request right now. Please try again in a few minutes." },

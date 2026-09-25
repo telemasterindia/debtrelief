@@ -23,8 +23,8 @@ export function FaqPreview() {
               <Icon name="arrowRight" className="size-5" />
             </Link>
             <div>
-              <CtaButton href="/request-review" location="faq_preview" variant="secondary" arrow>
-                Request a Validation Review
+              <CtaButton href="/free-consultation" location="faq_preview" variant="secondary" arrow>
+                Get My Free Consultation
               </CtaButton>
             </div>
           </div>

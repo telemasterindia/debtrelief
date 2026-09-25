@@ -15,12 +15,12 @@ export function HeroFallback({ className }: { className?: string }) {
           <stop offset="1" stopColor="#12294f" stopOpacity="0.9" />
         </linearGradient>
         <linearGradient id="hf-shield" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#3b82f6" />
-          <stop offset="1" stopColor="#0b3a8c" />
+          <stop offset="0" stopColor="#22a35a" />
+          <stop offset="1" stopColor="#0d5f2f" />
         </linearGradient>
         <radialGradient id="hf-glow" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor="#38bdf8" stopOpacity="0.35" />
-          <stop offset="1" stopColor="#38bdf8" stopOpacity="0" />
+          <stop offset="0" stopColor="#4ade80" stopOpacity="0.35" />
+          <stop offset="1" stopColor="#4ade80" stopOpacity="0" />
         </radialGradient>
         <radialGradient id="hf-shadow" cx="0.5" cy="0.5" r="0.5">
           <stop offset="0" stopColor="#000" stopOpacity="0.45" />
@@ -35,7 +35,7 @@ export function HeroFallback({ className }: { className?: string }) {
       <ellipse cx="290" cy="486" rx="170" ry="18" fill="url(#hf-shadow)" />
 
       {/* connection lines */}
-      <g stroke="#7dd3fc" strokeOpacity="0.45" strokeWidth="1.5" fill="none">
+      <g stroke="#86efac" strokeOpacity="0.45" strokeWidth="1.5" fill="none">
         <path d="M388 150 C 430 130, 450 110, 480 96" />
         <path d="M392 250 C 440 250, 460 262, 492 270" />
         <path d="M190 330 C 140 350, 110 360, 76 372" />
@@ -48,7 +48,7 @@ export function HeroFallback({ className }: { className?: string }) {
       {/* main document */}
       <g filter="url(#hf-soft)" transform="rotate(-4 290 250)">
         <rect x="178" y="84" width="224" height="300" rx="12" fill="url(#hf-paper)" />
-        <rect x="200" y="108" width="92" height="12" rx="4" fill="#0b57d0" />
+        <rect x="200" y="108" width="92" height="12" rx="4" fill="#137a3d" />
         <rect x="200" y="130" width="140" height="8" rx="4" fill="#9aa9bf" />
         <g fill="#c6d1e0">
           <rect x="200" y="166" width="70" height="8" rx="4" />
@@ -56,7 +56,7 @@ export function HeroFallback({ className }: { className?: string }) {
           <rect x="200" y="190" width="60" height="8" rx="4" />
           <rect x="300" y="190" width="80" height="8" rx="4" />
         </g>
-        <rect x="192" y="208" width="196" height="30" rx="7" fill="#dff2fe" stroke="#38bdf8" strokeWidth="1.5" />
+        <rect x="192" y="208" width="196" height="30" rx="7" fill="#dcfce7" stroke="#4ade80" strokeWidth="1.5" />
         <rect x="204" y="219" width="64" height="8" rx="4" fill="#0e2445" />
         <rect x="316" y="219" width="60" height="8" rx="4" fill="#0e2445" />
         <g fill="#c6d1e0">
@@ -71,37 +71,37 @@ export function HeroFallback({ className }: { className?: string }) {
 
       {/* magnifying glass */}
       <g transform="translate(150 150) rotate(-18)">
-        <circle cx="0" cy="0" r="44" fill="#bfe6ff" fillOpacity="0.18" stroke="#d6e4f5" strokeWidth="9" />
+        <circle cx="0" cy="0" r="44" fill="#d1fae5" fillOpacity="0.18" stroke="#d6e4f5" strokeWidth="9" />
         <circle cx="0" cy="0" r="44" fill="none" stroke="#ffffff" strokeOpacity="0.5" strokeWidth="1.5" />
         <rect x="-7" y="48" width="14" height="70" rx="7" fill="#1b3a6b" />
       </g>
 
       {/* metadata chips */}
       <g>
-        <rect x="440" y="70" width="112" height="46" rx="10" fill="#0e2445" stroke="#7dd3fc" strokeOpacity="0.4" />
-        <circle cx="462" cy="93" r="9" fill="#38bdf8" />
+        <rect x="440" y="70" width="112" height="46" rx="10" fill="#0e2445" stroke="#86efac" strokeOpacity="0.4" />
+        <circle cx="462" cy="93" r="9" fill="#4ade80" />
         <path d="m457.5 93 3 3 5-5.5" stroke="#081731" strokeWidth="2" fill="none" strokeLinecap="round" />
         <rect x="478" y="88" width="58" height="10" rx="5" fill="#b9c6da" />
 
-        <rect x="454" y="248" width="100" height="46" rx="10" fill="#0e2445" stroke="#7dd3fc" strokeOpacity="0.4" />
-        <circle cx="476" cy="271" r="9" fill="#38bdf8" />
+        <rect x="454" y="248" width="100" height="46" rx="10" fill="#0e2445" stroke="#86efac" strokeOpacity="0.4" />
+        <circle cx="476" cy="271" r="9" fill="#4ade80" />
         <path d="m471.5 271 3 3 5-5.5" stroke="#081731" strokeWidth="2" fill="none" strokeLinecap="round" />
         <rect x="492" y="266" width="46" height="10" rx="5" fill="#b9c6da" />
 
-        <rect x="10" y="352" width="104" height="46" rx="10" fill="#0e2445" stroke="#7dd3fc" strokeOpacity="0.4" />
-        <circle cx="32" cy="375" r="9" fill="#38bdf8" />
+        <rect x="10" y="352" width="104" height="46" rx="10" fill="#0e2445" stroke="#86efac" strokeOpacity="0.4" />
+        <circle cx="32" cy="375" r="9" fill="#4ade80" />
         <path d="m27.5 375 3 3 5-5.5" stroke="#081731" strokeWidth="2" fill="none" strokeLinecap="round" />
         <rect x="48" y="370" width="50" height="10" rx="5" fill="#b9c6da" />
       </g>
 
       {/* shield */}
       <g transform="translate(372 330)">
-        <path d="M44 0 88 16v34c0 30-19 52-44 62C19 102 0 80 0 50V16z" fill="url(#hf-shield)" stroke="#9cc7ff" strokeOpacity="0.6" strokeWidth="2" />
+        <path d="M44 0 88 16v34c0 30-19 52-44 62C19 102 0 80 0 50V16z" fill="url(#hf-shield)" stroke="#bbf7d0" strokeOpacity="0.6" strokeWidth="2" />
         <path d="m28 54 12 12 22-24" stroke="#ffffff" strokeWidth="7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       </g>
 
       {/* data points */}
-      <g fill="#7dd3fc">
+      <g fill="#86efac">
         <circle cx="120" cy="80" r="2" opacity="0.7" />
         <circle cx="500" cy="180" r="2.5" opacity="0.6" />
         <circle cx="90" cy="250" r="1.8" opacity="0.5" />

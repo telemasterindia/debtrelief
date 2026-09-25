@@ -1,137 +1,124 @@
-# Ledgerwise — Debt Validation Review website
+# Greenlight Debt Relief — website redesign
 
-A production Next.js website that helps U.S. consumers understand debt
-validation and request an initial review. Built for readability (including
-visitors aged 60+), accessibility (WCAG 2.2 AA), trust and performance.
+A modernized, production-ready redesign of [greenlightdebtrelief.com](https://greenlightdebtrelief.com/):
+same company, same services, same contact details — with a premium, highly
+readable (60+ friendly), accessible and search-optimized experience.
 
-> "Ledgerwise" is a working brand name defined in one place
-> (`src/lib/site-config.ts`). Replace it with your real brand before launch.
+## ⚠️ Assets and facts to supply before launch
 
-## Owner checklist — required before launch
+The build environment's network policy blocked greenlightdebtrelief.com,
+YouTube and the Wayback Machine, so the items below could not be retrieved.
+Nothing was invented in their place.
 
-Nothing on this site was invented to fill gaps. The items below are either
-blank (and therefore hidden) or describe practices you must confirm are true.
+| Item | Status | Where it goes |
+| --- | --- | --- |
+| Official Greenlight logo | **Missing** — company name shown as text | `public/brand/README.md` |
+| Favicon from the logo | **Missing** — transparent placeholder | `public/brand/README.md` |
+| Proof 1–4 ("Still not convinced? See the results for yourself.") | **Missing** — labelled placeholders in dev; section hidden in production | `public/proof/README.md` |
+| Exact brand colors | Approximated with an accessible green | `src/app/globals.css` (`--color-brand-*`) |
+| YouTube video `92CTw_kb6x8` | **Embedded** (click-to-play, privacy-enhanced). Thumbnail/title not verified from here. | `src/lib/site-config.ts` |
+| Live site copy | Not readable from here — copy was written from the services listed in the brief | pages under `src/app` |
 
-**Fill in `src/lib/site-config.ts`**
+Note: an S3-hosted page titled "Greenlight Debt Validation" (for
+`greenlightsdebtrelief.com`, with an "s") was reachable, but it lists a
+different address and a "cancels debts in 6 months or less guaranteed" claim.
+It was treated as **not** your site and nothing from it was used.
 
-- [ ] `name` / `descriptor` — your brand.
-- [ ] `legalName`, `address`, `phone`, `phoneDisplay`, `email`, `hours` — shown on
-      About, Contact, the footer and in Organization structured data only when
-      set. Trust pages are much stronger with these filled in.
-- [ ] `foundingYear` — only if verifiable.
-- [ ] `isLawFirm` — controls every "we are not a law firm" statement.
-- [ ] `initialReviewIsFree` — controls every "free to request" statement.
-- [ ] `legalLastUpdated` — date shown on Privacy, Terms and Disclaimer.
+## Owner checklist
 
-**Confirm these practices are true** (edit the copy if not)
+**Confirm in `src/lib/site-config.ts`** (values marked `VERIFY`)
 
-- [ ] You contact every requester by phone or email to confirm the request.
-- [ ] You never ask for SSNs, full account numbers or bank passwords via the web.
-- [ ] You do not sell personal information or share it with other companies for their marketing (Privacy Policy).
-- [ ] Any paid service and its fees are disclosed in writing before agreement.
-      If you sell debt relief services by phone, the FTC Telemarketing Sales
-      Rule's advance-fee restrictions may apply.
+- [ ] Phone `+1 (877) 870-0717` and email `info@greenlightdebtrelief.com` match the live site.
+- [ ] `legalName`, `address`, `hours` — add if you want them shown (currently hidden).
+- [ ] `foundingYear` — add only if verifiable (enables "serving clients since …" on About).
+- [ ] `isLawFirm: false`, `consultationIsFree: true` — must reflect reality.
+
+**Confirm these descriptions of the program are accurate** (edit copy if not)
+
+- [ ] Eligible debts: credit cards, medical bills, personal loans, other unsecured debt; secured debts usually not eligible.
+- [ ] Process: free consultation → customized plan around an affordable monthly amount → creditor negotiation → track progress online.
+- [ ] Clients agree to each settlement before it is final; fees and timeframe are given in writing before enrollment.
+- [ ] Fee timing complies with the FTC Telemarketing Sales Rule (the site states the rule, and that fees are explained in writing).
+- [ ] You never ask for SSNs, full account numbers or bank passwords through the website.
+- [ ] You do not sell personal information or share it for other companies' marketing (Privacy Policy).
 - [ ] Your text-message practice matches the optional SMS consent wording.
 
-**Legal review**
-
-- [ ] Have a licensed attorney review the Privacy Policy, Terms, Disclaimer,
-      consent language (TCPA) and the state licensing requirements for debt
-      relief / debt validation services in the states you serve.
+**Legal review** — have counsel review the disclosures, Privacy Policy, Terms,
+TCPA consent language, and state debt-relief licensing for the states you serve.
 
 **Environment** — see `.env.example`
 
-- [ ] `NEXT_PUBLIC_SITE_URL` — canonical domain (used by canonicals, sitemap, Open Graph).
-- [ ] `LEAD_WEBHOOK_URL` (+ optional `LEAD_WEBHOOK_SECRET`) — where review
-      requests and contact messages are POSTed as JSON. **In production, forms
-      refuse submissions (HTTP 503 with a friendly message) until this is set**,
-      so no request is ever silently lost.
+- [ ] `NEXT_PUBLIC_SITE_URL` (defaults to `https://greenlightdebtrelief.com`).
+- [ ] `LEAD_WEBHOOK_URL` (+ optional `LEAD_WEBHOOK_SECRET`) — consultation requests and contact messages are POSTed here as JSON. In production, forms refuse submissions with a friendly message until this is set, so no lead is silently lost.
 
-## Tech stack
+## What changed in the redesign
+
+- **Brand:** Greenlight Debt Relief throughout; real phone and email in the top
+  bar, header, footer, contact page, consultation page and structured data.
+  Click-to-call everywhere (including a sticky Call / Free Consultation bar on phones).
+- **Positioning:** debt relief first — free consultation, customized plans,
+  creditor negotiation, dedicated account manager, live online access,
+  financial freedom. Debt-validation content kept as free educational guides.
+- **Video:** the official video `92CTw_kb6x8` directly below the hero in a
+  large framed card. Nothing loads from YouTube until Play is pressed; the
+  player uses youtube-nocookie.com. `VideoObject` structured data included.
+- **Proof:** "Still not convinced? See the results for yourself." with Proof
+  1–4 slots, plus an always-visible "individual results, not typical or
+  guaranteed" disclaimer.
+- **Honest disclosures:** an always-visible "Important things to know" section
+  (results vary, credit impact, taxes on forgiven debt, fee rules, alternatives),
+  each linked to the CFPB, FTC or IRS.
+- **Form:** "Request your free consultation" in four short steps (old
+  `/request-review` URL permanently redirects to `/free-consultation`).
+
+## Pages
+
+`/` · `/debt-relief` · `/how-it-works` · `/free-consultation` · `/faq` · `/about`
+· `/contact` · `/resources` (+ 5 guides) · `/debt-validation` · `/privacy` ·
+`/terms` · `/disclaimer`
+
+## Tech stack & commands
 
 Next.js 16 (App Router, TypeScript) · React 19 · Tailwind CSS 4 · React Three
 Fiber + drei + Three.js (hero only, lazy-loaded) · React Hook Form + Zod ·
 Vitest · Playwright + axe-core.
 
-## Commands
-
 ```bash
 npm install
-npm run dev         # http://localhost:3000
-npm run build       # production build (type-checks)
-npm start
+npm run dev          # http://localhost:3000
+npm run build && npm start
 npm run lint
 npm run typecheck
-npm test            # unit tests (Vitest)
-npx playwright test # E2E + accessibility tests (builds must exist: run `npm run build` first)
-```
-
-## Project structure
-
-```
-src/
-  app/                    routes (/, /debt-validation, /how-it-works, /faq, /about,
-                          /contact, /request-review, /resources/[slug], /privacy,
-                          /terms, /disclaimer), API routes, sitemap, robots, OG images
-  components/
-    3d/                   hero scene (R3F), static fallback, capability detection
-    accessibility/        skip link, reduced-motion-aware reveal
-    articles/             resource guide bodies
-    forms/                multi-step review form, contact form, accessible fields
-    layout/               header, footer, page header (breadcrumbs), legal layout
-    sections/             homepage / shared sections
-    seo/                  JSON-LD
-    ui/                   buttons, icons, notices, source citations
-  lib/
-    analytics/            privacy-safe event tracking (dataLayer + DOM event)
-    content/              FAQ, resources, process, sources, case studies
-    seo/                  page registry, metadata, structured data
-    server/               webhook delivery, rate limiting
-    validation/           Zod schemas (shared by client and server)
-docs/research-notes.md    research sources and fact/claim separation
-e2e/                      Playwright tests
+npm test             # unit tests
+npx playwright test  # E2E + accessibility (run `npm run build` first)
 ```
 
 ## Key design decisions
 
-- **Readability first.** Inter (self-hosted), 18px body text, 1.65 line
-  height, high-contrast colour tokens (all text ≥ AA, most ≥ AAA), 48–56px
-  tap targets, visible labels on every field, a thick two-tone focus ring.
-- **3D that never gets in the way.** The Three.js scene loads only on devices
-  ≥ 768px wide with hardware-accelerated WebGL, after the page is idle. Phones,
-  data-saver, low-memory devices, software-rendered WebGL, and devices that
-  can't hold a smooth frame rate get a matching static illustration. The scene
-  pauses off-screen and is static under `prefers-reduced-motion`. Text is never
-  placed over the 3D. Append `?force3d` to a URL to preview the 3D on a machine
-  without a GPU.
-- **Trust without fake proof.** No testimonials, ratings, statistics or badges.
-  Instead: a "What you can expect" commitments section, visible disclosures,
-  and citations to CFPB/FTC/U.S. Code on every rights claim. Verified case
-  studies can be added to `src/lib/content/case-studies.ts`; the section stays
-  hidden until one exists and each entry carries date, situation, debt type,
-  amount (optional), action, documented outcome and limitations.
-- **Form UX for seniors.** Four short steps with a progress indicator, large
-  radio cards, an error summary that links to each field, errors re-checked as
-  you type (never on blur, which would shift the layout as you click Continue),
-  a review-and-edit screen, and plain consent language. Server-side Zod
-  validation, a honeypot and per-IP rate limiting (`FORM_RATE_LIMIT`) protect
-  the API.
-- **Privacy-safe analytics.** `track()` pushes to `window.dataLayer` and a DOM
-  `analytics` event. Parameters are allow-listed and stripped of anything that
-  looks like personal data; debt details are never sent. No vendor script is
-  loaded — add your tag manager and update the Privacy Policy first.
-- **SEO.** Unique titles/descriptions/canonicals, per-page Open Graph images,
-  Twitter cards, sitemap, robots, breadcrumbs, and JSON-LD (Organization,
-  WebSite, WebPage, BreadcrumbList, FAQPage, Article). No review or rating
-  schema.
+- **Readability first:** Inter (self-hosted), 18px body text, high-contrast
+  tokens (all text ≥ WCAG AA), 48–56px targets, visible labels, strong focus ring.
+- **3D that never gets in the way:** loads only on ≥768px screens with
+  hardware WebGL, after the page is idle; phones, low-end devices, software
+  WebGL and slow frame rates get a matching static illustration; static under
+  `prefers-reduced-motion`. Append `?force3d` to preview it on a GPU-less machine.
+- **Form UX for seniors:** progress indicator, large radio cards, an error
+  summary linking to each field, errors re-checked while typing (never on blur,
+  which would shift the layout as the visitor clicks Continue), a check-and-edit
+  step, plain consent language. Server-side validation, honeypot and per-IP
+  rate limiting (`FORM_RATE_LIMIT`).
+- **Privacy-safe analytics:** `track()` pushes allow-listed, PII-stripped events
+  to `window.dataLayer`; no vendor is loaded.
+- **SEO:** unique titles/descriptions/canonicals, per-page OG images, sitemap,
+  robots, breadcrumbs, JSON-LD (Organization, WebSite, WebPage, Service,
+  VideoObject, BreadcrumbList, FAQPage, Article). No review/rating markup.
 
-## QA status (at time of writing)
+## QA status
 
-- Unit tests, lint, typecheck and production build pass.
-- 54 Playwright tests pass on desktop and mobile (Pixel 7), including axe
-  WCAG 2.2 AA scans of all 15 pages (0 violations), the full form flow,
-  keyboard access, mobile menu, reduced motion and no horizontal scrolling.
-- Lighthouse (local production build): 97–100 in Performance, Accessibility,
-  Best Practices and SEO on mobile and desktop for the pages tested, CLS 0.
-  Note: the test machine has no GPU, so the desktop home-page score reflects
-  the static illustration; profile the 3D scene on real GPU hardware as well.
+- Lint, typecheck, unit tests and production build pass.
+- 66 Playwright tests pass on desktop and mobile, including axe WCAG 2.2 AA
+  scans of all 17 pages (0 violations), the consultation flow, redirect, video
+  click-to-play, real contact details, keyboard access, mobile menu, reduced
+  motion, and a check that proof placeholders never reach production.
+- Lighthouse (local production build): Performance 98–100, Accessibility 100,
+  SEO 100 on mobile and desktop for `/`, `/free-consultation` and `/debt-relief`, CLS 0.
+  The test machine has no GPU, so desktop scores reflect the static hero illustration.

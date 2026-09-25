@@ -1,9 +1,9 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("review request form", () => {
+test.describe("free consultation form", () => {
   test("shows clear errors, then submits successfully", async ({ page }) => {
-    await page.goto("/request-review");
-    await expect(page.getByRole("heading", { level: 1, name: "Request a Debt Validation Review" })).toBeVisible();
+    await page.goto("/free-consultation");
+    await expect(page.getByRole("heading", { level: 1, name: "Request Your Free Consultation" })).toBeVisible();
     await expect(page.getByText("Step 1 of 4:")).toBeVisible();
 
     // Step 1: try to continue with empty fields.
@@ -18,11 +18,11 @@ test.describe("review request form", () => {
     await page.getByRole("button", { name: "Continue to step 2" }).click();
 
     // Step 2
-    await expect(page.getByRole("heading", { name: "The debt" })).toBeFocused();
+    await expect(page.getByRole("heading", { name: "Your debt" })).toBeFocused();
     await page.getByRole("button", { name: "Continue to step 3" }).click();
     await expect(page.locator("form [role=alert]")).toContainText("Please choose the type of debt.");
     await page.getByLabel("Credit card").check();
-    await page.getByLabel("$1,000 – $5,000").check();
+    await page.getByLabel("$10,000 – $25,000").check();
     await page.getByRole("group", { name: /debt collector contacted you/ }).getByLabel("Yes").check();
     await page.getByLabel("Which state do you live in?").selectOption("OH");
     await page.getByRole("button", { name: "Continue to step 3" }).click();
@@ -44,18 +44,18 @@ test.describe("review request form", () => {
     await expect(page.getByLabel("First name")).toHaveValue("Mary");
     for (const n of [2, 3, 4]) await page.getByRole("button", { name: `Continue to step ${n}` }).click();
 
-    await page.getByRole("button", { name: "Request My Validation Review" }).click();
+    await page.getByRole("button", { name: "Request My Free Consultation" }).click();
     await expect(page.locator("form [role=alert]")).toContainText("contact you about your request");
     await page.getByLabel(/may contact me by phone call or email/).check();
     await page.getByLabel(/I have read the/).check();
-    await page.getByRole("button", { name: "Request My Validation Review" }).click();
+    await page.getByRole("button", { name: "Request My Free Consultation" }).click();
 
     await expect(page.getByRole("heading", { name: "Your Request Has Been Received." })).toBeFocused();
     await expect(page.getByText("No guaranteed result.")).toBeVisible();
   });
 
   test("Back keeps previous answers", async ({ page }) => {
-    await page.goto("/request-review");
+    await page.goto("/free-consultation");
     await page.getByLabel("First name").fill("Ann");
     await page.getByLabel("Last name").fill("Lee");
     await page.getByRole("button", { name: "Continue to step 2" }).click();
@@ -63,8 +63,13 @@ test.describe("review request form", () => {
     await expect(page.getByLabel("First name")).toHaveValue("Ann");
   });
 
+  test("old /request-review URL redirects", async ({ page }) => {
+    await page.goto("/request-review");
+    await expect(page).toHaveURL(/\/free-consultation$/);
+  });
+
   test("server rejects invalid payloads", async ({ request }) => {
-    const res = await request.post("/api/review-request", { data: { firstName: "" } });
+    const res = await request.post("/api/consultation-request", { data: { firstName: "" } });
     expect(res.status()).toBe(422);
   });
 });

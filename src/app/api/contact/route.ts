@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { contactMessageSchema } from "@/lib/validation/review-request";
+import { contactMessageSchema } from "@/lib/validation/consultation-request";
 import { clientKey, rateLimit } from "@/lib/server/rate-limit";
 import { deliverSubmission } from "@/lib/server/deliver";
 

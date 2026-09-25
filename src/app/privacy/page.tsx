@@ -26,12 +26,12 @@ export default function PrivacyPage() {
       </ul>
 
       <h2>Information you give us</h2>
-      <p>When you request a review, we collect:</p>
+      <p>When you request a consultation, we collect:</p>
       <ul>
         <li>Your first and last name</li>
         <li>Your email address and phone number</li>
         <li>Your state of residence</li>
-        <li>General information about the debt: the type of debt, an approximate amount, and whether a collector has contacted you</li>
+        <li>General information about your debt: the type of debt, an approximate total, and whether a collector has contacted you</li>
         <li>Any additional details you choose to share</li>
         <li>Your consent choices, including whether you agreed to receive text messages</li>
       </ul>
@@ -44,13 +44,15 @@ export default function PrivacyPage() {
         form submissions).
       </p>
       <p>
-        This website does not use advertising cookies. If we add website analytics in the future, we will update this
+        This website does not use advertising cookies. Our video is embedded from YouTube in privacy-enhanced mode and
+        nothing is loaded from YouTube until you press Play; once you do, YouTube&apos;s privacy policy applies to the
+        video player. If we add website analytics in the future, we will update this
         policy first. Our analytics design never includes your name, contact details or information about your debt.
       </p>
 
       <h2>How we use your information</h2>
       <ul>
-        <li>To respond to your request for a review, and to contact you about it</li>
+        <li>To respond to your request for a consultation, and to contact you about it</li>
         <li>To answer your questions</li>
         <li>To keep records of your consent and our communications</li>
         <li>To protect the website and our users from fraud and abuse</li>

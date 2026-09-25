@@ -1,39 +1,56 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
-import { ReviewForm } from "@/components/forms/review-form";
+import { ConsultationForm } from "@/components/forms/consultation-form";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Icon } from "@/components/ui/icon";
+import { TrackedLink } from "@/components/ui/tracked-link";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { pages } from "@/lib/seo/pages";
 import { graph, webPageSchema } from "@/lib/seo/structured-data";
 import { siteConfig } from "@/lib/site-config";
 
-const page = pages.requestReview;
-export const metadata: Metadata = pageMetadata(page, "request-review");
+const page = pages.freeConsultation;
+export const metadata: Metadata = pageMetadata(page, "free-consultation");
 
-export default function RequestReviewPage() {
+export default function FreeConsultationPage() {
+  const { phone, phoneDisplay } = siteConfig;
   return (
     <>
       <JsonLd data={graph(webPageSchema({ path: page.path, name: page.title, description: page.description }))} />
       <PageHeader
         compact
-        crumbs={[{ name: "Request a Review", path: page.path }]}
+        crumbs={[{ name: "Free Consultation", path: page.path }]}
         eyebrow="Four short steps"
-        title="Request a Debt Validation Review"
-        intro="Tell us a little about the debt and how to reach you. We'll contact you to review the information connected to the account and explain what may be available."
+        title={siteConfig.consultationIsFree ? "Request Your Free Consultation" : "Request a Consultation"}
+        intro="Tell us a little about your debt and how to reach you. A Greenlight consultant will contact you to talk through your options."
       />
       <div className="bg-canvas py-10 sm:py-14">
         <div className="container-page grid gap-10 lg:grid-cols-[1fr_22rem] lg:gap-12">
           <div className="min-w-0">
-            <ReviewForm />
+            <ConsultationForm />
           </div>
           <aside className="space-y-6" aria-label="About this form">
+            {phone && phoneDisplay && (
+              <div className="on-dark rounded-[var(--radius-card)] bg-navy-900 p-6 text-on-dark">
+                <h2 className="text-xl text-white">Prefer to talk now?</h2>
+                <p className="mt-2 text-[1.0625rem] leading-relaxed">Call us and speak with a consultant.</p>
+                <TrackedLink
+                  href={`tel:${phone}`}
+                  event="phone_click"
+                  params={{ location: "consultation_sidebar" }}
+                  className="mt-4 inline-flex min-h-12 items-center gap-2 text-xl font-bold text-white underline underline-offset-4"
+                >
+                  <Icon name="phone" className="size-6 text-accent-300" />
+                  {phoneDisplay}
+                </TrackedLink>
+              </div>
+            )}
             <div className="rounded-[var(--radius-card)] border border-line bg-white p-6">
               <h2 className="text-xl">Before you start</h2>
               <ul className="mt-4 space-y-3.5 text-[1.0625rem] leading-snug">
                 {[
                   "It takes just a few minutes.",
-                  siteConfig.initialReviewIsFree ? "Requesting a review is free." : "Any fee is explained in writing first.",
+                  siteConfig.consultationIsFree ? "The consultation is free, with no obligation." : "There is no obligation.",
                   "No Social Security number or account numbers.",
                   "You can go back and change any answer.",
                 ].map((t) => (
@@ -47,9 +64,8 @@ export default function RequestReviewPage() {
             <div className="rounded-[var(--radius-card)] border border-line bg-white p-6">
               <h2 className="text-xl">Please keep in mind</h2>
               <p className="mt-3 text-[1.0625rem] leading-relaxed text-body">
-                A review helps you understand the information behind an account. It does not erase a debt you owe, and no
-                result is guaranteed.
-                {siteConfig.isLawFirm ? "" : ` ${siteConfig.name} is not a law firm and does not give legal advice.`}
+                Results vary and are not guaranteed. Debt relief can affect your credit, and forgiven debt may be taxable.
+                We&apos;ll explain everything before you decide.
               </p>
             </div>
             <div className="rounded-[var(--radius-card)] border-2 border-[#f1dca6] bg-notice-50 p-6">

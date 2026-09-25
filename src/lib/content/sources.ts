@@ -71,6 +71,24 @@ export const sources = {
     title: "ReportFraud.ftc.gov",
     url: "https://reportfraud.ftc.gov/",
   },
+  ftcHowToGetOutOfDebt: {
+    id: "ftcHowToGetOutOfDebt",
+    publisher: "Federal Trade Commission (FTC)",
+    title: "How To Get Out of Debt",
+    url: "https://consumer.ftc.gov/articles/how-get-out-debt",
+  },
+  cfpbDebtReliefCompare: {
+    id: "cfpbDebtReliefCompare",
+    publisher: "Consumer Financial Protection Bureau (CFPB)",
+    title: "What is the difference between credit counseling and debt settlement, debt consolidation, or credit repair?",
+    url: "https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-credit-counseling-and-debt-settlement-debt-consolidation-or-credit-repair-en-1449/",
+  },
+  irsCanceledDebt: {
+    id: "irsCanceledDebt",
+    publisher: "Internal Revenue Service (IRS)",
+    title: "Topic no. 431, Canceled debt – Is it taxable or not?",
+    url: "https://www.irs.gov/taxtopics/tc431",
+  },
 } satisfies Record<string, Source>;
 
 export type SourceId = keyof typeof sources;

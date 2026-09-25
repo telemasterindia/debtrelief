@@ -26,35 +26,36 @@ export default function TermsPage() {
         Please read our <Link href="/disclaimer">Disclaimer</Link>.
       </p>
 
-      <h2>2. Requesting a review</h2>
+      <h2>2. Requesting a consultation</h2>
       <p>
-        Submitting a request through this website asks us to contact you about an initial review. It does not create a
+        Submitting a request through this website asks us to contact you about a consultation. It does not create a
         contract for services, it does not create any obligation for you, and it does not guarantee any result.
       </p>
       <p>
-        If any service is offered to you after an initial review, it will be described — including all fees — in a
-        separate written agreement before you agree to anything. You are never required to purchase a service.
+        If you choose to enroll in a debt relief program, the program — including its estimated timeframe and all fees —
+        will be described in a separate written agreement before you agree to anything. You are never required to
+        enroll.
       </p>
 
       <h2>3. No guaranteed results</h2>
       <p>
-        Debt validation does not eliminate debts that are legitimately owed. Outcomes depend on the facts of each account,
-        the documentation available and the laws that apply. We do not promise that any debt will be removed, reduced,
-        settled or found invalid.
+        Creditors are not required to negotiate or settle, and results vary. We do not promise that any debt will be
+        settled, reduced or eliminated, or that you will save any particular amount. Debt relief may affect your credit,
+        and forgiven debt may be taxable.
       </p>
 
       <h2>4. Your responsibilities</h2>
       <ul>
         <li>Provide information that is accurate and your own.</li>
         <li>Do not submit Social Security numbers, full account numbers, passwords or other sensitive information through this website.</li>
-        <li>Continue to meet any deadlines that apply to you, including deadlines in a validation notice or in court papers.</li>
+        <li>Continue to meet any deadlines that apply to you, including deadlines in court papers.</li>
         <li>Use the website only for lawful purposes, and do not interfere with its security or operation.</li>
       </ul>
 
       <h2>5. Communications</h2>
       <p>
         If you give consent in our form, we may contact you by phone or email — and by text message if you choose that
-        option — about your request. You may withdraw consent at any time. See our <Link href="/privacy">Privacy Policy</Link>.
+        option — about your consultation. You may withdraw consent at any time. See our <Link href="/privacy">Privacy Policy</Link>.
       </p>
 
       <h2>6. Links to other websites</h2>

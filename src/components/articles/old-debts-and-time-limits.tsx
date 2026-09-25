@@ -45,8 +45,7 @@ export default function Article() {
         <p>
           The validation notice shows the creditor and an itemization from a specific date, which can help you understand
           how old an account is and how the amount has grown.{" "}
-          <Link href="/request-review">Request a validation review</Link> if you would like help understanding the
-          information connected to an older account.
+          If you are struggling with several debts, <Link href="/free-consultation">a free consultation</Link> can help you understand your options.
         </p>
       </div>
 

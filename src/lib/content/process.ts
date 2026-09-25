@@ -4,44 +4,43 @@ export type ProcessStep = { title: string; icon: IconName; summary: string; deta
 
 export const processSteps: ProcessStep[] = [
   {
-    title: "Submit Information",
-    icon: "inbox",
-    summary: "Answer a few short questions about the debt and tell us how to reach you. It takes just a few minutes.",
+    title: "Free Consultation",
+    icon: "message",
+    summary: "Talk with a Greenlight consultant about your debts, your budget and your goals. We look at your situation before recommending anything.",
     details: [
-      "Your name, state and contact details",
-      "The type of debt and an approximate amount",
-      "Whether a debt collector has contacted you",
-      "No Social Security number or account numbers",
+      "A review of your debts and monthly budget",
+      "An honest answer about whether our program may fit",
+      "No cost and no obligation",
     ],
   },
   {
-    title: "Information Is Reviewed",
-    icon: "search",
-    summary: "We read what you shared and contact you to understand your situation and the letters you have received.",
-    details: [
-      "We confirm your request by phone or email",
-      "We ask what notices or letters you have",
-      "We note any deadlines, such as the dispute date",
-    ],
-  },
-  {
-    title: "Documentation Is Evaluated",
-    icon: "documents",
-    summary: "Available documentation and account information are looked at carefully, piece by piece.",
-    details: [
-      "Who is collecting, and who the debt is owed to",
-      "How the amount is itemized over time",
-      "What information is present — and what is missing",
-    ],
-  },
-  {
-    title: "Understand Your Next Steps",
+    title: "Your Customized Plan",
     icon: "compass",
-    summary: "We explain what was found, in plain English, and the steps that may be available to you. You decide what to do.",
+    summary: "If our program is a good fit, we build a plan around a monthly amount you can afford.",
     details: [
-      "A clear summary of what was and wasn't found",
-      "Options that may be available in your situation",
-      "No pressure and no obligation",
+      "Built around your budget, not a template",
+      "Timeframe, fees and terms explained in writing before you enroll",
+      "You decide whether to enroll",
+    ],
+  },
+  {
+    title: "We Negotiate With Creditors",
+    icon: "scale",
+    summary: "We work directly with your creditors to try to reach settlements for less than the full balance you owe.",
+    details: [
+      "Your dedicated account manager keeps you informed",
+      "Each settlement is explained to you, and you agree before it is final",
+      "Results vary — creditors are not required to settle",
+    ],
+  },
+  {
+    title: "Track Progress & Move Forward",
+    icon: "checkCircle",
+    summary: "Follow your progress anytime with live online access as you work toward financial freedom.",
+    details: [
+      "Live online access to your program",
+      "Updates as each debt is resolved",
+      "Support from your account manager throughout",
     ],
   },
 ];

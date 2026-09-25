@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { contactMessageSchema, type ContactMessage } from "@/lib/validation/review-request";
+import { contactMessageSchema, type ContactMessage } from "@/lib/validation/consultation-request";
 import { track } from "@/lib/analytics/track";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";

@@ -27,7 +27,7 @@ export function PageHeader({
   return (
     <section className="on-dark relative isolate overflow-hidden bg-navy-900">
       <JsonLd data={graph(breadcrumbSchema(all))} />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_80%_at_85%_0%,#173a73_0%,rgba(8,23,49,0)_65%)]" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_80%_at_85%_0%,#124536_0%,rgba(8,23,49,0)_65%)]" />
       <div aria-hidden="true" className="grid-backdrop absolute inset-0 -z-10 opacity-80" />
       <div className={`container-page ${compact ? "py-8 sm:py-10" : "py-12 sm:py-16 lg:py-20"}`}>
         <nav aria-label="Breadcrumb">

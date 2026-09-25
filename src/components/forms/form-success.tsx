@@ -28,15 +28,15 @@ export function FormSuccess() {
         {[
           {
             title: "We'll contact you",
-            text: "Someone from our team will reach out by phone or email, using the details you provided, to confirm your request and ask about the account.",
+            text: "A Greenlight consultant will reach out by phone or email, using the details you provided, to set up your free consultation.",
           },
           {
-            title: "Keep your letters nearby",
-            text: "If you have letters or notices from a debt collector, keep them handy. The date on the validation notice may matter.",
+            title: "Have your information nearby",
+            text: "A list of your debts, your monthly budget, and any recent letters from creditors or collectors will help us give you a clearer picture.",
           },
           {
-            title: "You'll learn what we find",
-            text: "We will explain what information is available, what is missing, and the steps that may be open to you. You decide what to do next.",
+            title: "You'll get honest answers",
+            text: "We'll explain whether our program may fit, how a customized plan would work, and every fee in writing. You decide what to do next.",
           },
         ].map((s, i) => (
           <li key={s.title} className="flex gap-4">
@@ -51,8 +51,8 @@ export function FormSuccess() {
 
       <div className="mt-8 space-y-4 rounded-[var(--radius-card)] bg-canvas p-5 text-[1.0625rem] leading-relaxed sm:p-6 sm:text-lg">
         <p>
-          <strong className="font-semibold text-ink">No guaranteed result.</strong> Submitting a request does not guarantee
-          any outcome, and it does not remove, reduce or settle a debt.
+          <strong className="font-semibold text-ink">No guaranteed result.</strong> Submitting a request does not create
+          any obligation or guarantee any outcome. Results vary from person to person.
         </p>
         <p>
           <strong className="font-semibold text-ink">How your information is used.</strong> We use it only to respond to
@@ -63,15 +63,16 @@ export function FormSuccess() {
           . We do not sell your personal information.
         </p>
         <p>
-          <strong className="font-semibold text-ink">Don&apos;t miss deadlines.</strong> If a collector gave you a date to
-          dispute the debt, or you have received court papers, don&apos;t wait for us — those deadlines still apply.
+          <strong className="font-semibold text-ink">Don&apos;t miss deadlines.</strong> Keep making decisions about your
+          accounts as you normally would until you&apos;ve spoken with us. If you have received court papers, don&apos;t wait
+          — those deadlines still apply.
           {siteConfig.isLawFirm ? "" : " If you have been sued, please contact a licensed attorney."}
         </p>
       </div>
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row">
         <Link href="/resources" className="link inline-flex min-h-12 items-center gap-2 text-lg">
-          Read our plain-English guides
+          Read our free guides
           <Icon name="arrowRight" className="size-5" />
         </Link>
       </div>

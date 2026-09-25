@@ -11,6 +11,17 @@ export type ResourceMeta = {
 
 export const resources: ResourceMeta[] = [
   {
+    slug: "debt-relief-what-to-know",
+    title: "Debt Relief: What to Know Before You Enroll",
+    shortTitle: "Debt relief: what to know",
+    description:
+      "How debt relief works, who it may help, its trade-offs for your credit and taxes, the fee rules companies must follow, and alternatives to consider.",
+    summary: "How debt relief works, its trade-offs, the fee rules, and the alternatives — explained honestly.",
+    readingMinutes: 6,
+    datePublished: "2026-09-25",
+    dateModified: "2026-09-25",
+  },
+  {
     slug: "debt-validation-letter",
     title: "The Debt Validation Letter: What It Must Include and How to Respond",
     shortTitle: "The debt validation letter",

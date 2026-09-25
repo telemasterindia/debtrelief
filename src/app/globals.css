@@ -20,14 +20,16 @@
   --color-on-dark: #e6edf7;
   --color-on-dark-muted: #b9c6da;
 
-  /* Restrained electric-blue accent. */
-  --color-brand-50: #edf3ff;
-  --color-brand-100: #d9e6ff;
-  --color-brand-500: #2a6ff0;
-  --color-brand-600: #0b57d0;
-  --color-brand-700: #0843a8;
-  --color-cyan-300: #7dd3fc;
-  --color-cyan-400: #38bdf8;
+  /* Greenlight green. brand-600/700 carry white text at WCAG AA or better.
+     Replace with the exact values from the official logo when it is added. */
+  --color-brand-50: #ebf7ef;
+  --color-brand-100: #d2eedb;
+  --color-brand-500: #1f9d52;
+  --color-brand-600: #137a3d;
+  --color-brand-700: #0d5f2f;
+  /* Light accents used only on the dark navy backgrounds. */
+  --color-accent-300: #86efac;
+  --color-accent-400: #4ade80;
 
   --color-success-50: #ecf8f0;
   --color-success-700: #0f6b36;
@@ -87,7 +89,7 @@
     border-radius: 6px;
   }
   .on-dark :focus-visible {
-    outline-color: var(--color-cyan-300);
+    outline-color: var(--color-accent-300);
     box-shadow: 0 0 0 3px var(--color-navy-950);
   }
 
@@ -135,8 +137,8 @@
 
   .grid-backdrop {
     background-image:
-      linear-gradient(to right, rgb(125 211 252 / 0.07) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(125 211 252 / 0.07) 1px, transparent 1px);
+      linear-gradient(to right, rgb(134 239 172 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(134 239 172 / 0.06) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse at 70% 40%, black 20%, transparent 75%);
   }

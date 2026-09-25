@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { basicInfoSchema, contactInfoSchema, normalizeUsPhone, reviewRequestSchema } from "./review-request";
+import { basicInfoSchema, contactInfoSchema, normalizeUsPhone, consultationRequestSchema } from "./consultation-request";
 
 const valid = {
   firstName: "Mary",
   lastName: "O'Neil",
   debtType: "credit_card",
-  debtAmount: "1k_5k",
+  debtAmount: "5k_10k",
   collectorContact: "yes",
   state: "OH",
   details: "",
@@ -18,17 +18,17 @@ const valid = {
 
 describe("review request schema", () => {
   it("accepts a complete, valid request", () => {
-    expect(reviewRequestSchema.safeParse(valid).success).toBe(true);
+    expect(consultationRequestSchema.safeParse(valid).success).toBe(true);
   });
 
   it("requires consent", () => {
-    const r = reviewRequestSchema.safeParse({ ...valid, consentContact: false });
+    const r = consultationRequestSchema.safeParse({ ...valid, consentContact: false });
     expect(r.success).toBe(false);
   });
 
   it("rejects unknown states and debt types", () => {
-    expect(reviewRequestSchema.safeParse({ ...valid, state: "XX" }).success).toBe(false);
-    expect(reviewRequestSchema.safeParse({ ...valid, debtType: "mortgage" }).success).toBe(false);
+    expect(consultationRequestSchema.safeParse({ ...valid, state: "XX" }).success).toBe(false);
+    expect(consultationRequestSchema.safeParse({ ...valid, debtType: "home_loan" }).success).toBe(false);
   });
 
   it("gives plain-English name errors", () => {

@@ -7,7 +7,7 @@ import { Icon } from "@/components/ui/icon";
 import { Notice } from "@/components/ui/notice";
 import { SourceList } from "@/components/ui/source-list";
 import { CtaButton } from "@/components/ui/tracked-link";
-import { noticeContents } from "@/components/sections/validation-explainer";
+import { noticeContents } from "@/lib/content/validation";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { pages } from "@/lib/seo/pages";
 import { articleSchema, graph, webPageSchema } from "@/lib/seo/structured-data";
@@ -22,7 +22,7 @@ const toc = [
   { id: "dispute", label: "How to dispute or ask questions" },
   { id: "who", label: "Who the rules apply to" },
   { id: "limits", label: "What validation does not do" },
-  { id: "review", label: "How a review can help" },
+  { id: "help", label: "How Greenlight can help" },
 ];
 
 export default function DebtValidationPage() {
@@ -107,7 +107,7 @@ export default function DebtValidationPage() {
             ].map((s, i, arr) => (
               <li key={s.when} className="relative flex gap-5 pb-8 last:pb-0">
                 {i < arr.length - 1 && <span aria-hidden="true" className="absolute left-[1.1rem] top-10 h-[calc(100%-2.5rem)] w-0.5 bg-line" />}
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-base font-bold text-cyan-300">{i + 1}</span>
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-base font-bold text-accent-300">{i + 1}</span>
                 <div>
                   <p className="text-xl font-semibold text-ink">{s.when}</p>
                   <p className="mt-1 text-lg leading-relaxed">{s.what}</p>
@@ -159,16 +159,15 @@ export default function DebtValidationPage() {
           </div>
 
           <div className="prose-readable">
-            <h2 id="review">How a review can help</h2>
+            <h2 id="help">How Greenlight can help</h2>
             <p>
-              Reading a validation notice — or noticing what is missing from it — isn&apos;t always easy. A validation
-              review looks at the information connected to the account and explains it in plain English, so you can decide
-              what to do with confidence.
+              If you are struggling with credit card or other unsecured debt, Greenlight Debt Relief can talk through your
+              options in a free consultation — including whether a customized debt relief plan may fit your situation.
             </p>
           </div>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <CtaButton href="/request-review" location="debt_validation_page" arrow>
-              Request a Validation Review
+            <CtaButton href="/free-consultation" location="debt_validation_page" arrow>
+              Get My Free Consultation
             </CtaButton>
             <CtaButton href="/how-it-works" location="debt_validation_page_secondary" variant="secondary">
               How It Works

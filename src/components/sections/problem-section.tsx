@@ -1,12 +1,11 @@
 import { Icon, type IconName } from "@/components/ui/icon";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const questions: { icon: IconName; q: string; a: string }[] = [
-  { icon: "building", q: "Who is collecting this debt?", a: "The company contacting you may not be the one you originally did business with." },
-  { icon: "document", q: "What account is this?", a: "Debts are often sold, and the name on the letter may be unfamiliar." },
-  { icon: "dollar", q: "How much is being claimed — and why?", a: "Interest and fees can change the amount over time." },
-  { icon: "documents", q: "What documentation exists?", a: "Records may be complete, partial, or hard to find." },
-  { icon: "search", q: "What should I look at before I pay?", a: "Knowing the facts first helps you make a confident decision." },
+const situations: { icon: IconName; q: string; a: string }[] = [
+  { icon: "dollar", q: "Minimum payments barely move the balance", a: "High interest can mean you pay for years without making real progress." },
+  { icon: "documents", q: "Several creditors, several due dates", a: "Keeping track of multiple cards and bills every month is exhausting." },
+  { icon: "phone", q: "Calls and letters from collectors", a: "You may not be sure who you owe, or how much." },
+  { icon: "clock", q: "Falling behind despite your best effort", a: "A job change, medical bills or rising costs can happen to anyone." },
 ];
 
 export function ProblemSection() {
@@ -16,27 +15,23 @@ export function ProblemSection() {
         <div className="reveal lg:sticky lg:top-32 lg:self-start">
           <SectionHeading
             id="problem-title"
-            eyebrow="Why people come to us"
-            title="When You're Asked to Pay a Debt, You May Have Questions."
+            eyebrow="You're not alone"
+            title="When Credit Card Debt Feels Overwhelming, a Plan Helps."
             intro={
               <>
-                <p>
-                  A letter or phone call from a debt collector can be confusing — especially when you don&apos;t recognize
-                  the company or the amount.
+                <p>Debt can happen to anyone. What matters is the next step — and understanding your real options.</p>
+                <p className="mt-4 font-medium text-ink">
+                  If any of these sound familiar, a free consultation can help you see where you stand.
                 </p>
-                <p className="mt-4 font-medium text-ink">These are reasonable questions. You are allowed to ask them.</p>
               </>
             }
           />
         </div>
-        <ol className="reveal space-y-4">
-          {questions.map((item, i) => (
+        <ul className="reveal space-y-4">
+          {situations.map((item) => (
             <li key={item.q} className="flex gap-5 rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-[var(--shadow-card)] sm:p-7">
-              <span className="relative flex size-14 shrink-0 items-center justify-center rounded-2xl bg-navy-900 text-cyan-300">
+              <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-navy-900 text-accent-300">
                 <Icon name={item.icon} className="size-7" />
-                <span className="absolute -right-2 -top-2 flex size-7 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white ring-4 ring-white">
-                  {i + 1}
-                </span>
               </span>
               <span>
                 <span className="block text-xl font-semibold leading-snug text-ink">{item.q}</span>
@@ -44,7 +39,7 @@ export function ProblemSection() {
               </span>
             </li>
           ))}
-        </ol>
+        </ul>
       </div>
     </section>
   );

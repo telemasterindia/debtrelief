@@ -6,11 +6,11 @@ export function Eyebrow({ children, dark, className }: { children: ReactNode; da
     <p
       className={cn(
         "inline-flex items-center gap-2.5 text-base font-semibold tracking-[0.01em]",
-        dark ? "text-cyan-300" : "text-brand-700",
+        dark ? "text-accent-300" : "text-brand-700",
         className,
       )}
     >
-      <span aria-hidden="true" className={cn("h-0.5 w-6 rounded-full", dark ? "bg-cyan-300" : "bg-brand-600")} />
+      <span aria-hidden="true" className={cn("h-0.5 w-6 rounded-full", dark ? "bg-accent-300" : "bg-brand-600")} />
       {children}
     </p>
   );

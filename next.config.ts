@@ -8,7 +8,9 @@ const csp = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isProd ? "" : " 'unsafe-eval'"}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  // YouTube: the official Greenlight video thumbnail and privacy-enhanced embed.
+  "img-src 'self' data: blob: https://i.ytimg.com",
+  "frame-src https://www.youtube-nocookie.com",
   "font-src 'self' data:",
   "connect-src 'self'",
   "worker-src 'self' blob:",
@@ -21,6 +23,9 @@ const csp = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  async redirects() {
+    return [{ source: "/request-review", destination: "/free-consultation", permanent: true }];
+  },
   async headers() {
     return [
       {

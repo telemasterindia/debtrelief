@@ -8,11 +8,11 @@ import {
   COLLECTOR_CONTACT,
   DEBT_AMOUNTS,
   DEBT_TYPES,
-  reviewRequestSchema,
-  reviewSteps,
+  consultationRequestSchema,
+  consultationSteps,
   stepFields,
-  type ReviewRequest,
-} from "@/lib/validation/review-request";
+  type ConsultationRequest,
+} from "@/lib/validation/consultation-request";
 import { US_STATES } from "@/lib/validation/us-states";
 import { siteConfig } from "@/lib/site-config";
 import { track } from "@/lib/analytics/track";
@@ -21,13 +21,13 @@ import { Icon } from "@/components/ui/icon";
 import { Checkbox, RadioGroup, SelectField, TextArea, TextField } from "./fields";
 import { FormSuccess } from "./form-success";
 
-type FormValues = ReviewRequest & { website?: string };
+type FormValues = ConsultationRequest & { website?: string };
 type Field = FieldPath<FormValues>;
 
 const labelFor = (options: readonly { value: string; label: string }[], value?: string) =>
   options.find((o) => o.value === value)?.label ?? "—";
 
-export function ReviewForm() {
+export function ConsultationForm() {
   const [step, setStep] = useState(0);
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [serverError, setServerError] = useState<string | null>(null);
@@ -45,7 +45,7 @@ export function ReviewForm() {
     setError,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: zodResolver(reviewRequestSchema) as never,
+    resolver: zodResolver(consultationRequestSchema) as never,
     // Validation runs when the visitor presses Continue. A field that has an error is then
     // re-checked as they type (see onChange below), never on blur — validating on blur would
     // make the layout jump at the moment they click Continue, causing the click to miss.
@@ -66,7 +66,7 @@ export function ReviewForm() {
   const onFirstInteraction = () => {
     if (!started.current) {
       started.current = true;
-      track("form_started", { form: "review" });
+      track("form_started", { form: "consultation" });
     }
   };
 
@@ -75,7 +75,7 @@ export function ReviewForm() {
     .filter((e) => e.message);
 
   const reportErrors = (fields: string[]) => {
-    fields.forEach((field) => track("form_validation_error", { form: "review", step: step + 1, field }));
+    fields.forEach((field) => track("form_validation_error", { form: "consultation", step: step + 1, field }));
     setShowSummary(true);
     requestAnimationFrame(() => errorSummary.current?.focus());
   };
@@ -87,14 +87,14 @@ export function ReviewForm() {
       reportErrors(fields.filter((f) => getFieldError(f)));
       return;
     }
-    track("form_step_completed", { form: "review", step: step + 1 });
+    track("form_step_completed", { form: "consultation", step: step + 1 });
     setShowSummary(false);
-    setStep((s) => Math.min(s + 1, reviewSteps.length - 1));
+    setStep((s) => Math.min(s + 1, consultationSteps.length - 1));
   };
 
   // Checked against the schema directly: `errors` in this closure is from the previous render.
   const getFieldError = (f: Field) =>
-    !reviewRequestSchema.shape[f as keyof typeof reviewRequestSchema.shape]?.safeParse(getValues(f as never)).success;
+    !consultationRequestSchema.shape[f as keyof typeof consultationRequestSchema.shape]?.safeParse(getValues(f as never)).success;
 
   const back = () => {
     setShowSummary(false);
@@ -111,14 +111,14 @@ export function ReviewForm() {
     setServerError(null);
     setStatus("submitting");
     try {
-      const res = await fetch("/api/review-request", {
+      const res = await fetch("/api/consultation-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       const body = (await res.json().catch(() => ({}))) as { message?: string; fieldErrors?: Record<string, string> };
       if (res.ok) {
-        track("form_submitted", { form: "review" });
+        track("form_submitted", { form: "consultation" });
         setStatus("success");
         return;
       }
@@ -128,15 +128,15 @@ export function ReviewForm() {
         entries.forEach(([field, message]) => setError(field as Field, { message }));
         const firstStep = stepFields.findIndex((fields) => entries.some(([f]) => fields.includes(f)));
         if (firstStep >= 0) setStep(firstStep);
-        track("form_submit_failed", { form: "review", reason: "rejected" });
+        track("form_submit_failed", { form: "consultation", reason: "rejected" });
         setShowSummary(true);
         return;
       }
-      track("form_submit_failed", { form: "review", reason: "server" });
+      track("form_submit_failed", { form: "consultation", reason: "server" });
       setServerError(body.message ?? "Something went wrong on our side. Please try again in a few minutes.");
     } catch {
       setStatus("idle");
-      track("form_submit_failed", { form: "review", reason: "network" });
+      track("form_submit_failed", { form: "consultation", reason: "network" });
       setServerError("We couldn't connect. Please check your internet connection and try again.");
     }
   };
@@ -146,18 +146,18 @@ export function ReviewForm() {
   if (status === "success") return <FormSuccess />;
 
   const values = getValues();
-  const stepInfo = reviewSteps[step];
-  const isLast = step === reviewSteps.length - 1;
+  const stepInfo = consultationSteps[step];
+  const isLast = step === consultationSteps.length - 1;
 
   return (
     <div className="rounded-[1.25rem] border border-line bg-white shadow-[var(--shadow-raised)]">
       {/* Progress */}
       <div className="border-b border-line px-5 py-6 sm:px-10">
         <p className="text-lg font-semibold text-ink" aria-live="polite">
-          Step {step + 1} of {reviewSteps.length}: <span className="text-brand-700">{stepInfo.title}</span>
+          Step {step + 1} of {consultationSteps.length}: <span className="text-brand-700">{stepInfo.title}</span>
         </p>
         <ol className="mt-4 grid grid-cols-4 gap-2" aria-label="Form progress">
-          {reviewSteps.map((s, i) => (
+          {consultationSteps.map((s, i) => (
             <li key={s.id} aria-current={i === step ? "step" : undefined}>
               <span className={`block h-2 rounded-full ${i <= step ? "bg-brand-600" : "bg-line"}`} aria-hidden="true" />
               <span className={`mt-2 hidden text-base sm:block ${i === step ? "font-semibold text-ink" : "text-muted"}`}>
@@ -243,7 +243,7 @@ export function ReviewForm() {
         <div className="mt-8 space-y-8">
           {step === 0 && (
             <>
-              <p className="text-lg text-muted">Let&apos;s start with your name. Every question has a clear label, and you can go back at any time.</p>
+              <p className="text-lg text-muted">Let&apos;s start with your name. You can go back and change any answer at any time.</p>
               <div className="grid gap-6 sm:grid-cols-2">
                 <TextField id="firstName" label="First name" autoComplete="given-name" error={errors.firstName?.message} {...register("firstName")} />
                 <TextField id="lastName" label="Last name" autoComplete="family-name" error={errors.lastName?.message} {...register("lastName")} />
@@ -255,15 +255,15 @@ export function ReviewForm() {
             <>
               <RadioGroup
                 id="debtType"
-                legend="What type of debt is it?"
+                legend="What type of debt do you need help with?"
                 options={DEBT_TYPES}
                 error={errors.debtType?.message}
                 inputProps={() => register("debtType")}
               />
               <RadioGroup
                 id="debtAmount"
-                legend="About how much is being claimed?"
-                hint="An estimate is fine."
+                legend="About how much do you owe in total?"
+                hint="Your total unsecured debt. An estimate is fine."
                 options={DEBT_AMOUNTS}
                 columns={3}
                 error={errors.debtAmount?.message}
@@ -271,7 +271,7 @@ export function ReviewForm() {
               />
               <RadioGroup
                 id="collectorContact"
-                legend="Has a debt collector contacted you about this debt?"
+                legend="Has a debt collector contacted you?"
                 options={COLLECTOR_CONTACT}
                 columns={3}
                 error={errors.collectorContact?.message}
@@ -291,7 +291,7 @@ export function ReviewForm() {
                 id="details"
                 label="Anything else you'd like us to know?"
                 optional
-                hint="For example, the name on the collection letter. Please do not include your Social Security number or full account numbers."
+                hint="For example, the number of creditors or your main concern. Please do not include your Social Security number or full account numbers."
                 maxLength={1000}
                 error={errors.details?.message}
                 {...register("details")}
@@ -301,7 +301,7 @@ export function ReviewForm() {
 
           {step === 2 && (
             <>
-              <p className="text-lg text-muted">We&apos;ll use these details only to contact you about your request.</p>
+              <p className="text-lg text-muted">We&apos;ll use these details only to contact you about your consultation.</p>
               <TextField
                 id="email"
                 type="email"
@@ -365,8 +365,8 @@ export function ReviewForm() {
                   label={
                     <>
                       <strong className="font-semibold text-ink">Required.</strong> I agree that {siteConfig.name} may
-                      contact me by phone call or email, using the details I provided, about my request for a debt
-                      validation review. I understand this consent is not a condition of buying anything, and I can
+                      contact me by phone call or email, using the details I provided, about my request for a debt relief
+                      consultation. I understand this consent is not a condition of buying anything, and I can
                       withdraw it at any time.
                     </>
                   }
@@ -385,7 +385,7 @@ export function ReviewForm() {
                       <Link href="/terms" target="_blank" className="link">
                         Terms &amp; Conditions<span className="sr-only"> (opens in a new tab)</span>
                       </Link>
-                      . I understand that a review does not guarantee any result
+                      . I understand that results vary and are not guaranteed
                       {siteConfig.isLawFirm ? "" : ` and that ${siteConfig.name} does not provide legal advice`}.
                     </>
                   }
@@ -396,7 +396,7 @@ export function ReviewForm() {
                   label={
                     <>
                       <strong className="font-semibold text-ink">Optional.</strong> You may also send me text messages
-                      about my request at the phone number I provided. Message and data rates may apply. I can opt out at
+                      about my consultation at the phone number I provided. Message and data rates may apply. I can opt out at
                       any time.
                     </>
                   }
@@ -417,7 +417,7 @@ export function ReviewForm() {
           )}
           {isLast ? (
             <Button type="submit" disabled={status === "submitting"} aria-busy={status === "submitting"}>
-              {status === "submitting" ? "Sending your request…" : "Request My Validation Review"}
+              {status === "submitting" ? "Sending your request…" : "Request My Free Consultation"}
             </Button>
           ) : (
             <Button type="submit" arrow>

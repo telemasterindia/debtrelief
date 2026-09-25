@@ -21,17 +21,17 @@ export default function ContactPage() {
         crumbs={[{ name: "Contact", path: page.path }]}
         eyebrow="Contact us"
         title="We're Here to Help."
-        intro="Have a question before requesting a review? Send us a message and we'll reply by email."
+        intro="Call us, email us, or send a message. We're happy to answer your questions about debt relief."
       />
       <div className="bg-canvas py-14 sm:py-20">
         <div className="container-page grid gap-10 lg:grid-cols-[1fr_24rem] lg:gap-14">
           <ContactForm />
           <aside className="space-y-6" aria-label="Other ways to reach us">
             <div className="rounded-[var(--radius-card)] border border-line bg-white p-6">
-              <h2 className="text-xl">Ready to request a review?</h2>
-              <p className="mt-2 text-[1.0625rem] leading-relaxed text-muted">It takes just a few minutes, and there is no obligation.</p>
-              <CtaButton href="/request-review" location="contact_sidebar" className="mt-5 w-full" size="md" arrow>
-                Request a Validation Review
+              <h2 className="text-xl">Ready to get started?</h2>
+              <p className="mt-2 text-[1.0625rem] leading-relaxed text-muted">Request a free consultation online in a few minutes. There is no obligation.</p>
+              <CtaButton href="/free-consultation" location="contact_sidebar" className="mt-5 w-full" size="md" arrow>
+                Get My Free Consultation
               </CtaButton>
             </div>
             {(phone || email || address) && (

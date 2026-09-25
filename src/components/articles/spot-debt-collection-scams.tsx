@@ -34,6 +34,13 @@ export default function Article() {
       </Notice>
 
       <div className="prose-readable">
+        <h2>Debt relief scams, too</h2>
+        <p>
+          Scammers also pose as debt relief companies. Be cautious of anyone who charges fees before settling any of your
+          debts, guarantees to make your debt disappear, or enrolls you without reviewing your finances.{" "}
+          <Link href="/resources/debt-relief-what-to-know">Learn what to expect from a legitimate debt relief company.</Link>
+        </p>
+
         <h2>Where to report a scam</h2>
         <p>
           Report suspected scams to the FTC at ReportFraud.ftc.gov and to your state attorney general. You can also submit

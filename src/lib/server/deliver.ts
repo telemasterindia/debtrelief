@@ -6,7 +6,7 @@ export type DeliveryResult = { ok: true } | { ok: false; reason: "not_configured
  * Delivers a validated submission to the configured webhook.
  * Personal information is never written to server logs.
  */
-export async function deliverSubmission(kind: "review_request" | "contact_message", data: Record<string, unknown>): Promise<DeliveryResult> {
+export async function deliverSubmission(kind: "consultation_request" | "contact_message", data: Record<string, unknown>): Promise<DeliveryResult> {
   const url = process.env.LEAD_WEBHOOK_URL;
 
   if (!url) {

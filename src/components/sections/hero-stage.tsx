@@ -14,7 +14,7 @@ export function HeroStage({ children }: { children: ReactNode }) {
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_60%_at_75%_35%,#173a73_0%,rgba(8,23,49,0)_65%),radial-gradient(ellipse_60%_50%_at_10%_100%,#0e2a55_0%,rgba(8,23,49,0)_60%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_60%_at_75%_35%,#14503f_0%,rgba(8,23,49,0)_65%),radial-gradient(ellipse_60%_50%_at_10%_100%,#0e2a55_0%,rgba(8,23,49,0)_60%)]"
       />
       <div aria-hidden="true" className="grid-backdrop absolute inset-0 -z-10" />
       {children}

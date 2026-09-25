@@ -20,28 +20,42 @@ export default function ResourcesPage() {
       <PageHeader
         crumbs={[{ name: "Resources", path: page.path }]}
         eyebrow="Guides"
-        title="Plain-English Guides to Debt Collection"
-        intro="Short, practical guides based on federal law and official consumer guidance. Free to read — no sign-up required."
+        title="Free Guides to Debt Relief and Your Rights"
+        intro="Short, practical guides based on federal law and official CFPB, FTC and IRS guidance. Free to read — no sign-up required."
       />
       <div className="container-page py-14 sm:py-20">
         <ul className="grid gap-6 md:grid-cols-2">
           <li className="reveal md:col-span-2">
             <Link
-              href="/debt-validation"
+              href="/resources/debt-relief-what-to-know"
               className="group flex flex-col gap-6 rounded-[var(--radius-card)] bg-navy-900 p-8 text-on-dark shadow-[var(--shadow-raised)] sm:flex-row sm:items-center sm:p-10"
             >
-              <span className="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-cyan-300">
+              <span className="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-accent-300">
                 <Icon name="document" className="size-9" />
               </span>
               <span className="flex-1">
-                <span className="text-base font-semibold uppercase tracking-[0.08em] text-cyan-300">Start here</span>
-                <span className="mt-1 block text-2xl font-bold text-white sm:text-3xl">What Is Debt Validation? A Plain-English Guide</span>
-                <span className="mt-2 block text-lg text-on-dark">Your rights, the validation notice, key deadlines — and what validation does not do.</span>
+                <span className="text-base font-semibold uppercase tracking-[0.08em] text-accent-300">Start here</span>
+                <span className="mt-1 block text-2xl font-bold text-white sm:text-3xl">Debt Relief: What to Know Before You Enroll</span>
+                <span className="mt-2 block text-lg text-on-dark">How it works, the trade-offs, the fee rules and the alternatives — explained honestly.</span>
               </span>
               <Icon name="arrowRight" className="size-7 shrink-0 text-white transition-transform group-hover:translate-x-1" />
             </Link>
           </li>
-          {resources.map((r) => (
+          <li className="reveal">
+            <Link
+              href="/debt-validation"
+              className="group flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-white p-7 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-raised)] sm:p-8"
+            >
+              <span className="text-base text-muted">8 minute read</span>
+              <span className="mt-2 text-2xl font-bold leading-snug text-ink group-hover:text-brand-700">What Is Debt Validation? Your Rights With Debt Collectors</span>
+              <span className="mt-3 flex-1 text-lg leading-relaxed text-muted">Your right to information about a debt in collection, key deadlines, and what validation does not do.</span>
+              <span className="mt-6 inline-flex items-center gap-2 text-lg font-semibold text-brand-700">
+                Read the guide
+                <Icon name="arrowRight" className="size-5 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </li>
+          {resources.filter((r) => r.slug !== "debt-relief-what-to-know").map((r) => (
             <li key={r.slug} className="reveal">
               <Link
                 href={`/resources/${r.slug}`}

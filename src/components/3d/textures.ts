@@ -34,7 +34,7 @@ export function createDocumentTexture() {
   ctx.fillRect(0, 0, w, h);
 
   // Header
-  ctx.fillStyle = "#0b57d0";
+  ctx.fillStyle = "#137a3d";
   roundRect(ctx, 72, 76, 64, 64, 14);
   ctx.fill();
   ctx.strokeStyle = "#ffffff";
@@ -50,22 +50,22 @@ export function createDocumentTexture() {
   ctx.fillStyle = "#0b1a33";
   ctx.font = `700 46px ${FONT}`;
   ctx.textBaseline = "middle";
-  ctx.fillText("Account Statement", 164, 96);
+  ctx.fillText("Your Custom Plan", 164, 96);
   ctx.fillStyle = "#56657d";
   ctx.font = `500 28px ${FONT}`;
-  ctx.fillText("Validation information", 164, 136);
+  ctx.fillText("Debt relief program", 164, 136);
 
   ctx.fillStyle = "#d5dde9";
   ctx.fillRect(72, 196, w - 144, 3);
 
   const rows: [string, number][] = [
-    ["Creditor on itemization date", 250],
-    ["Current creditor", 210],
-    ["Account reference", 170],
-    ["Itemization date", 150],
-    ["Interest since itemization", 120],
-    ["Fees since itemization", 120],
-    ["Payments and credits", 140],
+    ["Credit card", 250],
+    ["Credit card", 210],
+    ["Medical bill", 170],
+    ["Personal loan", 190],
+    ["Monthly program amount", 140],
+    ["Account manager", 150],
+    ["Online access", 120],
   ];
   let y = 262;
   for (const [label, barW] of rows) {
@@ -80,15 +80,15 @@ export function createDocumentTexture() {
 
   // Highlighted row
   const hy = y - 10;
-  ctx.fillStyle = "rgba(56, 189, 248, 0.16)";
+  ctx.fillStyle = "rgba(74, 222, 128, 0.18)";
   roundRect(ctx, 52, hy - 44, w - 104, 92, 18);
   ctx.fill();
-  ctx.strokeStyle = "rgba(14, 165, 233, 0.9)";
+  ctx.strokeStyle = "rgba(22, 163, 74, 0.9)";
   ctx.lineWidth = 3;
   ctx.stroke();
   ctx.fillStyle = "#0b1a33";
   ctx.font = `700 32px ${FONT}`;
-  ctx.fillText("Current amount", 84, hy);
+  ctx.fillText("Creditor negotiation", 84, hy);
   ctx.fillStyle = "#0e2445";
   roundRect(ctx, w - 84 - 190, hy - 14, 190, 28, 14);
   ctx.fill();
@@ -101,7 +101,7 @@ export function createDocumentTexture() {
     ctx.fill();
     fy += 40;
   }
-  ctx.fillStyle = "#0b57d0";
+  ctx.fillStyle = "#137a3d";
   roundRect(ctx, 72, fy + 30, 220, 20, 10);
   ctx.fill();
 
@@ -135,16 +135,16 @@ export function createChipTexture(label: string) {
   ctx.clearRect(0, 0, w, h);
 
   const g = ctx.createLinearGradient(0, 0, w, h);
-  g.addColorStop(0, "rgba(23, 52, 96, 0.92)");
+  g.addColorStop(0, "rgba(18, 60, 70, 0.92)");
   g.addColorStop(1, "rgba(8, 23, 49, 0.92)");
   ctx.fillStyle = g;
   roundRect(ctx, 4, 4, w - 8, h - 8, 30);
   ctx.fill();
-  ctx.strokeStyle = "rgba(125, 211, 252, 0.55)";
+  ctx.strokeStyle = "rgba(134, 239, 172, 0.55)";
   ctx.lineWidth = 3;
   ctx.stroke();
 
-  ctx.fillStyle = "#38bdf8";
+  ctx.fillStyle = "#4ade80";
   ctx.beginPath();
   ctx.arc(76, h / 2, 28, 0, Math.PI * 2);
   ctx.fill();

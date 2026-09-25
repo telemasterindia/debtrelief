@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { primaryNav, reviewCta } from "@/lib/navigation";
+import { consultationCta, primaryNav } from "@/lib/navigation";
+import { siteConfig } from "@/lib/site-config";
 import { track } from "@/lib/analytics/track";
 import { cn } from "@/lib/utils/cn";
 import { Icon } from "@/components/ui/icon";
@@ -50,9 +51,31 @@ export function Header() {
     };
   }, [open]);
 
-  const onRequestPage = pathname === reviewCta.href;
+  const onRequestPage = pathname === consultationCta.href;
+  const { phone, phoneDisplay } = siteConfig;
 
   return (
+    <>
+    {phone && phoneDisplay && (
+      <div className="on-dark bg-navy-950 text-on-dark">
+        <div className="container-page flex min-h-11 items-center justify-center gap-6 text-base sm:justify-between">
+          <p className="hidden sm:block">
+            {siteConfig.consultationIsFree ? "Free, no-obligation consultation" : "No-obligation consultation"} · Credit card &amp; unsecured debt
+          </p>
+          <a
+            href={`tel:${phone}`}
+            onClick={() => track("phone_click", { location: "top_bar" })}
+            className="inline-flex min-h-11 items-center gap-2 font-semibold text-white hover:text-accent-300"
+          >
+            <Icon name="phone" className="size-5 text-accent-300" />
+            <span>
+              <span className="sr-only sm:not-sr-only">Call us: </span>
+              {phoneDisplay}
+            </span>
+          </a>
+        </div>
+      </div>
+    )}
     <header
       className={cn(
         "sticky top-0 z-50 border-b bg-white/95 backdrop-blur-md transition-shadow duration-300 supports-[backdrop-filter]:bg-white/88",
@@ -90,11 +113,11 @@ export function Header() {
         <div className="flex items-center gap-3">
           {!onRequestPage && (
             <Link
-              href={reviewCta.href}
-              onClick={() => track("cta_click", { location: "header", label: reviewCta.label })}
+              href={consultationCta.href}
+              onClick={() => track("cta_click", { location: "header", label: consultationCta.label })}
               className="hidden min-h-12 items-center rounded-[var(--radius-control)] bg-brand-600 px-5 text-[1.0625rem] font-semibold text-white transition-colors hover:bg-brand-700 sm:inline-flex"
             >
-              {reviewCta.label}
+              {consultationCta.label}
             </Link>
           )}
           <button
@@ -142,16 +165,27 @@ export function Header() {
           </ul>
           {!onRequestPage && (
             <Link
-              href={reviewCta.href}
-              onClick={() => track("cta_click", { location: "mobile_menu", label: "Request a Validation Review" })}
+              href={consultationCta.href}
+              onClick={() => track("cta_click", { location: "mobile_menu", label: "Get My Free Consultation" })}
               className="mt-5 flex min-h-14 items-center justify-center gap-2 rounded-[var(--radius-control)] bg-brand-600 px-6 text-lg font-semibold text-white"
             >
-              Request a Validation Review
+              Get My Free Consultation
               <Icon name="arrowRight" className="size-5" />
             </Link>
+          )}
+          {phone && phoneDisplay && (
+            <a
+              href={`tel:${phone}`}
+              onClick={() => track("phone_click", { location: "mobile_menu" })}
+              className="mt-3 flex min-h-14 items-center justify-center gap-2 rounded-[var(--radius-control)] px-6 text-lg font-semibold text-ink ring-2 ring-inset ring-line-strong"
+            >
+              <Icon name="phone" className="size-5 text-brand-700" />
+              Call {phoneDisplay}
+            </a>
           )}
         </nav>
       </div>
     </header>
+    </>
   );
 }

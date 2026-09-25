@@ -15,7 +15,7 @@ export function organizationSchema() {
     name: siteConfig.name,
     ...(siteConfig.legalName ? { legalName: siteConfig.legalName } : {}),
     url: siteUrl,
-    logo: absoluteUrl("/icon.svg"),
+    ...(siteConfig.logo ? { logo: absoluteUrl(siteConfig.logo.src) } : {}),
     ...(siteConfig.foundingYear ? { foundingDate: String(siteConfig.foundingYear) } : {}),
     ...(address
       ? {
@@ -107,6 +107,23 @@ export function articleSchema(a: { path: string; headline: string; description: 
     // Authored and published by the organization. No individual author is
     // named unless a real, verifiable person is added.
     author: { "@id": orgId, "@type": "Organization", name: operatorName },
+    publisher: { "@id": orgId },
+  };
+}
+
+/**
+ * The official Greenlight video. Only facts we know are included; uploadDate and
+ * duration are omitted until confirmed (see README), so this is a minimal object.
+ */
+export function videoSchema() {
+  const id = siteConfig.youtubeVideoId;
+  return {
+    "@type": "VideoObject",
+    name: `${siteConfig.name} video`,
+    description: `A video from ${siteConfig.name} about our credit card and unsecured debt relief services.`,
+    thumbnailUrl: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${id}`,
+    contentUrl: `https://www.youtube.com/watch?v=${id}`,
     publisher: { "@id": orgId },
   };
 }

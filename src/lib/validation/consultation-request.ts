@@ -8,17 +8,17 @@ export const DEBT_TYPES = [
   { value: "credit_card", label: "Credit card" },
   { value: "medical", label: "Medical bill" },
   { value: "personal_loan", label: "Personal loan" },
-  { value: "collection_account", label: "Collection account (original lender unclear)" },
-  { value: "auto", label: "Auto loan balance" },
+  { value: "collection_account", label: "Collection account" },
+  { value: "multiple", label: "Several types of debt" },
   { value: "other", label: "Other or not sure" },
 ] as const;
 
 export const DEBT_AMOUNTS = [
-  { value: "under_1k", label: "Under $1,000" },
-  { value: "1k_5k", label: "$1,000 – $5,000" },
+  { value: "under_5k", label: "Under $5,000" },
   { value: "5k_10k", label: "$5,000 – $10,000" },
   { value: "10k_25k", label: "$10,000 – $25,000" },
-  { value: "over_25k", label: "More than $25,000" },
+  { value: "25k_50k", label: "$25,000 – $50,000" },
+  { value: "over_50k", label: "More than $50,000" },
   { value: "unsure", label: "I'm not sure" },
 ] as const;
 
@@ -46,7 +46,7 @@ export const basicInfoSchema = z.object({
 
 export const debtInfoSchema = z.object({
   debtType: z.enum(values(DEBT_TYPES), { error: "Please choose the type of debt." }),
-  debtAmount: z.enum(values(DEBT_AMOUNTS), { error: "Please choose an approximate amount." }),
+  debtAmount: z.enum(values(DEBT_AMOUNTS), { error: "Please choose an approximate total." }),
   collectorContact: z.enum(values(COLLECTOR_CONTACT), {
     error: "Please tell us whether a debt collector has contacted you.",
   }),
@@ -93,21 +93,21 @@ export const consentSchema = z.object({
   consentSms: z.boolean().optional(),
 });
 
-export const reviewRequestSchema = basicInfoSchema
+export const consultationRequestSchema = basicInfoSchema
   .extend(debtInfoSchema.shape)
   .extend(contactInfoSchema.shape)
   .extend(consentSchema.shape);
 
-export type ReviewRequest = z.infer<typeof reviewRequestSchema>;
+export type ConsultationRequest = z.infer<typeof consultationRequestSchema>;
 
-export const reviewSteps = [
+export const consultationSteps = [
   { id: "basic", title: "About you", schema: basicInfoSchema },
-  { id: "debt", title: "The debt", schema: debtInfoSchema },
+  { id: "debt", title: "Your debt", schema: debtInfoSchema },
   { id: "contact", title: "How to reach you", schema: contactInfoSchema },
   { id: "consent", title: "Review and consent", schema: consentSchema },
 ] as const;
 
-export const stepFields = reviewSteps.map((s) => Object.keys(s.schema.shape)) as string[][];
+export const stepFields = consultationSteps.map((s) => Object.keys(s.schema.shape)) as string[][];
 
 export const contactMessageSchema = z.object({
   name: z.string().trim().min(1, "Please enter your name.").max(120, "Please shorten your name."),

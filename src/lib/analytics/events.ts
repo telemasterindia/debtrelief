@@ -7,11 +7,11 @@
  */
 export type AnalyticsEventMap = {
   cta_click: { location: string; label: string };
-  form_started: { form: "review" | "contact" };
-  form_step_completed: { form: "review"; step: number };
-  form_validation_error: { form: "review" | "contact"; step?: number; field: string };
-  form_submitted: { form: "review" | "contact" };
-  form_submit_failed: { form: "review" | "contact"; reason: "network" | "server" | "rejected" };
+  form_started: { form: "consultation" | "contact" };
+  form_step_completed: { form: "consultation"; step: number };
+  form_validation_error: { form: "consultation" | "contact"; step?: number; field: string };
+  form_submitted: { form: "consultation" | "contact" };
+  form_submit_failed: { form: "consultation" | "contact"; reason: "network" | "server" | "rejected" };
   faq_toggle: { question_id: string; open: boolean };
   phone_click: { location: string };
   email_click: { location: string };
