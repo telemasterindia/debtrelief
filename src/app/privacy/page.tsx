@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMetadata(page, "privacy");
 
 export default function PrivacyPage() {
   return (
-    <LegalPage path={page.path} title="Privacy Policy" description={page.description}>
+    <LegalPage path={page.path} title="Privacy Policy" description={page.description} effectiveDate="01/10/2010">
       <p>
         This Privacy Policy explains how {operatorName} (&quot;we,&quot; &quot;us&quot;) collects, uses, shares and
         protects information when you use this website. We have written it in plain English. If anything is unclear,
@@ -113,12 +113,6 @@ export default function PrivacyPage() {
 
       <h2>Children</h2>
       <p>This website is intended for adults. We do not knowingly collect information from children under 13.</p>
-
-      <h2>Links to other websites</h2>
-      <p>
-        Our pages link to government and other websites. Their privacy practices are their own, and we encourage you to
-        read their policies.
-      </p>
 
       <h2>Changes to this policy</h2>
       <p>If we make changes, we will update the date at the top of this page.</p>

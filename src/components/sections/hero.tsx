@@ -83,6 +83,9 @@ export function Hero() {
               </li>
             ))}
           </ul>
+          <p className="mt-4 text-[1.0625rem] font-medium text-on-dark">
+            <span aria-hidden="true" className="tracking-[0.12em] text-accent-300">★ ★ ★ ★ ★</span> 5-Star Rated Company
+          </p>
         </div>
       </div>
     </HeroStage>

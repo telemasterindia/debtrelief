@@ -11,7 +11,20 @@ const formatted = new Date(`${siteConfig.legalLastUpdated}T12:00:00Z`).toLocaleD
   timeZone: "UTC",
 });
 
-export function LegalPage({ path, title, description, children }: { path: string; title: string; description: string; children: ReactNode }) {
+export function LegalPage({
+  path,
+  title,
+  description,
+  effectiveDate,
+  children,
+}: {
+  path: string;
+  title: string;
+  description: string;
+  /** Optional "Effective Date" shown directly below the page heading. */
+  effectiveDate?: string;
+  children: ReactNode;
+}) {
   return (
     <>
       <JsonLd data={graph(webPageSchema({ path, name: title, description }))} />
@@ -19,7 +32,12 @@ export function LegalPage({ path, title, description, children }: { path: string
         compact
         crumbs={[{ name: title, path }]}
         title={title}
-        meta={<>Last updated <time dateTime={siteConfig.legalLastUpdated}>{formatted}</time></>}
+        meta={
+          <>
+            {effectiveDate && <span className="mb-1 block">Effective Date: {effectiveDate}</span>}
+            Last updated <time dateTime={siteConfig.legalLastUpdated}>{formatted}</time>
+          </>
+        }
       />
       <div className="container-page py-14 sm:py-20">
         <div className="prose-readable">{children}</div>
