@@ -15,7 +15,7 @@ export function ProcessSteps({ headingLevel = "h2", showCta = true }: { headingL
           align="center"
           eyebrow="How it works"
           title="How It Works."
-          intro="Four simple steps. The final decision is always yours."
+          intro="A simple, established process. You stay in control of the final decision."
           className="reveal"
         />
 

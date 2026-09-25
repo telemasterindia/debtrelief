@@ -77,7 +77,7 @@ It was treated as **not** your site and nothing from it was used.
 - [ ] Qualifying debts: credit card debt, unsecured loans, other qualifying unsecured debt.
 - [ ] Process: free consultation → review your situation → explore your options → you decide.
 - [ ] Referral model: information may be shared with Greenlight's debt-relief partners (`sharesInformationWithPartners`).
-- [ ] "Top Rated" and "since 1998" can be substantiated.
+- [ ] "Since 1998" and the industry-experience wording can be substantiated.
 - [ ] You never ask for SSNs, full account numbers or bank passwords through the website.
 - [ ] Your text-message practice matches the optional SMS consent wording.
 
@@ -101,10 +101,12 @@ government-resource content have been removed.
 
 **Navigation:** Home · About · How It Works · FAQs · Contact · **Get Free Consultation**
 
-**Homepage:** hero → benefits (More Savings, Dedicated Account Managers, Live
-Online Access, Top Rated) → what we can help with → how it works (4 steps) →
-official video → why Greenlight + about → proof (hidden until real assets) →
-6 short FAQs → contact CTA.
+**Homepage:** hero → why Greenlight ("You don't have to figure this out
+alone": experience, dedicated support, personalized approach, live online
+access, customer-focused process, more options) → what we help with → how it
+works (4 steps, customer decides) → official video ("See how Greenlight can
+help") → about (since 1998) → proof (hidden until real assets) → 7 short FAQs
+→ contact CTA.
 
 **Pages:** `/` · `/about` · `/how-it-works` · `/faq` · `/contact` ·
 `/free-consultation` · `/privacy` · `/terms` · `/disclaimer`. Removed pages
@@ -112,8 +114,9 @@ official video → why Greenlight + about → proof (hidden until real assets) �
 
 **Copy rules:** no guarantees of settlement, savings, lower payments or
 becoming debt-free; the customer always decides whether to move forward.
-Unverified claims ("Top Rated", "since 1998") are listed in
-`docs/content-verification.md`.
+Position Greenlight on experience, guidance and process — confident, never
+guaranteed. Unverified claims ("since 1998", industry experience) are listed
+in `docs/content-verification.md`.
 
 ## Tech stack & commands
 

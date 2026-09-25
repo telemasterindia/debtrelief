@@ -30,8 +30,8 @@ export function Hero() {
             Get Help With Your Credit Card Debt.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-on-dark sm:text-xl">
-            {siteConfig.name} helps you explore your options for credit card and unsecured debt. Start with a{" "}
-            {siteConfig.consultationIsFree ? "free, " : ""}no-obligation consultation.
+            {siteConfig.name} helps consumers explore options for managing credit card and unsecured debt. Talk with our
+            experienced team — start with a {siteConfig.consultationIsFree ? "free, " : ""}no-obligation consultation.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-stretch">

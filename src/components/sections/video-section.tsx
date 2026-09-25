@@ -17,12 +17,12 @@ export function VideoSection() {
         <div className="reveal mx-auto max-w-3xl text-center">
           <Eyebrow>Watch our video</Eyebrow>
           <h2 id="video-title" className="mt-3 text-[2rem] sm:text-[2.75rem]">
-            See How {siteConfig.name} Works
+            See How Greenlight Can Help
           </h2>
-          <p className="mt-4 text-lead text-muted">A short introduction from our team.</p>
+          <p className="mt-4 text-lead text-muted">A short introduction to {siteConfig.name}.</p>
         </div>
         <div className="reveal mx-auto mt-12 max-w-5xl">
-          <VideoPlayer videoId={siteConfig.youtubeVideoId} title={`See how ${siteConfig.name} works`} />
+          <VideoPlayer videoId={siteConfig.youtubeVideoId} title="See how Greenlight can help" />
         </div>
         <div className="reveal mt-12 flex flex-col items-center gap-3 text-center">
           <CtaButton href="/free-consultation" location="after_video" arrow>

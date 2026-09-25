@@ -30,6 +30,6 @@ test("reduced motion: content is visible without animation", async ({ browser })
   const context = await browser.newContext({ reducedMotion: "reduce" });
   const page = await context.newPage();
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Real People Who Take the Time to Help." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "You Don't Have to Figure This Out Alone." })).toBeVisible();
   await context.close();
 });

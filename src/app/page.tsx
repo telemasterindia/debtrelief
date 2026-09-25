@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
-import { BenefitsStrip } from "@/components/sections/benefits-strip";
+import { WhyGreenlight } from "@/components/sections/why-greenlight";
 import { HelpWith } from "@/components/sections/help-with";
 import { ProcessSteps } from "@/components/sections/process-steps";
 import { VideoSection } from "@/components/sections/video-section";
-import { WhyGreenlight } from "@/components/sections/why-greenlight";
+import { AboutGreenlight } from "@/components/sections/about-greenlight";
 import { ProofSection } from "@/components/sections/proof-section";
 import { FaqPreview } from "@/components/sections/faq-preview";
 import { FinalCta } from "@/components/sections/final-cta";
@@ -22,11 +22,11 @@ export default function HomePage() {
     <>
       <JsonLd data={graph(webPageSchema({ path: page.path, name: page.title, description: page.description }), videoSchema())} />
       <Hero />
-      <BenefitsStrip />
+      <WhyGreenlight />
       <HelpWith />
       <ProcessSteps />
       <VideoSection />
-      <WhyGreenlight />
+      <AboutGreenlight />
       <ProofSection />
       <FaqPreview />
       <FinalCta />

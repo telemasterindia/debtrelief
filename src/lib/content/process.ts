@@ -1,14 +1,18 @@
 /*
  * CONTENT_REQUIRES_VERIFICATION
- * Step names follow the owner's brief. Descriptions were written for this redesign.
+ * Step names and descriptions as provided in the owner's brief.
  */
 import type { IconName } from "@/components/ui/icon";
 
 export type ProcessStep = { title: string; icon: IconName; summary: string };
 
 export const processSteps: ProcessStep[] = [
-  { title: "Free Consultation", icon: "message", summary: "Call us or request a consultation online. There's no cost and no obligation." },
-  { title: "Review Your Situation", icon: "search", summary: "We talk through your debts and your budget with you." },
-  { title: "Explore Your Options", icon: "compass", summary: "We explain the debt-relief options that may be available to you." },
-  { title: "Decide What Works for You", icon: "checkCircle", summary: "You choose whether to move forward. The decision is always yours." },
+  { title: "Free Consultation", icon: "message", summary: "Tell us about your situation." },
+  {
+    title: "Review Your Situation",
+    icon: "search",
+    summary: "Our team reviews your information and helps you understand the options that may be available.",
+  },
+  { title: "Explore Your Options", icon: "compass", summary: "We explain the available path based on your circumstances." },
+  { title: "Decide Your Next Step", icon: "checkCircle", summary: "You decide whether you want to move forward." },
 ];

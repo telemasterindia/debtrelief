@@ -1,7 +1,6 @@
 import { helpWith } from "@/lib/content/greenlight";
 import { Icon } from "@/components/ui/icon";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { CtaButton } from "@/components/ui/tracked-link";
 
 export function HelpWith() {
   return (
@@ -10,8 +9,8 @@ export function HelpWith() {
         <SectionHeading
           id="help-title"
           align="center"
-          eyebrow="What we can help with"
-          title="Help With Credit Card and Unsecured Debt."
+          eyebrow="Credit card & unsecured debt"
+          title="What We Help With."
           className="reveal"
         />
         <ul className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3">
@@ -25,11 +24,6 @@ export function HelpWith() {
             </li>
           ))}
         </ul>
-        <div className="reveal mt-12 text-center">
-          <CtaButton href="/free-consultation" location="help_with" arrow>
-            Get My Free Consultation
-          </CtaButton>
-        </div>
       </div>
     </section>
   );

@@ -1,37 +1,35 @@
 /*
  * CONTENT_REQUIRES_VERIFICATION
- * Benefit names, "help with" categories and company points come from the
- * owner's brief (existing Greenlight website content). The short descriptions
- * were written for this redesign. Items marked CLAIM are factual claims that
- * must be substantiated before launch — see docs/content-verification.md.
+ * Positioning, item names and example phrasing come from the owner's brief.
+ * Items marked CLAIM must be supportable before launch — see
+ * docs/content-verification.md.
  */
 import type { IconName } from "@/components/ui/icon";
 
 export type Item = { icon: IconName; title: string; text: string };
 
-/** Greenlight's four headline benefits (names from the existing website). */
-export const benefits: Item[] = [
-  // CLAIM: savings are possible but never guaranteed — keep the wording soft.
-  { icon: "dollar", title: "More Savings", text: "We look for options that may help you pay less on your debt." },
-  { icon: "user", title: "Dedicated Account Managers", text: "One point of contact who knows your situation." },
-  { icon: "lock", title: "Live Online Access", text: "Check where things stand anytime, online." },
-  // CLAIM: "Top Rated" must be backed by a named, current rating source.
-  { icon: "checkCircle", title: "Top Rated", text: "Clients value our friendly, personal service." },
+/** Owner-approved positioning statements. */
+export const valueStatement =
+  "Debt can be complicated. Our experienced team can help you understand your situation and explore the options available to you.";
+
+/** Why customers contact Greenlight. */
+export const whyGreenlight: Item[] = [
+  // CLAIM: industry experience (company history configured in site-config).
+  {
+    icon: "history",
+    title: "Experience",
+    text: "Our experience in the industry gives our team an understanding of how the process works and how to work toward available solutions with creditors.",
+  },
+  { icon: "message", title: "Dedicated Support", text: "A dedicated account manager who knows your situation and keeps you informed." },
+  { icon: "compass", title: "Personalized Approach", text: "Every situation is different. We take the time to understand yours." },
+  { icon: "lock", title: "Live Online Access", text: "Check where things stand anytime through your online account." },
+  { icon: "user", title: "Customer-Focused Process", text: "Clear explanations, ongoing communication and no pressure." },
+  { icon: "documents", title: "More Options", text: "We help you understand the opportunities available to you, so you can choose what fits." },
 ];
 
-/** What Greenlight can help with. */
+/** What Greenlight helps with. */
 export const helpWith: Item[] = [
   { icon: "dollar", title: "Credit Card Debt", text: "Balances on bank and store credit cards." },
-  { icon: "document", title: "Unsecured Loans", text: "Personal loans that aren't backed by a home or car." },
-  { icon: "documents", title: "Other Unsecured Debt", text: "Other qualifying debts. We'll confirm which of yours may qualify." },
-];
-
-/** Why Greenlight. */
-export const whyGreenlight: Item[] = [
-  // CLAIM: founding year shown only when siteConfig.foundingYear is set.
-  { icon: "history", title: "Experience", text: "Years of helping people explore their debt-relief options." },
-  { icon: "compass", title: "A Personal Approach", text: "Options built around your situation, not a one-size-fits-all script." },
-  { icon: "message", title: "Dedicated Support", text: "Real people who answer your questions and keep you informed." },
-  { icon: "lock", title: "Online Access", text: "See your progress whenever it suits you." },
-  { icon: "user", title: "Customer-Focused", text: "No pressure. You decide what works for you." },
+  { icon: "document", title: "Unsecured Loans", text: "Personal loans not backed by a home or car." },
+  { icon: "documents", title: "Other Qualifying Unsecured Debt", text: "We'll review which of your debts qualify." },
 ];
