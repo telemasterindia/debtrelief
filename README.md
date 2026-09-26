@@ -89,7 +89,12 @@ debt-relief licensing for the states you serve.
 
 - [ ] `NEXT_PUBLIC_SITE_URL` (defaults to `https://greenlightdebtrelief.com`).
 - [ ] Keep `NEXT_PUBLIC_ENABLE_INDEXING` unset during this phase; consider `SITE_BASIC_AUTH` on staging.
-- [ ] `LEAD_WEBHOOK_URL` (+ optional `LEAD_WEBHOOK_SECRET`) — consultation requests and contact messages are POSTed here as JSON. In production, forms refuse submissions with a friendly message until this is set, so no lead is silently lost.
+- [ ] `RESEND_API_KEY` and `LEAD_EMAIL_FROM` — every valid consultation lead is
+      emailed to Telemasterindia@gmail.com. In production, the consultation form
+      refuses submissions (customer sees a friendly error) until these are set, so
+      no lead is silently lost.
+- [ ] Optional `LEAD_WEBHOOK_URL` (+ `LEAD_WEBHOOK_SECRET`) — also posts leads to a
+      CRM/automation. Contact-form messages are delivered only via this webhook.
 
 ## Site purpose and structure
 
