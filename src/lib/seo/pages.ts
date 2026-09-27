@@ -54,6 +54,15 @@ export const pages = {
     priority: 0.6,
     changeFrequency: "yearly",
   },
+  resultsProof: {
+    path: "/results-and-proof",
+    title: "Results & Proof",
+    description:
+      "Real examples and documentation from individual debt cases. Review redacted documents and learn more about what debt settlement and resolution outcomes can look like.",
+    ogHeadline: "Real examples. Real documentation.",
+    priority: 0.7,
+    changeFrequency: "monthly",
+  },
   contact: {
     path: "/contact",
     title: "Contact Greenlight Debt Relief",

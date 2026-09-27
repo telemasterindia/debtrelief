@@ -33,3 +33,27 @@ not reach greenlightdebtrelief.com). Nothing has been substituted for them.
 The section shows placeholders in `npm run dev` and stays hidden in production
 until at least one image is set. The disclaimer that results are individual and
 not typical or guaranteed is always shown with the images.
+
+---
+
+# Results & Proof page — PDF documents (`/results-and-proof`)
+
+The Results & Proof page shows PDF proof documents listed in
+`src/lib/content/proof-documents.ts`.
+
+## How to add PDFs
+
+1. **Do not put unreviewed PDFs in `public/`** — anything in `public/` is
+   published. Put the originals in a folder named `proof-intake/` at the project
+   root. It is git-ignored, so those files are never committed or published.
+2. Each PDF is reviewed page by page (text layer **and** rendered pages) for
+   names, phone numbers, emails, addresses, account numbers, creditor account
+   IDs, SSNs, dates of birth, signatures and any other personal information.
+   Documents with anything visible are **not** published and are flagged back.
+   Hidden text under black boxes also counts — a real redaction removes it.
+3. Approved documents are copied to `public/proof/proof-01.pdf`,
+   `proof-02.pdf`, … (clean names; the original file name and metadata are not
+   exposed).
+4. An entry is added to `proofDocuments` for each one: `institution`, `title`,
+   `description` and optional `resultType` — **taken from the document itself**,
+   never invented.

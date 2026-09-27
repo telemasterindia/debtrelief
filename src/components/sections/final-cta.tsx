@@ -3,7 +3,16 @@ import { siteConfig } from "@/lib/site-config";
 import { Icon } from "@/components/ui/icon";
 import { CtaButton, TrackedLink } from "@/components/ui/tracked-link";
 
-export function FinalCta({ title = "Talk With an Experienced Team.", location = "final_cta" }: { title?: string; location?: string }) {
+export function FinalCta({
+  title = "Talk With an Experienced Team.",
+  body,
+  location = "final_cta",
+}: {
+  title?: string;
+  /** Optional supporting line; defaults to the standard copy. */
+  body?: string;
+  location?: string;
+}) {
   const { phone, phoneDisplay, email } = siteConfig;
   return (
     <section id="contact-us" aria-labelledby="final-cta-title" className="py-20 sm:py-24">
@@ -14,8 +23,8 @@ export function FinalCta({ title = "Talk With an Experienced Team.", location = 
             {title}
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-on-dark sm:text-xl">
-            Tell us about your situation. Our team will review it with you and explain the options available — then you
-            decide how you want to proceed.
+            {body ??
+              "Tell us about your situation. Our team will review it with you and explain the options available — then you decide how you want to proceed."}
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <CtaButton href="/free-consultation" location={location} variant="primaryOnDark" arrow>

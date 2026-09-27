@@ -10,3 +10,6 @@ test-results
 playwright-report
 qa-output
 .DS_Store
+
+# Unreviewed proof PDFs — never committed or published. Approved, redacted copies go to public/proof/.
+proof-intake/

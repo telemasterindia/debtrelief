@@ -7,7 +7,7 @@ test("mobile menu opens, lists all pages, and closes with Escape", async ({ page
   await expect(button).toHaveAttribute("aria-expanded", "false");
   await button.click();
   await expect(page.getByRole("button", { name: "Close" })).toHaveAttribute("aria-expanded", "true");
-  for (const label of ["Home", "About", "How It Works", "FAQs", "Contact"]) {
+  for (const label of ["Home", "About", "How It Works", "Results & Proof", "FAQs", "Contact"]) {
     await expect(page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: label, exact: true })).toBeVisible();
   }
   await page.keyboard.press("Escape");

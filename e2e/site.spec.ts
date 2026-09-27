@@ -8,12 +8,13 @@ const paths = [
   "/faq",
   "/contact",
   "/free-consultation",
+  "/results-and-proof",
   "/privacy",
   "/terms",
   "/disclaimer",
 ];
 
-const marketingPaths = ["/", "/about", "/how-it-works", "/faq", "/contact", "/free-consultation"];
+const marketingPaths = ["/", "/about", "/how-it-works", "/faq", "/contact", "/free-consultation", "/results-and-proof"];
 
 for (const path of paths) {
   test(`${path}: accessible, one h1, not indexable`, async ({ page }) => {
@@ -91,7 +92,7 @@ test("real logo and navigation are present", async ({ page, isMobile }) => {
   const ratio = await logo.evaluate((img: HTMLImageElement) => img.getBoundingClientRect().width / img.getBoundingClientRect().height);
   expect(Math.abs(ratio - 382 / 235)).toBeLessThan(0.03); // never distorted
   if (!isMobile) {
-    for (const label of ["Home", "About", "How It Works", "FAQs", "Contact"]) {
+    for (const label of ["Home", "About", "How It Works", "Results & Proof", "FAQs", "Contact"]) {
       await expect(page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: label, exact: true })).toBeVisible();
     }
     await expect(page.getByRole("link", { name: "Get Free Consultation" }).first()).toBeVisible();

@@ -11,7 +11,8 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   // YouTube: the official Greenlight video thumbnail and privacy-enhanced embed.
   "img-src 'self' data: blob: https://i.ytimg.com",
-  "frame-src https://www.youtube-nocookie.com",
+  // YouTube embed, and our own proof PDFs shown in the Results & Proof viewer.
+  "frame-src 'self' https://www.youtube-nocookie.com",
   "font-src 'self' data:",
   "connect-src 'self'",
   "worker-src 'self' blob:",
@@ -51,6 +52,16 @@ const nextConfig: NextConfig = {
           ...(isProd
             ? [{ key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" }]
             : []),
+        ],
+      },
+      {
+        // Proof PDFs: allow them to be shown inside this site's own viewer (same origin
+        // only) and displayed inline in the browser rather than downloaded.
+        source: "/proof/:file*.pdf",
+        headers: [
+          { key: "Content-Security-Policy", value: "frame-ancestors 'self'" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Content-Disposition", value: "inline" },
         ],
       },
     ];
