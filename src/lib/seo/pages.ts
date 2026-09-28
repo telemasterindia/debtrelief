@@ -16,7 +16,7 @@ export const pages = {
     path: "/",
     title: "Greenlight Debt Relief",
     description:
-      "Get help exploring your options for credit card and unsecured debt. Start with a free, no-obligation consultation.",
+      "Explore debt relief and financial options — from credit card and personal debt to credit, business, tax and student loans. Start with a free, no-obligation consultation.",
     ogHeadline: "Get help with your credit card debt.",
     priority: 1,
     changeFrequency: "monthly",
@@ -53,6 +53,15 @@ export const pages = {
     ogHeadline: "About Greenlight Debt Relief.",
     priority: 0.6,
     changeFrequency: "yearly",
+  },
+  services: {
+    path: "/services",
+    title: "Services",
+    description:
+      "Explore the kinds of debt and financial challenges Greenlight Debt Relief can talk with you about, from credit card debt to business, tax and student-loan concerns.",
+    ogHeadline: "Explore your options.",
+    priority: 0.8,
+    changeFrequency: "monthly",
   },
   resultsProof: {
     path: "/results-and-proof",

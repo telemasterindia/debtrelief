@@ -46,7 +46,7 @@ export type SiteConfig = {
 
 export const siteConfig: SiteConfig = {
   name: "Greenlight Debt Relief",
-  descriptor: "Credit card & unsecured debt relief",
+  descriptor: "Debt Relief & Financial Options",
   legalName: null,
   address: null,
   phone: "+18778700717", // VERIFY

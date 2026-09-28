@@ -1,3 +1,4 @@
+import { allServices, servicePath } from "@/lib/content/services";
 import { pages } from "@/lib/seo/pages";
 import { absoluteUrl, siteConfig } from "@/lib/site-config";
 
@@ -13,5 +14,6 @@ export function sitemapEntries(): SitemapEntry[] {
       priority: p.priority,
       ...(legal.has(p.path) ? { lastModified: siteConfig.legalLastUpdated } : {}),
     })),
+    ...allServices.map((s) => ({ url: absoluteUrl(servicePath(s.slug)), changeFrequency: "monthly", priority: 0.6 })),
   ];
 }

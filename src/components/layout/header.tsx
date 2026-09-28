@@ -2,13 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useRef, useState } from "react";
+import { Fragment, useEffect, useId, useRef, useState } from "react";
 import { consultationCta, primaryNav } from "@/lib/navigation";
 import { siteConfig } from "@/lib/site-config";
 import { track } from "@/lib/analytics/track";
 import { cn } from "@/lib/utils/cn";
 import { Icon } from "@/components/ui/icon";
 import { Logo } from "./logo";
+import { ServicesAccordion, ServicesMegaMenu } from "./services-menu";
+
+/** The Services menu sits right after this primary-nav item. */
+const servicesAfter = "/about";
 
 function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
@@ -60,7 +64,7 @@ export function Header() {
       <div className="on-dark bg-deep-950 text-on-dark">
         <div className="container-page flex min-h-11 items-center justify-center gap-6 text-base lg:justify-between">
           <p className="hidden lg:block">
-            {siteConfig.consultationIsFree ? "Free, no-obligation consultation" : "No-obligation consultation"} · Credit card &amp; unsecured debt
+            {siteConfig.consultationIsFree ? "Free, no-obligation consultation" : "No-obligation consultation"} · Explore debt relief &amp; financial options
           </p>
           <a
             href={`tel:${phone}`}
@@ -90,21 +94,24 @@ export function Header() {
             {primaryNav.map((item) => {
               const active = isActive(pathname, item.href);
               return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={cn(
-                      "relative flex min-h-12 items-center rounded-lg px-2.5 text-[1.0625rem] font-medium transition-colors 2xl:px-3.5",
-                      active ? "text-brand-700" : "text-ink hover:text-brand-700",
-                    )}
-                  >
-                    {item.label}
-                    {active && (
-                      <span aria-hidden="true" className="absolute inset-x-3 bottom-1.5 h-0.5 rounded-full bg-brand-600" />
-                    )}
-                  </Link>
-                </li>
+                <Fragment key={item.href}>
+                  <li>
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "relative flex min-h-12 items-center rounded-lg px-2.5 text-[1.0625rem] font-medium transition-colors 2xl:px-3.5",
+                        active ? "text-brand-700" : "text-ink hover:text-brand-700",
+                      )}
+                    >
+                      {item.label}
+                      {active && (
+                        <span aria-hidden="true" className="absolute inset-x-3 bottom-1.5 h-0.5 rounded-full bg-brand-600" />
+                      )}
+                    </Link>
+                  </li>
+                  {item.href === servicesAfter && <ServicesMegaMenu pathname={pathname} />}
+                </Fragment>
               );
             })}
           </ul>
@@ -142,19 +149,22 @@ export function Header() {
         <nav aria-label="Main" className="container-page py-4">
           <ul className="divide-y divide-line">
             {primaryNav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  aria-current={isActive(pathname, item.href) ? "page" : undefined}
-                  className={cn(
-                    "flex min-h-15 items-center justify-between py-3 text-xl font-semibold",
-                    isActive(pathname, item.href) ? "text-brand-700" : "text-ink",
-                  )}
-                >
-                  {item.label}
-                  <Icon name="chevronRight" className="size-6 text-muted" />
-                </Link>
-              </li>
+              <Fragment key={item.href}>
+                <li>
+                  <Link
+                    href={item.href}
+                    aria-current={isActive(pathname, item.href) ? "page" : undefined}
+                    className={cn(
+                      "flex min-h-15 items-center justify-between py-3 text-xl font-semibold",
+                      isActive(pathname, item.href) ? "text-brand-700" : "text-ink",
+                    )}
+                  >
+                    {item.label}
+                    <Icon name="chevronRight" className="size-6 text-muted" />
+                  </Link>
+                </li>
+                {item.href === servicesAfter && <ServicesAccordion pathname={pathname} onNavigate={() => setOpen(false)} />}
+              </Fragment>
             ))}
           </ul>
           {!onRequestPage && (

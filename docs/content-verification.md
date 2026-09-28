@@ -17,6 +17,7 @@ grep -rn CONTENT_REQUIRES_VERIFICATION src
 | "Since 1998" | `src/lib/site-config.ts` → `foundingYear` | Confirm against company records. Set to `null` to hide. |
 | "Top Rated", "More Savings" | Not currently shown | Removed from the homepage in favour of the owner's "Why Greenlight" list. Re-add only with a named rating source (Top Rated) and without amounts or percentages (savings). |
 | Phone / email | `src/lib/site-config.ts` | Confirm they match the live site. |
+| Services (all 15) | `src/lib/content/services.ts` | Owner approved presenting all 15 as areas where visitors can explore options. Copy avoids outcome promises and uses one short disclaimer (`serviceDisclaimer`). Have counsel review the service pages before launch. |
 | Partner sharing | `src/lib/site-config.ts` → `sharesInformationWithPartners` | Confirm the referral model: consent text and Privacy Policy say information may be shared with Greenlight's debt-relief partners. |
 
 ## Copy to compare with the existing Greenlight site

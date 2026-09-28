@@ -25,12 +25,12 @@ export function Hero() {
         <div className="relative z-10 max-w-2xl">
           {/* The official logo sits directly above in the white header. It has no reversed
               (light-on-dark) version, so it is not repeated on this dark background. */}
-          <p className="text-lg font-semibold text-accent-300">Credit card &amp; unsecured debt relief</p>
+          <p className="text-lg font-semibold text-accent-300">Debt relief &amp; financial options</p>
           <h1 id="hero-title" className="mt-3 text-[2.5rem] leading-[1.08] text-white sm:text-[3.25rem] lg:text-[4rem]">
             Get Help With Your Credit Card Debt.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-on-dark sm:text-xl">
-            {siteConfig.name} helps consumers explore options for managing credit card and unsecured debt. Talk with our
+            {siteConfig.name} helps consumers explore debt relief and financial options — from credit card and personal debt to credit, business, tax and student loans. Talk with our
             experienced team — start with a {siteConfig.consultationIsFree ? "free, " : ""}no-obligation consultation.
           </p>
 

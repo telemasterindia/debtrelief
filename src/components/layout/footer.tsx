@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Fragment } from "react";
+import { servicesIndexPath } from "@/lib/content/services";
 import { consultationCta, legalNav, primaryNav } from "@/lib/navigation";
 import { operatorName, siteConfig } from "@/lib/site-config";
 import { TrackedLink } from "@/components/ui/tracked-link";
@@ -19,7 +21,7 @@ export function Footer() {
         <div className="lg:col-span-5">
           <Logo heightClass="h-20" />
           <p className="mt-6 max-w-sm text-[1.0625rem] leading-relaxed text-muted">
-            Helping people explore their options for credit card and unsecured debt.
+            Helping people explore debt relief and financial options.
           </p>
           <ul className="mt-6 space-y-2 text-[1.0625rem]">
             {phone && phoneDisplay && (
@@ -68,11 +70,20 @@ export function Footer() {
             <h3 className="text-lg font-semibold text-ink">Company</h3>
             <ul className="mt-4 space-y-1">
               {primaryNav.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className={linkClass}>
-                    {item.label}
-                  </Link>
-                </li>
+                <Fragment key={item.href}>
+                  <li>
+                    <Link href={item.href} className={linkClass}>
+                      {item.label}
+                    </Link>
+                  </li>
+                  {item.href === "/about" && (
+                    <li>
+                      <Link href={servicesIndexPath} className={linkClass}>
+                        Services
+                      </Link>
+                    </li>
+                  )}
+                </Fragment>
               ))}
               <li>
                 <Link href={consultationCta.href} className="inline-flex min-h-11 items-center text-[1.0625rem] font-semibold text-brand-700 hover:text-ink hover:underline">

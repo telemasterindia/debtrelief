@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { helpWith } from "@/lib/content/greenlight";
+import { servicesIndexPath } from "@/lib/content/services";
 import { Icon } from "@/components/ui/icon";
 import { SectionHeading } from "@/components/ui/section-heading";
 
@@ -9,7 +11,7 @@ export function HelpWith() {
         <SectionHeading
           id="help-title"
           align="center"
-          eyebrow="Credit card & unsecured debt"
+          eyebrow="Debt relief & financial options"
           title="What We Help With."
           className="reveal"
         />
@@ -24,6 +26,12 @@ export function HelpWith() {
             </li>
           ))}
         </ul>
+        <p className="reveal mt-10 text-center text-lg">
+          <Link href={servicesIndexPath} className="link inline-flex min-h-11 items-center gap-1.5">
+            Explore all services
+            <Icon name="arrowRight" className="size-5" />
+          </Link>
+        </p>
       </div>
     </section>
   );
