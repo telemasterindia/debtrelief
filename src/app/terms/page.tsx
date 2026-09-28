@@ -22,8 +22,7 @@ export default function TermsPage() {
         for your specific situation.{" "}
         {siteConfig.isLawFirm
           ? "Using this website does not create an attorney-client relationship."
-          : `${siteConfig.name} is not a law firm, and using this website does not create an attorney-client relationship.`}{" "}
-        Please read our <Link href="/disclaimer">Disclaimer</Link>.
+          : `${siteConfig.name} is not a law firm, and using this website does not create an attorney-client relationship.`}
       </p>
 
       <h2>2. Requesting a consultation</h2>
@@ -41,8 +40,7 @@ export default function TermsPage() {
       <h2>3. No guaranteed results</h2>
       <p>
         Results vary. We do not promise that you will receive any offer, that any debt will be settled, reduced or
-        eliminated, or that you will save any particular amount. See our <Link href="/disclaimer">Disclaimer &amp;
-        Disclosures</Link>.
+        eliminated, or that you will save any particular amount.
       </p>
 
       <h2>4. Your responsibilities</h2>

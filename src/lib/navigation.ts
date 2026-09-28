@@ -14,5 +14,4 @@ export const consultationCta = { href: "/free-consultation", label: "Get Free Co
 export const legalNav: NavItem[] = [
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms & Conditions" },
-  { href: "/disclaimer", label: "Disclaimer & Disclosures" },
 ];

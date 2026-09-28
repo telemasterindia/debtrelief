@@ -11,7 +11,6 @@ const paths = [
   "/results-and-proof",
   "/privacy",
   "/terms",
-  "/disclaimer",
 ];
 
 const marketingPaths = ["/", "/about", "/how-it-works", "/faq", "/contact", "/free-consultation", "/results-and-proof"];

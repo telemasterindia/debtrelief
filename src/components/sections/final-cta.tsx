@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { Icon } from "@/components/ui/icon";
 import { CtaButton, TrackedLink } from "@/components/ui/tracked-link";
@@ -52,10 +51,7 @@ export function FinalCta({
             </p>
           )}
           <p className="mx-auto mt-4 max-w-2xl text-base text-on-dark-muted">
-            {siteConfig.consultationIsFree ? "Free consultation. " : ""}No obligation.{" "}
-            <Link href="/disclaimer" className="underline underline-offset-4 hover:text-white">
-              Disclosures
-            </Link>
+            {siteConfig.consultationIsFree ? "Free consultation. " : ""}No obligation.
           </p>
         </div>
       </div>

@@ -96,14 +96,6 @@ export const pages = {
     priority: 0.3,
     changeFrequency: "yearly",
   },
-  disclaimer: {
-    path: "/disclaimer",
-    title: "Disclaimer & Disclosures",
-    description: "Important disclosures about Greenlight Debt Relief and this website.",
-    ogHeadline: "Disclaimer & disclosures",
-    priority: 0.3,
-    changeFrequency: "yearly",
-  },
 } satisfies Record<string, PageEntry>;
 
 export type PageKey = keyof typeof pages;

@@ -6,7 +6,7 @@ export type SitemapEntry = { url: string; lastModified?: string; changeFrequency
 
 /** Sitemap entries — only served when indexing is enabled (see lib/seo/indexing.ts). */
 export function sitemapEntries(): SitemapEntry[] {
-  const legal = new Set(["/privacy", "/terms", "/disclaimer"]);
+  const legal = new Set(["/privacy", "/terms"]);
   return [
     ...Object.values(pages).map((p) => ({
       url: absoluteUrl(p.path),
