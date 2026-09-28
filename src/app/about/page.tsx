@@ -17,7 +17,7 @@ const page = pages.about;
 export const metadata: Metadata = pageMetadata(page, "about");
 
 export default function AboutPage() {
-  const { name, foundingYear } = siteConfig;
+  const { name, foundingYear, aboutVideoId } = siteConfig;
   const answers = [
     {
       q: "Who we are",
@@ -58,6 +58,31 @@ export default function AboutPage() {
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+      <section aria-labelledby="about-video-title" className="pb-16 sm:pb-24">
+        <div className="container-page">
+          <div className="reveal mx-auto max-w-4xl">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 id="about-video-title" className="text-[1.75rem] sm:text-4xl">
+                Get to Know {name}
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-muted sm:text-xl">
+                Learn more about who we are, how we work, and how we help consumers explore their debt-relief options.
+              </p>
+            </div>
+            <div className="mt-10 overflow-hidden rounded-[var(--radius-card)] bg-deep-950 shadow-[var(--shadow-raised)] ring-1 ring-line">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${aboutVideoId}?rel=0`}
+                title={`${name} overview`}
+                loading="lazy"
+                allow="encrypted-media; picture-in-picture; fullscreen"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="block aspect-video h-auto w-full border-0"
+              />
+            </div>
+          </div>
         </div>
       </section>
       <WhyGreenlight tone="canvas" />

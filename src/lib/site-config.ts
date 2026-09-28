@@ -29,6 +29,8 @@ export type SiteConfig = {
   youtubeVideoId: string;
   /** Official Greenlight Debt Relief FAQ video (FAQ page). */
   faqVideoId: string;
+  /** Official Greenlight Debt Relief overview video (About page). */
+  aboutVideoId: string;
   /** Official Greenlight Debt Relief YouTube channel (footer link). */
   youtubeChannelUrl: string;
   isLawFirm: boolean;
@@ -58,6 +60,7 @@ export const siteConfig: SiteConfig = {
   logo: { src: "/brand/greenlight-logo.png", width: 382, height: 235, alt: "Greenlight Debt Relief" },
   youtubeVideoId: "92CTw_kb6x8",
   faqVideoId: "dugiURBh7tg",
+  aboutVideoId: "7sU_x_hj6u8",
   youtubeChannelUrl: "https://www.youtube.com/@GreenlightDebtReliefOfficial",
   isLawFirm: false,
   sharesInformationWithPartners: true, // VERIFY with counsel
