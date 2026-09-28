@@ -110,13 +110,6 @@ export function Footer() {
       <div className="border-t border-line bg-canvas">
         <div className="container-page space-y-3 py-8 text-[1.0625rem] leading-relaxed text-muted">
           <p>
-            Results vary and are not guaranteed. Not all debts qualify. Any decision to move forward is yours.{" "}
-            <Link href="/disclaimer" className="font-medium text-brand-700 underline underline-offset-4 hover:text-ink">
-              See disclosures
-            </Link>
-            .
-          </p>
-          <p>
             © {year} {operatorName}. All rights reserved.
           </p>
         </div>
