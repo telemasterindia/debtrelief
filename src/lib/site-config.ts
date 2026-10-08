@@ -51,8 +51,8 @@ export const siteConfig: SiteConfig = {
   descriptor: "Debt Relief & Financial Options",
   legalName: null,
   address: null,
-  phone: "+18778700717", // VERIFY
-  phoneDisplay: "+1 (877) 870-0717", // VERIFY
+  phone: "+18002353167", // VERIFY
+  phoneDisplay: "+1 (800) 235-3167", // VERIFY
   email: "info@greenlightdebtrelief.com", // VERIFY
   hours: null,
   foundingYear: 1998, // VERIFY — "since 1998" per owner brief / existing site

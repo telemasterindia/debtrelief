@@ -70,7 +70,7 @@ test("FAQ accordion opens with the keyboard", async ({ page }) => {
 test("brand, contact details and video are present", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("link", { name: /Greenlight Debt Relief.*home/ }).first()).toBeVisible();
-  await expect(page.locator('a[href="tel:+18778700717"]').first()).toBeVisible();
+  await expect(page.locator('a[href="tel:+18002353167"]').first()).toBeVisible();
   await expect(page.locator("text=Ledgerwise")).toHaveCount(0);
   // Nothing is requested from YouTube until the visitor presses Play.
   await expect(page.locator("iframe")).toHaveCount(0);
@@ -81,7 +81,7 @@ test("brand, contact details and video are present", async ({ page }) => {
 test("contact page shows the real email and phone", async ({ page }) => {
   await page.goto("/contact");
   await expect(page.locator('main a[href="mailto:info@greenlightdebtrelief.com"]')).toBeVisible();
-  await expect(page.locator('main a[href="tel:+18778700717"]')).toBeVisible();
+  await expect(page.locator('main a[href="tel:+18002353167"]')).toBeVisible();
 });
 
 test("real logo and navigation are present", async ({ page, isMobile }) => {

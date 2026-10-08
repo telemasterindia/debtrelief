@@ -67,7 +67,7 @@ It was treated as **not** your site and nothing from it was used.
 
 **Confirm in `src/lib/site-config.ts`** (values marked `VERIFY`)
 
-- [ ] Phone `+1 (877) 870-0717` and email `info@greenlightdebtrelief.com` match the live site.
+- [ ] Phone `+1 (800) 235-3167` and email `info@greenlightdebtrelief.com` match the live site.
 - [ ] `legalName`, `address`, `hours` — add if you want them shown (currently hidden).
 - [ ] `foundingYear` — add only if verifiable (enables "serving clients since …" on About).
 - [ ] `isLawFirm: false`, `consultationIsFree: true` — must reflect reality.
